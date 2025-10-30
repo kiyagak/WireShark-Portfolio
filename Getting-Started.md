@@ -59,14 +59,20 @@ sudo wireshark &
 <img width="770" height="490" alt="image" src="https://github.com/user-attachments/assets/e99e87e7-f120-4dab-be83-8ff77f53e32b" />
 
 5.  While Wireshark is running, enter the URL `http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-file1.html` in your browser.
+
+<img width="789" height="171" alt="Screenshot From 2025-10-30 17-48-16" src="https://github.com/user-attachments/assets/ff9d29f6-7834-410c-85b1-3387e8b84d24" />
+
 6.  Stop Wireshark packet capture.
 7.  Type "http" in the display filter field and apply the filter.
-8.  Find the HTTP GET message sent to gaia.cs.umass.edu.
-9.  Minimize Frame, Ethernet, IP, and TCP details; maximize HTTP protocol information.
-10. Exit Wireshark.
+9.  Find the HTTP GET message sent to gaia.cs.umass.edu.
 
+<img width="1394" height="735" alt="Screenshot From 2025-10-30 17-56-09" src="https://github.com/user-attachments/assets/4a0bb35b-c295-4b85-b573-f4bf6694512c" />
 
+10.  Minimize Frame, Ethernet, IP, and TCP details; maximize HTTP protocol information.
+11. Exit Wireshark.
 
+<img width="1394" height="735" alt="Screenshot From 2025-10-30 17-56-09" src="https://github.com/user-attachments/assets/1035cf1d-7aac-4bfc-b3cd-940f2ecc525b" />
+<img width="1348" height="665" alt="Screenshot From 2025-10-30 17-53-55" src="https://github.com/user-attachments/assets/164202fd-0e35-44be-817a-de1165ed1aed" />
 
 **Post-Capture Analysis (Example Questions):**
 
