@@ -1,6 +1,6 @@
 ## Objectives
 
-The goal is to get started with Wireshark, a network packet analyzer.
+The goal is to [get started](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_Intro_v9.0.pdf) with Wireshark, a network packet analyzer.
 
 ## Instructions
 
