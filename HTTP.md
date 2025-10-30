@@ -1,0 +1,145 @@
+# Wireshark Lab: HTTP
+
+## Objectives
+
+The goal is to use Wireshark to analyze HTTP protocol behavior: GET/response, message formats, large files, embedded objects, conditional GET, and authentication.
+
+---
+
+### **Pre-Lab Setup (Critical)**
+- **Disable VPN** (encrypts HTTP/TCP).
+- **Disable HTTP/3 & QUIC** in browser (default in 2025 browsers).  
+  → Guide: https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/
+- Use **http://** (not https://) to avoid encryption.
+- **Turn off** privacy settings.
+- **Clear browser cache & history** before each section.
+
+## Disable QUIC in Chrome
+
+1.  Open Chrome and type `chrome://flags` in the address bar.
+2.  Search for "QUIC."
+3.  Disable the "Experimental QUIC Protocol" option. (Alternatively, go to `chrome://flags/#enable-quic`)
+4.  Relaunch Chrome.
+
+<img width="857" height="512" alt="image" src="https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d" />
+
+## Disable QUIC in Firefox
+
+1.  Open Firefox and type `about:config` in the address bar.
+2.  Accept the risk and continue.
+3.  Search for `network.http.http3.enable`.
+4.  Double-click `network.http.http3.enable`, `network.http.http3.enable_0rtt`, and `network.http.http3.enable_qlog` to set their values to `false`.
+5.  Restart Firefox.
+
+## Disable QUIC in Edge
+
+1.  Open Edge and type `edge://flags` in the address bar.
+2.  Search for "QUIC."
+3.  Disable the "Experimental QUIC Protocol" option.
+4.  Restart Edge.
+
+---
+
+### **1. Basic HTTP GET/Response**
+**Steps:**
+1. Start browser + Wireshark.
+2. Filter: `http`
+3. Wait 1+ min → Capture → Visit:  
+   `http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html`
+4. Stop capture.
+
+**Questions:**
+1. HTTP version (client & server)?
+2. Accepted languages?
+3. IP addresses (client & server)?
+4. Status code?
+5. Last-Modified time?
+6. Bytes returned?
+7. Hidden headers in raw data?
+
+> *Note:* File’s Last-Modified updates every minute (server-side).
+
+---
+
+### **2. HTTP Conditional GET**
+**Steps:**
+- Clear cache.
+- Capture → Load `HTTP-wireshark-file2.html` → **Refresh immediately**.
+- Filter: `http`
+
+**Questions:**
+8. First GET: `If-Modified-Since` present?
+9. Server response: File returned?
+10. Second GET: `If-Modified-Since` header? Value?
+11. Status code? File sent?
+
+> *Hint:* Chrome reliably uses conditional GET; Safari/Firefox may not.
+
+---
+
+### **3. Retrieving Long Documents**
+**Steps:**
+- Clear cache → Capture → Load `HTTP-wireshark-file3.html` (US Bill of Rights)
+- **Clear filter** to see all TCP segments.
+
+**Questions:**
+12. # of GET requests? Packet # of GET?
+13. Packet # with status code?
+14. Status code/phrase?
+15. # of TCP segments for HTTP response?
+
+> *Note:* Large HTML → split into multiple TCP segments (Wireshark shows “TCP segment of a reassembled PDU”).
+
+---
+
+### **4. HTML with Embedded Objects**
+**Steps:**
+- Clear cache → Capture → Load `HTTP-wireshark-file4.html`  
+  (Contains 2 images: one local, one from France)
+
+**Questions:**
+16. # of GET requests? Destination IPs?
+17. Images downloaded **serially or in parallel**?
+
+---
+
+### **5. HTTP Authentication**
+**Steps:**
+- Clear cache → Restart browser → Capture
+- Visit: `http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html`  
+  **Username:** `wireshark-students`  
+  **Password:** `network`
+
+**Questions:**
+18. Server’s first response (status code/phrase)?
+19. Second GET: New header? (→ `Authorization: Basic ...`)
+
+> **Security Note:**  
+> Credentials sent in **Base64** (not encrypted).  
+> `d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms=` → decodes to `wireshark-students:network`  
+> → **Anyone with Wireshark can read it!**
+
+---
+
+### **Packet Traces (if live capture fails)**
+Download: `http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip`  
+Use:
+- `http-wireshark-trace1-1` → Section 1
+- `http-wireshark-trace2-1` → Section 2
+- `http-wireshark-trace3-1` → Section 3
+- `http-wireshark-trace4-1` → Section 4
+- `http-wireshark-trace5-1` → Section 5
+
+---
+
+### **Key Takeaways**
+- HTTP runs over TCP; large responses are segmented.
+- Conditional GET saves bandwidth.
+- Embedded objects → multiple GETs (often parallel).
+- Basic Auth is **insecure** (Base64 ≠ encryption).
+- Use `http://`, disable QUIC/HTTP3, clear cache for accurate lab results.
+
+**Textbook Reference:** Section 2.2 (9th ed.)  
+**Authors’ Site:** http://gaia.cs.umass.edu/kurose_ross
+
+## What I Learned
