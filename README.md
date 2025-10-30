@@ -3,7 +3,6 @@
 # Objectives
 The goal is to follow the [Wireshark labs](https://gaia.cs.umass.edu/kurose_ross/wireshark.php) lead by Kuross and Ross to:
 - install WireShark on Deian Linux
-- 
 
 ## Installation
 
@@ -51,7 +50,6 @@ sudo usermod -aG wireshark youruser
 ```
 
 Log out and back in (or reboot) for the group change to take effect.
-
 ---
 
 ### Verify the installation
@@ -62,6 +60,7 @@ Run this command in the Terminal to open wireshark:
 wireshark --version
 Wireshark 4.4.7.
 ```
+---
 
 ### Open Wireshark
 ```bash
@@ -70,8 +69,6 @@ wireshark &
 
 > - wireshark: Starts the Wireshark GUI program.
 > - &: This tells the shell to run the command in the background so you can use the same terminal session right after opening Wireshark.
----
-
 ---
 
 # What I Learned
