@@ -53,7 +53,7 @@ The Wireshark interface consists of five main components:
 3.  Select "Capture" -> "Interfaces" (or "Options" on Mac).
 4.  Select the appropriate interface (e.g., Wi-Fi or Ethernet) and start packet capture.
 
-<img width="754" height="589" alt="image" src="https://github.com/user-attachments/assets/eeb8f29b-f650-4c99-832c-1c3804a04899" />
+<img width="770" height="490" alt="image" src="https://github.com/user-attachments/assets/e99e87e7-f120-4dab-be83-8ff77f53e32b" />
 
 5.  While Wireshark is running, enter the URL `http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-file1.html` in your browser.
 6.  Stop Wireshark packet capture.
