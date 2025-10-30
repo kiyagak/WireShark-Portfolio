@@ -48,14 +48,42 @@ The goal is to use Wireshark to analyze HTTP protocol behavior: GET/response, me
    `http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html`
 4. Stop capture.
 
+1. Start your web browser and Wireshark.
+    
+    	sudo wireshark &
+    
+2. Filter for only HTTP within Wireshark: http
+3. Wait 1+ min → Capture → Visit:
+
+		http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html
+
+4. Stop capture.
+
 **Questions:**
-1. HTTP version (client & server)?
-2. Accepted languages?
-3. IP addresses (client & server)?
-4. Status code?
-5. Last-Modified time?
-6. Bytes returned?
-7. Hidden headers in raw data?
+
+
+HTTP version (client & server)?
+- Request Version: HTTP/1.1
+- Response Version: HTTP/1.1
+
+Accepted languages?
+- Accept-Language: en-US,en;q=0.9
+	
+IP addresses (client & server)?
+- Server: 128.119.245.12
+- Client: 10.0.22.190
+
+Status code?
+- 200
+
+Last-Modified time?
+- Tue, 28 Oct 2025 05:59:01 GMT
+	
+Bytes returned?
+- 128 bytes
+
+By inspecting the raw data in the packet content window, do you see any headers within the data that are not displayed in the packet-listing window? If so, name one.
+- No
 
 > *Note:* File’s Last-Modified updates every minute (server-side).
 
