@@ -77,9 +77,9 @@ sudo wireshark &
 ## What I Learned
 
 I learned that
-- it took just under two (0.177781925) seconds between the HTTP GET message being sent until the HTTP OK reply was received
-- the Internet address of gaia.cs.umass.edu is 128.119.245.12
-- the captured address of my device is 10.0.22.190
+- it took just under two (`0.177781925`) seconds between the HTTP GET message being sent until the HTTP OK reply was received
+- the Internet address of gaia.cs.umass.edu is `128.119.245.12`
+- the captured address of my device is `10.0.22.190`
 - The type of web browser that issued the request is: `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36`
 
 **Note:** A sample packet trace file is available for download at [http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip) for use if live capture is not possible.
