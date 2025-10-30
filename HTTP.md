@@ -42,12 +42,6 @@ The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net
 
 ### **1. Basic HTTP GET/Response**
 **Steps:**
-1. Start browser + Wireshark.
-2. Filter: `http`
-3. Wait 1+ min → Capture → Visit:  
-   `http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html`
-4. Stop capture.
-
 1. Start your web browser and Wireshark.
     
     	sudo wireshark &
@@ -59,8 +53,14 @@ The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net
 
 4. Stop capture.
 
-**Questions:**
+<img width="772" height="149" alt="Screenshot From 2025-10-30 23-20-32" src="https://github.com/user-attachments/assets/6c0cb2de-4f29-4cfa-825b-5c78ab7b5158" />
 
+<img width="1969" height="716" alt="Screenshot From 2025-10-30 23-17-46" src="https://github.com/user-attachments/assets/29c7efc5-d0b1-442b-981f-71193d696eaf" />
+
+<img width="1969" height="900" alt="Screenshot From 2025-10-30 23-18-19" src="https://github.com/user-attachments/assets/bddbf46d-7d92-4001-8c88-a6534cf39428" />
+
+
+**Questions:**
 
 HTTP version (client & server)?
 - Request Version: HTTP/1.1
@@ -91,9 +91,15 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 ### **2. HTTP Conditional GET**
 **Steps:**
-- Clear cache.
-- Capture → Load `HTTP-wireshark-file2.html` → **Refresh immediately**.
-- Filter: `http`
+- Start up your web browser, and clear your browser cache/history.
+- Open Wireshark.
+- Start a Wireshark capture.
+- Browse to the following web page:
+
+  		http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html
+
+- Refresh the page.  
+- In Wireshark filter for HTTP: `http`
 
 **Questions:**
 8. First GET: `If-Modified-Since` present?
