@@ -99,13 +99,23 @@ By inspecting the raw data in the packet content window, do you see any headers 
   		http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html
 
 - Refresh the page.  
+- Stop the capture.  
 - In Wireshark filter for HTTP: `http`
 
+<img width="767" height="242" alt="Screenshot From 2025-10-30 23-25-02" src="https://github.com/user-attachments/assets/e6c35713-a3ca-40ba-94b3-1472f4150180" />
+
 **Questions:**
-8. First GET: `If-Modified-Since` present?
-9. Server response: File returned?
-10. Second GET: `If-Modified-Since` header? Value?
-11. Status code? File sent?
+
+- First GET: `If-Modified-Since` present?
+	- No
+- Server response: File returned?
+	- Yes 
+- Second GET: `If-Modified-Since` header? Value?
+	- No
+- Status code?
+	- Status Code: 200
+- File sent?
+ 	- Yes
 
 > *Hint:* Chrome reliably uses conditional GET; Safari/Firefox may not.
 
