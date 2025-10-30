@@ -2,7 +2,7 @@
 
 ## Objectives
 
-The goal is to use Wireshark to analyze HTTP protocol behavior: GET/response, message formats, large files, embedded objects, conditional GET, and authentication.
+The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_HTTP_v9.0.pdf): GET/response, message formats, large files, embedded objects, conditional GET, and authentication.
 
 ---
 
