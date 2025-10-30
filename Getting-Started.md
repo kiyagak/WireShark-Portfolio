@@ -74,7 +74,7 @@ sudo wireshark &
 <img width="1394" height="735" alt="Screenshot From 2025-10-30 17-56-09" src="https://github.com/user-attachments/assets/1035cf1d-7aac-4bfc-b3cd-940f2ecc525b" />
 <img width="1348" height="665" alt="Screenshot From 2025-10-30 17-53-55" src="https://github.com/user-attachments/assets/164202fd-0e35-44be-817a-de1165ed1aed" />
 
-**Post-Capture Analysis (Example Questions):**
+## What I Learned
 
 1.  Which protocols appear in your trace file (TCP, QUIC, HTTP, DNS, UDP, TLSv1.2)?
 2.  How long did it take from the HTTP GET message being sent until the HTTP OK reply was received?
@@ -82,5 +82,3 @@ sudo wireshark &
 4.  What type of web browser issued the HTTP request (User-Agent)?
 
 **Note:** A sample packet trace file is available for download at [http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip) for use if live capture is not possible.
-
-## What I Learned
