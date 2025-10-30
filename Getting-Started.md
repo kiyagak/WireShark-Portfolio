@@ -58,7 +58,9 @@ sudo wireshark &
 
 <img width="770" height="490" alt="image" src="https://github.com/user-attachments/assets/e99e87e7-f120-4dab-be83-8ff77f53e32b" />
 
-5.  While Wireshark is running, enter the URL `http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-file1.html` in your browser.
+5.  While Wireshark is running, enter the URL in your browser:
+
+        http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-file1.html
 
 <img width="789" height="171" alt="Screenshot From 2025-10-30 17-48-16" src="https://github.com/user-attachments/assets/ff9d29f6-7834-410c-85b1-3387e8b84d24" />
 
