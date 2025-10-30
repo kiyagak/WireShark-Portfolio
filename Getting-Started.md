@@ -19,6 +19,8 @@ The goal is to [get started](https://www-net.cs.umass.edu/wireshark-labs/Wiresha
 3.  Disable the "Experimental QUIC Protocol" option. (Alternatively, go to `chrome://flags/#enable-quic`)
 4.  Relaunch Chrome.
 
+<img width="857" height="512" alt="image" src="https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d" />
+
 ## Disabling QUIC in Firefox
 
 1.  Open Firefox and type `about:config` in the address bar.
