@@ -78,7 +78,10 @@ sudo wireshark &
 
 ## What I Learned
 
+Which of the following protocols are shown as appearing (i.e., are listed in the Wireshark “protocol” column) in your trace file: TCP, QUIC, HTTP, DNS, UDP, TLSv1.2?
+
 I learned that
+- the protocols that appeared in the capture are
 - it took just under two (`0.177781925`) seconds between the HTTP GET message being sent until the HTTP OK reply was received
 - the Internet address of gaia.cs.umass.edu is `128.119.245.12`
 - the captured address of my device is `10.0.22.190`
