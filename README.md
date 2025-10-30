@@ -64,7 +64,7 @@ Wireshark 4.4.7.
 
 ### Open Wireshark
 ```bash
-wireshark &
+sudo wireshark &
 ```
 
 > - wireshark: Starts the Wireshark GUI program.
