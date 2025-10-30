@@ -52,12 +52,18 @@ The Wireshark interface consists of five main components:
 2.  Start Wireshark.
 3.  Select "Capture" -> "Interfaces" (or "Options" on Mac).
 4.  Select the appropriate interface (e.g., Wi-Fi or Ethernet) and start packet capture.
+
+<img width="754" height="589" alt="image" src="https://github.com/user-attachments/assets/eeb8f29b-f650-4c99-832c-1c3804a04899" />
+
 5.  While Wireshark is running, enter the URL `http://gaia.cs.umass.edu/wireshark-labs/INTRO-wireshark-file1.html` in your browser.
 6.  Stop Wireshark packet capture.
 7.  Type "http" in the display filter field and apply the filter.
 8.  Find the HTTP GET message sent to gaia.cs.umass.edu.
 9.  Minimize Frame, Ethernet, IP, and TCP details; maximize HTTP protocol information.
 10. Exit Wireshark.
+
+
+
 
 **Post-Capture Analysis (Example Questions):**
 
