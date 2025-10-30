@@ -50,8 +50,11 @@ The Wireshark interface consists of five main components:
 
 1.  Start your web browser.
 2.  Start Wireshark.
-3.  Select "Capture" -> "Interfaces" (or "Options" on Mac).
-4.  Select the appropriate interface (e.g., Wi-Fi or Ethernet) and start packet capture.
+```bash
+sudo wireshark &
+```
+4.  Select "Capture" -> "Interfaces" (or "Options" on Mac).
+5.  Select the appropriate interface (e.g., Wi-Fi or Ethernet) and start packet capture.
 
 <img width="770" height="490" alt="image" src="https://github.com/user-attachments/assets/e99e87e7-f120-4dab-be83-8ff77f53e32b" />
 
