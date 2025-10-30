@@ -12,7 +12,7 @@ The goal is to [get started](https://www-net.cs.umass.edu/wireshark-labs/Wiresha
 *   Turn off privacy and browser privacy settings.
 *   Clear your browser cache and history before starting.
 
-## Disabling QUIC in Chrome
+## Disable QUIC in Chrome
 
 1.  Open Chrome and type `chrome://flags` in the address bar.
 2.  Search for "QUIC."
@@ -21,7 +21,7 @@ The goal is to [get started](https://www-net.cs.umass.edu/wireshark-labs/Wiresha
 
 <img width="857" height="512" alt="image" src="https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d" />
 
-## Disabling QUIC in Firefox
+## Disable QUIC in Firefox
 
 1.  Open Firefox and type `about:config` in the address bar.
 2.  Accept the risk and continue.
@@ -29,7 +29,7 @@ The goal is to [get started](https://www-net.cs.umass.edu/wireshark-labs/Wiresha
 4.  Double-click `network.http.http3.enable`, `network.http.http3.enable_0rtt`, and `network.http.http3.enable_qlog` to set their values to `false`.
 5.  Restart Firefox.
 
-## Disabling QUIC in Edge
+## Disable QUIC in Edge
 
 1.  Open Edge and type `edge://flags` in the address bar.
 2.  Search for "QUIC."
