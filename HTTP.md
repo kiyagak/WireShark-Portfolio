@@ -185,7 +185,7 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 **Questions:**
 
-16. # of GET requests? Destination IPs?
+16. Number of GET requests? Destination IPs?
 
 17. Images downloaded **serially or in parallel**?
 
