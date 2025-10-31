@@ -2,250 +2,251 @@
 
 ## Objectives
 
-The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_HTTP_v9.0.pdf): GET/response, message formats, large files, embedded objects, conditional GET, and authentication.
+The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_HTTP_v9.0.pdf):  
+- GET/response interaction  
+- Message formats  
+- Retrieval of large files  
+- Embedded objects  
+- Conditional GET  
+- Authentication
 
 ---
 
 ### **Pre-Lab Setup (Critical)**
-- **Disable VPN** (encrypts HTTP/TCP).
-- **Disable HTTP/3 & QUIC** in browser (default in 2025 browsers).  
-  → Guide: https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/
-- Use **http://** (not https://) to avoid encryption.
-- **Turn off** privacy settings.
-- **Clear browser cache & history** before each section.
+
+> **Warning: Must be done before every capture to ensure unencrypted HTTP traffic**
+
+- **Disable VPN** (encrypts HTTP/TCP)  
+- **Disable HTTP/3 & QUIC** in browser (default in 2025 browsers)  
+  → Guide: [https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/](https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/)  
+- Use **`http://`** (not `https://`) to avoid encryption  
+- **Turn off** privacy settings  
+- **Clear browser cache & history** before each section
+
+---
 
 ## Disable QUIC in Chrome
 
-1.  Open Chrome and type `chrome://flags` in the address bar.
-2.  Search for "QUIC."
-3.  Disable the "Experimental QUIC Protocol" option. (Alternatively, go to `chrome://flags/#enable-quic`)
-4.  Relaunch Chrome.
+1. Open Chrome → type `chrome://flags` in the address bar  
+2. Search for **"QUIC"**  
+3. Disable **"Experimental QUIC Protocol"**  
+   *(Alternatively: `chrome://flags/#enable-quic`)*  
+4. Relaunch Chrome
 
-<img width="857" height="512" alt="image" src="https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d" />
+![Disable QUIC in Chrome](https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d)
+
+---
 
 ## Disable Caching in Chrome
 
-1. Right click anywhere on the web page.
-2. Click **Inspect**.
-3. Click the **Network** tab.
-4. Click the checkbox for **Disable cache**.  
+1. Right-click on the web page → **Inspect**  
+2. Go to the **Network** tab  
+3. Check **Disable cache**
 
-<img width="1404" height="799" alt="image" src="https://github.com/user-attachments/assets/ca8f60e3-b98a-4057-bcab-9401ad34654f" />
+![Disable cache in Chrome DevTools](https://github.com/user-attachments/assets/ca8f60e3-b98a-4057-bcab-9401ad34654f)
+
+---
 
 ## Disable QUIC in Firefox
 
-1.  Open Firefox and type `about:config` in the address bar.
-2.  Accept the risk and continue.
-3.  Search for `network.http.http3.enable`.
-4.  Double-click `network.http.http3.enable`, `network.http.http3.enable_0rtt`, and `network.http.http3.enable_qlog` to set their values to `false`.
-5.  Restart Firefox.
+1. Open Firefox → type `about:config`  
+2. Accept the risk and continue  
+3. Search for:  
+   - `network.http.http3.enable`  
+   - `network.http.http3.enable_0rtt`  
+   - `network.http.http3.enable_qlog`  
+4. Double-click each to set value to **`false`**  
+5. Restart Firefox
+
+---
 
 ## Disable QUIC in Edge
 
-1.  Open Edge and type `edge://flags` in the address bar.
-2.  Search for "QUIC."
-3.  Disable the "Experimental QUIC Protocol" option.
-4.  Restart Edge.
+1. Open Edge → type `edge://flags`  
+2. Search for **"QUIC"**  
+3. Disable **"Experimental QUIC Protocol"**  
+4. Restart Edge
 
 ---
 
 ### **1. Basic HTTP GET/Response**
+
 **Steps:**
-1. Start your web browser and Wireshark.
-    
-    	sudo wireshark &
-    
-2. Filter for only HTTP within Wireshark: http
-3. Wait 1+ min → Capture → Visit:
 
-		http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html
+1. Start your web browser and Wireshark  
+   ```bash
+   sudo wireshark &
+   ```
+2. In Wireshark, apply filter:  
+   ```
+   http
+   ```
+3. Wait 1+ minute → Visit:  
+   [http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html](http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file1.html)  
+4. Stop capture
 
-4. Stop capture.
+![HTTP Filter](https://github.com/user-attachments/assets/6c0cb2de-4f29-4cfa-825b-5c78ab7b5158)  
+![GET Request Packet](https://github.com/user-attachments/assets/29c7efc5-d0b1-442b-981f-71193d696eaf)  
+![Response Packet](https://github.com/user-attachments/assets/bddbf46d-7d92-4001-8c88-a6534cf39428)
 
-<img width="772" height="149" alt="Screenshot From 2025-10-30 23-20-32" src="https://github.com/user-attachments/assets/6c0cb2de-4f29-4cfa-825b-5c78ab7b5158" />
+#### **Questions**
 
-<img width="1969" height="716" alt="Screenshot From 2025-10-30 23-17-46" src="https://github.com/user-attachments/assets/29c7efc5-d0b1-442b-981f-71193d696eaf" />
+| Question | Answer |
+|--------|--------|
+| **HTTP version (client & server)?** | Request: **HTTP/1.1**<br>Response: **HTTP/1.1** |
+| **Accepted languages?** | `Accept-Language: en-US,en;q=0.9` |
+| **IP addresses (client & server)?** | Server: `128.119.245.12`<br>Client: `10.0.22.190` |
+| **Status code?** | **200 OK** |
+| **Last-Modified time?** | `Tue, 28 Oct 2025 05:59:01 GMT` |
+| **Bytes returned?** | **128 bytes** |
+| **Any headers in raw data not shown in packet list?** | **No** |
 
-<img width="1969" height="900" alt="Screenshot From 2025-10-30 23-18-19" src="https://github.com/user-attachments/assets/bddbf46d-7d92-4001-8c88-a6534cf39428" />
-
-
-**Questions:**
-
-HTTP version (client & server)?
-- Request Version: HTTP/1.1
-- Response Version: HTTP/1.1
-
-Accepted languages?
-- Accept-Language: en-US,en;q=0.9
-	
-IP addresses (client & server)?
-- Server: 128.119.245.12
-- Client: 10.0.22.190
-
-Status code?
-- 200
-
-Last-Modified time?
-- Tue, 28 Oct 2025 05:59:01 GMT
-	
-Bytes returned?
-- 128 bytes
-
-By inspecting the raw data in the packet content window, do you see any headers within the data that are not displayed in the packet-listing window? If so, name one.
-- No
-
-> *Note:* File’s Last-Modified updates every minute (server-side).
+> **Note:** File’s `Last-Modified` updates every minute (server-side)
 
 ---
 
 ### **2. HTTP Conditional GET**
+
 **Steps:**
-- Start up your web browser, and clear your browser cache/history.
-- Open Wireshark.
-- Start a Wireshark capture.
-- Browse to the following web page:
 
-  		http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html
+1. Clear browser cache/history  
+2. Open Wireshark → Start capture  
+3. Browse to:  
+   [http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html](http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file2.html)  
+4. **Refresh** the page  
+5. Stop capture  
+6. Filter: `http`
 
-- Refresh the page.  
-- Stop the capture.  
-- In Wireshark filter for HTTP: `http`
+![Conditional GET Overview](https://github.com/user-attachments/assets/e6c35713-a3ca-40ba-94b3-1472f4150180)  
+![First GET](https://github.com/user-attachments/assets/6eff17c4-f9fe-4f56-b918-f949158fcf17)  
+![Second GET with 304](https://github.com/user-attachments/assets/e876a316-acec-44f9-b49a-c19abfa7262e)
 
-<img width="767" height="242" alt="Screenshot From 2025-10-30 23-25-02" src="https://github.com/user-attachments/assets/e6c35713-a3ca-40ba-94b3-1472f4150180" />
+#### **Questions**
 
-<img width="1296" height="690" alt="image" src="https://github.com/user-attachments/assets/6eff17c4-f9fe-4f56-b918-f949158fcf17" />
+| Question | Answer |
+|--------|--------|
+| **First GET: `If-Modified-Since` present?** | **No** |
+| **Server response: File returned?** | **Yes** |
+| **Second GET: `If-Modified-Since` header?** | **Yes** |
+| **Value of `If-Modified-Since`?** | `Sat, 30 Jan 2021 06:59:02 GMT` |
+| **Status code?** | **304 Not Modified** |
+| **Was the file sent again?** | **No** |
 
-<img width="1296" height="690" alt="Screenshot From 2025-10-31 01-12-03" src="https://github.com/user-attachments/assets/e876a316-acec-44f9-b49a-c19abfa7262e" />
-
-**Questions:**
-
-- First GET: `If-Modified-Since` present?
-	- No
-- Server response: File returned?
-	- Yes 
-- Second GET: `If-Modified-Since` header? 
-	- Yes
- - Value?
- 	- If-Modified-Since: Sat, 30 Jan 2021 06:59:02 GMT
-- Status code?
-	- Status Code: 304
-- File sent?
- 	- Yes
-
-> *Hint:* Chrome reliably uses conditional GET; Safari/Firefox may not.
+> **Hint:** Chrome reliably uses conditional GET; Safari/Firefox may not
 
 ---
 
 ### **3. Retrieving Long Documents**
+
 **Steps:**
-- Clear cache → Capture → Load `HTTP-wireshark-file3.html` (US Bill of Rights)
-- **Clear filter** to see all TCP segments.
 
-**Questions:**
-12. Number of GET requests?
+1. Clear cache → Start capture  
+2. Load:  
+   [http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html](http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html) *(US Bill of Rights)*  
+3. **Clear filter** to see all TCP segments
 
-- Enter the following filter to find the GET requests.  There are 2 GET requests.  
+#### **Questions**
 
-		http.request.method == "GET"
+| # | Question | Answer |
+|---|--------|--------|
+| 12 | **Number of GET requests?** | **2**<br>Filter: `http.request.method == "GET"` |
+| 13 | **GET Request Packet Number?** | **534** |
+| 14 | **Packet # with status code?** | **551** |
+| 15 | **Status code/phrase?** | **200 OK** |
 
-13. GET Request Packet Number?
-- 534
-14. Packet # with status code?
-- 551
-15. Status code/phrase?
-- 200
+![GET Requests Filter](https://github.com/user-attachments/assets/3669d502-5178-4c1a-8ceb-0da33f39b924)  
+![Response Packet](https://github.com/user-attachments/assets/c1928786-2a10-4809-bd30-80722e3f17df)
 
-<img width="1335" height="716" alt="Screenshot From 2025-10-31 01-53-57" src="https://github.com/user-attachments/assets/3669d502-5178-4c1a-8ceb-0da33f39b924" />
+#### **16. Number of TCP segments for HTTP response**
 
-<img width="1335" height="784" alt="Screenshot From 2025-10-31 01-54-30" src="https://github.com/user-attachments/assets/c1928786-2a10-4809-bd30-80722e3f17df" />
+- Filter: `http.response`  
+- Right-click response → **Follow → TCP Stream**  
+- Note stream index (e.g., `tcp.stream == 15`)  
+- **TCP stream number:** `15`
 
-16. Number of TCP segments for HTTP response
+![Follow TCP Stream](https://github.com/user-attachments/assets/087ebecc-c568-4e75-a980-ae775e20631e)  
+![Reassembled PDU](https://github.com/user-attachments/assets/8a7e48c1-cdfa-47b8-9905-541e575ff5ee)
 
-- Find the HTTP Response using a display filter to show only HTTP responses:
-
-		http.response
-
-- Find the TCP Stream
-	- Right-click the HTTP response packet → Follow → TCP Stream
-	- This shows the full conversation. Note the stream index (e.g., ```tcp.stream == 5```).
- 	- The TCP stream number is ```15```.
-
-<img width="1100" height="479" alt="Screenshot From 2025-10-31 02-09-44" src="https://github.com/user-attachments/assets/087ebecc-c568-4e75-a980-ae775e20631e" />
-
-<img width="809" height="663" alt="image" src="https://github.com/user-attachments/assets/8a7e48c1-cdfa-47b8-9905-541e575ff5ee" />
-
-> *Note:* Large HTML → split into multiple TCP segments (Wireshark shows “TCP segment of a reassembled PDU”).
+> **Note:** Large HTML → split into multiple TCP segments  
+> Wireshark shows: *“TCP segment of a reassembled PDU”*
 
 ---
 
 ### **4. HTML with Embedded Objects**
+
 **Steps:**
-- Clear your web browser's cache/history
-- Start a Wireshark capture
-- In your web browser go to the following URL to load a webpage with embedded images
 
-		http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html
+1. Clear cache/history  
+2. Start Wireshark capture  
+3. Visit:  
+   [http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html](http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html)
 
-**Questions:**
+#### **Questions**
 
-16. Number of GET requests?
-- 4
+| # | Question | Answer |
+|---|--------|--------|
+| 16 | **Number of GET requests?** | **4** |
+| 18 | **Destination IPs?** | `128.119.245.12`, `2.56.99.24` |
+| 19 | **Images downloaded serially or in parallel?** | **Serially** |
 
-18. Destination IPs?
-- 128.119.245.12
-- 2.56.99.24
-
-19. Images downloaded **serially or in parallel**?
-- Serially
-
-<img width="772" height="602" alt="image" src="https://github.com/user-attachments/assets/0d055e01-d86e-4c77-9783-ba29c4b30842" />
-
-<img width="1211" height="222" alt="image" src="https://github.com/user-attachments/assets/07379973-70c5-4c40-96d1-dc1c04385280" />
+![Packet List](https://github.com/user-attachments/assets/0d055e01-d86e-4c77-9783-ba29c4b30842)  
+![Multiple GETs](https://github.com/user-attachments/assets/07379973-70c5-4c40-96d1-dc1c04385280)
 
 ---
 
 ### **5. HTTP Authentication**
+
 **Steps:**
-- Clear cache → Restart browser → Capture
-- Visit: `http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html`  
-  **Username:** `wireshark-students`  
-  **Password:** `network`
 
-<img width="548" height="416" alt="Screenshot From 2025-10-31 02-50-07" src="https://github.com/user-attachments/assets/6d4bc20a-755c-4aca-adc6-1d80f8aec002" />
+1. Clear cache → Restart browser → Start capture  
+2. Visit:  
+   [http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html](http://gaia.cs.umass.edu/wireshark-labs/protected_pages/HTTP-wireshark-file5.html)  
+   **Username:** `wireshark-students`  
+   **Password:** `network`
 
-<img width="882" height="164" alt="Screenshot From 2025-10-31 02-50-29" src="https://github.com/user-attachments/assets/b19f3c67-9855-4726-8915-240c3b1b7894" />
+![Auth Prompt](https://github.com/user-attachments/assets/6d4bc20a-755c-4aca-adc6-1d80f8aec002)  
+![401 Unauthorized](https://github.com/user-attachments/assets/b19f3c67-9855-4726-8915-240c3b1b7894)  
+![Authorization Header](https://github.com/user-attachments/assets/251c0e54-7cf1-4b60-9c41-49fba2b72c55)
 
-<img width="1479" height="716" alt="Screenshot From 2025-10-31 02-51-51" src="https://github.com/user-attachments/assets/251c0e54-7cf1-4b60-9c41-49fba2b72c55" />
+#### **Questions**
 
-**Questions:**
-20. Server’s first response (status code/phrase)?
-- 401
-
-21. Second GET: New header? (→ `Authorization: Basic ...`)
-- Credentials: wireshark-students:network
+| # | Question | Answer |
+|---|--------|--------|
+| 20 | **Server’s first response (status code/phrase)?** | **401 Unauthorized** |
+| 21 | **Second GET: New header?** | `Authorization: Basic d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms=` |
 
 > **Security Note:**  
-> Credentials sent in **Base64** (not encrypted).  
+> Credentials sent in **Base64** (not encrypted)  
 > `d2lyZXNoYXJrLXN0dWRlbnRzOm5ldHdvcms=` → decodes to `wireshark-students:network`  
-> → **Anyone with Wireshark can read it!**
+> **Anyone with Wireshark can read it!**
 
 ---
 
 ### **Packet Traces (if live capture fails)**
 
-Download: `http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip`  
-Use:
-- `http-wireshark-trace1-1` → Section 1
-- `http-wireshark-trace2-1` → Section 2
-- `http-wireshark-trace3-1` → Section 3
-- `http-wireshark-trace4-1` → Section 4
-- `http-wireshark-trace5-1` → Section 5
+Download: [wireshark-traces-9e.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip)
+
+| File | Section |
+|------|---------|
+| `http-wireshark-trace1-1` | Section 1 |
+| `http-wireshark-trace2-1` | Section 2 |
+| `http-wireshark-trace3-1` | Section 3 |
+| `http-wireshark-trace4-1` | Section 4 |
+| `http-wireshark-trace5-1` | Section 5 |
 
 ---
 
 ## What I Learned
 
-I learned to use Wireshark to sniff HTTP traffic.  I also learned that
-- HTTP runs over TCP and segments large responses.
-- Embedded objects → multiple GETs
-- Basic Auth is **insecure** (Base64 ≠ encryption).
+I learned to use **Wireshark** to sniff and analyze HTTP traffic. Key takeaways:
+
+- HTTP runs over **TCP** and large responses are segmented  
+- Web pages with **embedded objects** → multiple GET requests  
+- **Conditional GET** saves bandwidth using `If-Modified-Since`  
+- **Basic Authentication is insecure** — Base64 ≠ encryption  
+  → Credentials are **readable in plaintext** with packet capture
+
+--- 
+
+*Lab completed on October 31, 2025*
+```
