@@ -23,6 +23,15 @@ The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net
 
 <img width="857" height="512" alt="image" src="https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d" />
 
+## Disable Caching in Chrome
+
+1. Right click anywhere on the web page.
+2. Click **Inspect**.
+3. Click the **Network** tab.
+4. Click the checkbox for **Disable cache**.  
+
+<img width="1404" height="799" alt="image" src="https://github.com/user-attachments/assets/ca8f60e3-b98a-4057-bcab-9401ad34654f" />
+
 ## Disable QUIC in Firefox
 
 1.  Open Firefox and type `about:config` in the address bar.
