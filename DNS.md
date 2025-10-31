@@ -106,7 +106,7 @@ Authoritative answers can be found from:
 
 <img width="808" height="809" alt="image" src="https://github.com/user-attachments/assets/308a7cbb-154d-4785-b50f-005909ad48e5" />
 
-<img width="1371" height="699" alt="image" src="https://github.com/user-attachments/assets/80e86776-863f-48c7-ae4f-f29f849d014f" />
+<img width="1371" height="699" alt="image" src="https://github.com/user-attachments/assets/d7691cd8-871a-438f-ab61-f0a8fb47d998" />
 
 #### **Questions (General)**
 5–6. **First DNS query/response for `gaia.cs.umass.edu`**  
@@ -119,13 +119,13 @@ Authoritative answers can be found from:
 
       udp.dstport == 53
 
-<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/cdaae3af-f5d7-4ac4-a8e9-d18a27d1e9bc" />
+<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/16894d4d-002e-4c03-855d-d93a6899c677" />
 
 - Filter for **DNS responses** on UDP source port 53, the ephemeral client port
 
       udp.srcport == 53
 
-<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/c951dff4-12d9-4cab-a138-0d74374d9a11" />
+<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/d7b043fc-5be9-4e4e-aa21-13c675673f76" />
 
 11. **Query sent to**: Local DNS server IP.
 
