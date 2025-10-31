@@ -180,8 +180,11 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 ### **4. HTML with Embedded Objects**
 **Steps:**
-- Clear cache → Capture → Load `HTTP-wireshark-file4.html`  
-  (Contains 2 images: one local, one from France)
+- Clear your web browser's cache/history
+- Start a Wireshark capture
+- In your web browser go to the following URL to load a webpage with embedded images
+
+		http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html
 
 **Questions:**
 
