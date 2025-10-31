@@ -2,7 +2,7 @@
 
 # Objectives
 The goal is to follow the [Wireshark labs](https://gaia.cs.umass.edu/kurose_ross/wireshark.php) lead by Kuross and Ross to:
-- install WireShark on Deian Linux
+- install WireShark on Debian Linux
 
 ## Installation
 
