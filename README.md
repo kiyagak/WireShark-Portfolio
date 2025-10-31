@@ -1,5 +1,19 @@
 # WireShark-Portfolio
 
+This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark labs](https://gaia.cs.umass.edu/kurose_ross/wireshark.php).  I will use Wireshark to capture traffic from protocols such as
+- HTTP
+- DNS
+- TCP
+- UDP
+- IP
+- NAT
+- DHCP
+- ICMP
+- Ethernet and ARP
+- 802.11 WiFi
+- 5G
+- and TLS
+
 # Objectives
 The goal is to follow the [Wireshark labs](https://gaia.cs.umass.edu/kurose_ross/wireshark.php) lead by Kuross and Ross to:
 - install WireShark on Debian Linux
