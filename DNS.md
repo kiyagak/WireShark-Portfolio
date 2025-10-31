@@ -180,16 +180,9 @@ Authoritative answers can be found from:
 
 ---
 
-## **Key Takeaways**
+## What I Learned
 - DNS client is simple: **query local server → get response**.
 - **nslookup** reveals record types, authority, and reverse mappings.
 - **Caching** (host + local server) reduces DNS traffic.
 - **Wireshark** exposes UDP-based DNS (port 53), query/response structure, and caching effects (no redundant queries).
 - **Authoritative vs non-authoritative**: Critical for understanding source trust.
-
----
-
-**Resources**:
-- Textbook: Section 2.4
-- nslookup examples: [CloudNS](https://www.cloudns.net/blog/10-most-used-nslookup-commands/)
-- Trace files: `wireshark-traces-9e.zip` (for offline use)
