@@ -185,6 +185,7 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 **Questions:**
 16. # of GET requests? Destination IPs?
+
 17. Images downloaded **serially or in parallel**?
 
 ---
@@ -198,6 +199,7 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 **Questions:**
 18. Server’s first response (status code/phrase)?
+
 19. Second GET: New header? (→ `Authorization: Basic ...`)
 
 > **Security Note:**  
