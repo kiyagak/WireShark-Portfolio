@@ -55,7 +55,7 @@ Address: 103.21.124.133
 Server:         127.0.0.53
 Address:        127.0.0.53#53
 
-** server can't find www.iit.ac.in: NXDOMAIN
+** server can't find iit.ac.in: NXDOMAIN
 ```
 
 5. **Find authoritative NS for `google.com`**  
