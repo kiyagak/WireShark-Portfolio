@@ -106,38 +106,60 @@ Authoritative answers can be found from:
 
 <img width="808" height="809" alt="image" src="https://github.com/user-attachments/assets/308a7cbb-154d-4785-b50f-005909ad48e5" />
 
-<img width="1371" height="699" alt="image" src="https://github.com/user-attachments/assets/d7691cd8-871a-438f-ab61-f0a8fb47d998" />
-
 #### **Questions (General)**
-5–6. **First DNS query/response for `gaia.cs.umass.edu`**  
 
-- Packet number of the first DNS query/response (UDP port 53) is `18`. 
+5. Locate the first DNS query message resolving the name gaia.cs.umass.edu.
+  - What is the packet number in the trace for the DNS query message?
+    - 27
+  - Is this query message sent over UDP or TCP?
+    - UDP
+   
+          User Datagram Protocol, Src Port: 51183, Dst Port: 53
 
-7. **Ports**:
+<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/02ad2a41-75b9-43de-967e-adb5b85016d9" />
 
-- Filter for **DNS queries** on UDP destination port 53:
+6. Now locate the corresponding DNS response to the initial DNS query.
+- What is the packet number in the trace for the DNS response message?
+  - 30
+- Is this response message received via UDP or TCP?
+  - UDP
 
-      udp.dstport == 53
+        User Datagram Protocol, Src Port: 53, Dst Port: 51183
 
-<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/16894d4d-002e-4c03-855d-d93a6899c677" />
+<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/5c7491fa-671f-4d97-8620-4352474c5fe0" />
 
-- Filter for **DNS responses** on UDP source port 53, the ephemeral client port
+7. What is the destination port for the DNS query message?
+  - 53 
+- What is the source port of the DNS response message?
+  - 53
 
-      udp.srcport == 53
+8. To what IP address is the DNS query message sent?
 
-<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/d7b043fc-5be9-4e4e-aa21-13c675673f76" />
+        Internet Protocol Version 4, Src: 10.98.0.5, Dst: 10.98.0.1
 
-11. **Query sent to**: Local DNS server IP.
+9. Examine the DNS query message. 
+- How many “questions” does this DNS message contain?
+  - 1
+- How many “answers” answers does it contain?
+  - 0
 
-9–10. **Query message**: 1 question, 0 answers  
-   **Response**: 1 question, ≥1 answers (A records).
+<img width="1359" height="703" alt="image" src="https://github.com/user-attachments/assets/d2deb45d-5683-4b7e-bbd0-513f6a46b1b4" />
 
-11. **HTTP GET vs DNS**:
-   - Base page → HTTP GET (packet X)
-   - DNS query for `gaia.cs.umass.edu` → packet Y
-   - DNS response → packet Z
-   - Image GET (`header_graphic...jpg`) → packet W
-   - **Second DNS query?** → **None** if cached after first resolution.
+10. Examine the DNS response message to the initial query message. 
+- How many “questions” does this DNS message contain?
+  - 1
+- How many “answers” answers does it contain?
+  - 0
+
+<img width="1359" height="703" alt="image" src="https://github.com/user-attachments/assets/57a6bad6-cc28-4260-bd5a-4ee8b16104cf" />
+
+11. The web page for the base file http://gaia.cs.umass.edu/kurose_ross/ references the image object http://gaia.cs.umass.edu/kurose_ross/header_graphic_book_8E_2.jpg , which, like the base webpage, is on gaia.cs.umass.edu.
+- What is the packet number in the trace for the initial HTTP GET request for the base file http://gaia.cs.umass.edu/kurose_ross/?
+- What is the packet number in the trace of the DNS query made to resolve gaia.cs.umass.edu so that this initial HTTP request can be sent to the gaia.cs.umass.edu IP address?
+- What is the packet number in the trace of the received DNS response?
+- What is the packet number in the trace for the HTTP GET request for the image object http://gaia.cs.umass.edu/kurose_ross/header_graphic_book_8E2.jpg?
+- What is the packet number in the DNS query made to resolve gaia.cs.umass.edu so that this second HTTP request can be sent to the gaia.cs.umass.edu IP address?
+- Discuss how DNS caching affects the answer to this last question.
 
 ---
 
@@ -158,7 +180,7 @@ Authoritative answers can be found from:
 
 ---
 
-### **Key Takeaways**
+## **Key Takeaways**
 - DNS client is simple: **query local server → get response**.
 - **nslookup** reveals record types, authority, and reverse mappings.
 - **Caching** (host + local server) reduces DNS traffic.
