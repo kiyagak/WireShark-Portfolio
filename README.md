@@ -72,8 +72,10 @@ Run this command in the Terminal to open wireshark:
 
 ```bash
 wireshark --version
-Wireshark 4.4.7.
 ```
+
+    Wireshark 4.4.7.
+
 ---
 
 ### Open Wireshark
