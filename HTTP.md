@@ -142,7 +142,7 @@ By inspecting the raw data in the packet content window, do you see any headers 
 - **Clear filter** to see all TCP segments.
 
 **Questions:**
-12. # of GET requests? 
+12. Number of GET requests? 
 
 - Enter the following filter to find the GET requests.
 
