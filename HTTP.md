@@ -12,9 +12,9 @@ The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net
 
 ---
 
-### **Pre-Lab Setup (Critical)**
+### **Pre-Lab Setup**
 
-> **Warning: Must be done before every capture to ensure unencrypted HTTP traffic**
+> **Warning: Do this before every capture to ensure unencrypted HTTP traffic**
 
 - **Disable VPN** (encrypts HTTP/TCP)  
 - **Disable HTTP/3 & QUIC** in browser (default in 2025 browsers)  
@@ -238,15 +238,11 @@ Download: [wireshark-traces-9e.zip](http://gaia.cs.umass.edu/wireshark-labs/wire
 
 ## What I Learned
 
-I learned to use **Wireshark** to sniff and analyze HTTP traffic. Key takeaways:
+I learned to use **Wireshark** to sniff and analyze HTTP traffic. I also learned that
 
 - HTTP runs over **TCP** and large responses are segmented  
-- Web pages with **embedded objects** → multiple GET requests  
-- **Conditional GET** saves bandwidth using `If-Modified-Since`  
+- Web pages with **embedded objects** make multiple GET requests  
 - **Basic Authentication is insecure** — Base64 ≠ encryption  
-  → Credentials are **readable in plaintext** with packet capture
+  → Credentials are **readable in plaintext** with Wireshark packet capture
 
 --- 
-
-*Lab completed on October 31, 2025*
-```
