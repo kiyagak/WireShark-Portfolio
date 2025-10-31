@@ -148,10 +148,9 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 		http.request.method == "GET"
 
-Packet # of GET?
+13. GET Request Packet Number?
 - 534
-
-13. Packet # with status code?
+14. Packet # with status code?
 - 551
 15. Status code/phrase?
 - 200
@@ -160,7 +159,7 @@ Packet # of GET?
 
 <img width="1335" height="784" alt="Screenshot From 2025-10-31 01-54-30" src="https://github.com/user-attachments/assets/c1928786-2a10-4809-bd30-80722e3f17df" />
 
-16. # of TCP segments for HTTP response?
+16. Number of TCP segments for HTTP response
 
 - Find the HTTP Response using a display filter to show only HTTP responses:
 
@@ -174,7 +173,6 @@ Packet # of GET?
 <img width="1100" height="479" alt="Screenshot From 2025-10-31 02-09-44" src="https://github.com/user-attachments/assets/087ebecc-c568-4e75-a980-ae775e20631e" />
 
 <img width="809" height="663" alt="image" src="https://github.com/user-attachments/assets/8a7e48c1-cdfa-47b8-9905-541e575ff5ee" />
-
 
 > *Note:* Large HTML → split into multiple TCP segments (Wireshark shows “TCP segment of a reassembled PDU”).
 
