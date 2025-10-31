@@ -33,11 +33,21 @@ The goal is to follow Kuross and Ross' [DNS Wireshark lab](https://www-net.cs.um
 - the IP address is `103.21.124.133`
 
 3. **Identify responding DNS server IP**
+- the IP address is `127.0.0.53`
 
 4. **Authoritative or non-authoritative?**  
-   → Check response header.
+- The response header shows that it is **non-authoritative**.  
 
-5. **Find authoritative NS for `iit.ac.in`**  
+```
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+Non-authoritative answer:
+Name:   www.iitb.ac.in
+Address: 103.21.124.133
+```
+
+6. **Find authoritative NS for `iit.ac.in`**  
    → `nslookup -type=NS iit.ac.in`  
    → To get NS IP: Query `Type=A` on returned NS hostname.
 
