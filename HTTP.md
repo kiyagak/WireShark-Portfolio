@@ -40,11 +40,6 @@ The goal is to use Wireshark to [analyze HTTP protocol behavior](https://www-net
 4.  Double-click `network.http.http3.enable`, `network.http.http3.enable_0rtt`, and `network.http.http3.enable_qlog` to set their values to `false`.
 5.  Restart Firefox.
 
-<img width="1024" height="435" alt="image" src="https://github.com/user-attachments/assets/8e1ce0f1-37a0-4bf9-96e7-1331c4ca763f" />
-
-<img width="1024" height="506" alt="image" src="https://github.com/user-attachments/assets/08781afc-a409-4f3c-adc9-7e6abb1ec85a" />
-
-
 ## Disable QUIC in Edge
 
 1.  Open Edge and type `edge://flags` in the address bar.
