@@ -158,8 +158,9 @@ Authoritative answers can be found from:
 This question will be answered using `dns-wireshark-trace1-1.pcapng` found in this Wireshark lab's [trace file zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip).  
 
 - What is the packet number in the trace for the initial HTTP GET request for the base file http://gaia.cs.umass.edu/kurose_ross/?
-- What is the packet number in the trace of the DNS query made to resolve gaia.cs.umass.edu so that this initial HTTP request can be sent to the gaia.cs.umass.edu IP address?
   - 22
+- What is the packet number in the trace of the DNS query made to resolve gaia.cs.umass.edu so that this initial HTTP request can be sent to the gaia.cs.umass.edu IP address?
+  - 15
 - What is the packet number in the trace of the received DNS response?
   - 17
 - What is the packet number in the trace for the HTTP GET request for the image object http://gaia.cs.umass.edu/kurose_ross/header_graphic_book_8E2.jpg?
