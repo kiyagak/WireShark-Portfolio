@@ -1,8 +1,8 @@
 # Client-Side DNS Exploration (nslookup, Caching, Wireshark)
 
-## Objective**
+## Objective
 
-The goal is to investigate
+The goal is to follow Kuross and Ross' [DNS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_DNS_v9.pdf) to investigate
 - investigate DNS client behavior (query/response)
 - use the nslookup tool
 - learn about local DNS caching
