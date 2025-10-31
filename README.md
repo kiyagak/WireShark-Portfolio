@@ -69,6 +69,9 @@ sudo wireshark &
 
 > - wireshark: Starts the Wireshark GUI program.
 > - &: This tells the shell to run the command in the background so you can use the same terminal session right after opening Wireshark.
+
+<img width="894" height="716" alt="image" src="https://github.com/user-attachments/assets/1f2deb53-2827-46de-be3c-433a4718f838" />
+
 ---
 
 # What I Learned
