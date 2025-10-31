@@ -118,14 +118,20 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 <img width="767" height="242" alt="Screenshot From 2025-10-30 23-25-02" src="https://github.com/user-attachments/assets/e6c35713-a3ca-40ba-94b3-1472f4150180" />
 
+<img width="1296" height="690" alt="image" src="https://github.com/user-attachments/assets/6eff17c4-f9fe-4f56-b918-f949158fcf17" />
+
+<img width="1296" height="690" alt="Screenshot From 2025-10-31 01-12-03" src="https://github.com/user-attachments/assets/e876a316-acec-44f9-b49a-c19abfa7262e" />
+
 **Questions:**
 
 - First GET: `If-Modified-Since` present?
 	- No
 - Server response: File returned?
 	- Yes 
-- Second GET: `If-Modified-Since` header? Value?
-	- No
+- Second GET: `If-Modified-Since` header? 
+	- Yes
+ - Value?
+ 	- If-Modified-Since: Sat, 30 Jan 2021 06:59:02 GMT
 - Status code?
 	- Status Code: 200
 - File sent?
