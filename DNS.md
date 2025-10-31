@@ -2,7 +2,7 @@
 
 ## Objective
 
-The goal is to follow Kuross and Ross' [DNS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_DNS_v9.pdf) to investigate
+The goal is to follow Kuross and Ross' [DNS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_DNS_v9.pdf) to
 - investigate DNS client behavior (query/response)
 - use the nslookup tool
 - learn about local DNS caching
@@ -32,10 +32,10 @@ The goal is to follow Kuross and Ross' [DNS Wireshark lab](https://www-net.cs.um
 
 - the IP address is `103.21.124.133`
 
-3. **Identify responding DNS server IP**
+2. **Identify responding DNS server IP**
 - the IP address is `127.0.0.53`
 
-4. **Authoritative or non-authoritative?**  
+3. **Authoritative or non-authoritative?**  
 - The response header shows that it is **non-authoritative**.  
 
 ```
@@ -47,9 +47,42 @@ Name:   www.iitb.ac.in
 Address: 103.21.124.133
 ```
 
-6. **Find authoritative NS for `iit.ac.in`**  
+4. **Find authoritative NS for `iit.ac.in`**  
    → `nslookup -type=NS iit.ac.in`  
    → To get NS IP: Query `Type=A` on returned NS hostname.
+
+```
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+** server can't find www.iit.ac.in: NXDOMAIN
+```
+
+5. **Find authoritative NS for `google.com`**  
+
+        nslookup -type=NS google.com
+
+        Server:         127.0.0.53
+        Address:        127.0.0.53#53
+        
+        Non-authoritative answer:
+        google.com      nameserver = ns2.google.com.
+        google.com      nameserver = ns4.google.com.
+        google.com      nameserver = ns3.google.com.
+        google.com      nameserver = ns1.google.com.
+
+Authoritative answers can be found from:
+
+6. **Find the NS IP for the returned NS hostname(s) for `google.com`**
+
+        nslookup -type=A ns2.google.com
+
+        Server:         127.0.0.53
+        Address:        127.0.0.53#53
+        
+        Non-authoritative answer:
+        Name:   ns2.google.com
+        Address: 216.239.34.10
 
 ---
 
