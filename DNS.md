@@ -26,15 +26,16 @@ The goal is to follow Kuross and Ross' [DNS Wireshark lab](https://www-net.cs.um
 ---
 
 ### **2. Hands-On nslookup Tasks**
-1. **Find IP of `www.iitb.ac.in`**  
-   → Use: `nslookup www.iitb.ac.in`
+1. **Find IP of `www.iitb.ac.in`**
 
-2. **Identify responding DNS server IP**
+       nslookup www.iitb.ac.in
 
-3. **Authoritative or non-authoritative?**  
+3. **Identify responding DNS server IP**
+
+4. **Authoritative or non-authoritative?**  
    → Check response header.
 
-4. **Find authoritative NS for `iit.ac.in`**  
+5. **Find authoritative NS for `iit.ac.in`**  
    → `nslookup -type=NS iit.ac.in`  
    → To get NS IP: Query `Type=A` on returned NS hostname.
 
