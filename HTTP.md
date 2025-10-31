@@ -184,6 +184,7 @@ By inspecting the raw data in the packet content window, do you see any headers 
   (Contains 2 images: one local, one from France)
 
 **Questions:**
+
 16. # of GET requests? Destination IPs?
 
 17. Images downloaded **serially or in parallel**?
