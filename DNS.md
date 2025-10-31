@@ -154,10 +154,10 @@ Authoritative answers can be found from:
 <img width="1359" height="703" alt="image" src="https://github.com/user-attachments/assets/57a6bad6-cc28-4260-bd5a-4ee8b16104cf" />
 
 11. The web page for the base file http://gaia.cs.umass.edu/kurose_ross/ references the image object http://gaia.cs.umass.edu/kurose_ross/header_graphic_book_8E_2.jpg , which, like the base webpage, is on gaia.cs.umass.edu.
-- What is the packet number in the trace for the initial HTTP GET request for the base file http://gaia.cs.umass.edu/kurose_ross/?
 
 This question will be answered using `dns-wireshark-trace1-1.pcapng` found in this Wireshark lab's [trace file zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip).  
 
+- What is the packet number in the trace for the initial HTTP GET request for the base file http://gaia.cs.umass.edu/kurose_ross/?
 - What is the packet number in the trace of the DNS query made to resolve gaia.cs.umass.edu so that this initial HTTP request can be sent to the gaia.cs.umass.edu IP address?
   - 22
 - What is the packet number in the trace of the received DNS response?
