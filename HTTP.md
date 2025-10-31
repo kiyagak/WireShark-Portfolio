@@ -142,10 +142,39 @@ By inspecting the raw data in the packet content window, do you see any headers 
 - **Clear filter** to see all TCP segments.
 
 **Questions:**
-12. # of GET requests? Packet # of GET?
+12. # of GET requests? 
+
+- Enter the following filter to find the GET requests.
+
+		http.request.method == "GET"
+
+Packet # of GET?
+- 534
+
 13. Packet # with status code?
-14. Status code/phrase?
-15. # of TCP segments for HTTP response?
+- 551
+15. Status code/phrase?
+- 200
+
+<img width="1335" height="716" alt="Screenshot From 2025-10-31 01-53-57" src="https://github.com/user-attachments/assets/3669d502-5178-4c1a-8ceb-0da33f39b924" />
+
+<img width="1335" height="784" alt="Screenshot From 2025-10-31 01-54-30" src="https://github.com/user-attachments/assets/c1928786-2a10-4809-bd30-80722e3f17df" />
+
+16. # of TCP segments for HTTP response?
+
+- Find the HTTP Response using a display filter to show only HTTP responses:
+
+		http.response
+
+- Find the TCP Stream
+	- Right-click the HTTP response packet → Follow → TCP Stream
+	- This shows the full conversation. Note the stream index (e.g., ```tcp.stream == 5```).
+ 	- The TCP stream number is ```15```.
+
+<img width="1100" height="479" alt="Screenshot From 2025-10-31 02-09-44" src="https://github.com/user-attachments/assets/087ebecc-c568-4e75-a980-ae775e20631e" />
+
+<img width="809" height="663" alt="image" src="https://github.com/user-attachments/assets/8a7e48c1-cdfa-47b8-9905-541e575ff5ee" />
+
 
 > *Note:* Large HTML → split into multiple TCP segments (Wireshark shows “TCP segment of a reassembled PDU”).
 
