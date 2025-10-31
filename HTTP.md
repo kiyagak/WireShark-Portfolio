@@ -211,10 +211,18 @@ By inspecting the raw data in the packet content window, do you see any headers 
   **Username:** `wireshark-students`  
   **Password:** `network`
 
+<img width="548" height="416" alt="Screenshot From 2025-10-31 02-50-07" src="https://github.com/user-attachments/assets/6d4bc20a-755c-4aca-adc6-1d80f8aec002" />
+
+<img width="882" height="164" alt="Screenshot From 2025-10-31 02-50-29" src="https://github.com/user-attachments/assets/b19f3c67-9855-4726-8915-240c3b1b7894" />
+
+<img width="1479" height="716" alt="Screenshot From 2025-10-31 02-51-51" src="https://github.com/user-attachments/assets/251c0e54-7cf1-4b60-9c41-49fba2b72c55" />
+
 **Questions:**
 20. Server’s first response (status code/phrase)?
+- 401
 
 21. Second GET: New header? (→ `Authorization: Basic ...`)
+- Credentials: wireshark-students:network
 
 > **Security Note:**  
 > Credentials sent in **Base64** (not encrypted).  
@@ -224,6 +232,7 @@ By inspecting the raw data in the packet content window, do you see any headers 
 ---
 
 ### **Packet Traces (if live capture fails)**
+
 Download: `http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip`  
 Use:
 - `http-wireshark-trace1-1` → Section 1
@@ -234,14 +243,9 @@ Use:
 
 ---
 
-### **Key Takeaways**
-- HTTP runs over TCP; large responses are segmented.
-- Conditional GET saves bandwidth.
-- Embedded objects → multiple GETs (often parallel).
-- Basic Auth is **insecure** (Base64 ≠ encryption).
-- Use `http://`, disable QUIC/HTTP3, clear cache for accurate lab results.
-
-**Textbook Reference:** Section 2.2 (9th ed.)  
-**Authors’ Site:** http://gaia.cs.umass.edu/kurose_ross
-
 ## What I Learned
+
+I learned to use Wireshark to sniff HTTP traffic.  I also learned that
+- HTTP runs over TCP and segments large responses.
+- Embedded objects → multiple GETs
+- Basic Auth is **insecure** (Base64 ≠ encryption).
