@@ -76,4 +76,6 @@ sudo wireshark &
 
 # What I Learned
 
-I learned how to install Wireshark on Deian Linux.  I also learned how to open Wireshark as a root or admin user so that I can capture the specific network interface I want.  
+I learned how to 
+- install Wireshark on Deian Linux
+- open Wireshark as a root or admin user so that I can capture the specific network interface I want
