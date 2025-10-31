@@ -142,9 +142,9 @@ By inspecting the raw data in the packet content window, do you see any headers 
 - **Clear filter** to see all TCP segments.
 
 **Questions:**
-12. Number of GET requests? 
+12. Number of GET requests?
 
-- Enter the following filter to find the GET requests.
+- Enter the following filter to find the GET requests.  There are 2 GET requests.  
 
 		http.request.method == "GET"
 
@@ -188,9 +188,19 @@ By inspecting the raw data in the packet content window, do you see any headers 
 
 **Questions:**
 
-16. Number of GET requests? Destination IPs?
+16. Number of GET requests?
+- 4
 
-17. Images downloaded **serially or in parallel**?
+18. Destination IPs?
+- 128.119.245.12
+- 2.56.99.24
+
+19. Images downloaded **serially or in parallel**?
+- Serially
+
+<img width="772" height="602" alt="image" src="https://github.com/user-attachments/assets/0d055e01-d86e-4c77-9783-ba29c4b30842" />
+
+<img width="1211" height="222" alt="image" src="https://github.com/user-attachments/assets/07379973-70c5-4c40-96d1-dc1c04385280" />
 
 ---
 
@@ -202,9 +212,9 @@ By inspecting the raw data in the packet content window, do you see any headers 
   **Password:** `network`
 
 **Questions:**
-18. Server’s first response (status code/phrase)?
+20. Server’s first response (status code/phrase)?
 
-19. Second GET: New header? (→ `Authorization: Basic ...`)
+21. Second GET: New header? (→ `Authorization: Basic ...`)
 
 > **Security Note:**  
 > Credentials sent in **Base64** (not encrypted).  
