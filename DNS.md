@@ -30,6 +30,8 @@ The goal is to follow Kuross and Ross' [DNS Wireshark lab](https://www-net.cs.um
 
        nslookup www.iitb.ac.in
 
+- the IP address is `103.21.124.133`
+
 3. **Identify responding DNS server IP**
 
 4. **Authoritative or non-authoritative?**  
