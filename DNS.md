@@ -104,13 +104,30 @@ Authoritative answers can be found from:
 3. Visit: `http://gaia.cs.umass.edu/kurose_ross/`
 4. Capture packets.
 
+<img width="808" height="809" alt="image" src="https://github.com/user-attachments/assets/308a7cbb-154d-4785-b50f-005909ad48e5" />
+
+<img width="1371" height="699" alt="image" src="https://github.com/user-attachments/assets/80e86776-863f-48c7-ae4f-f29f849d014f" />
+
 #### **Questions (General)**
 5–6. **First DNS query/response for `gaia.cs.umass.edu`**  
-   → UDP (port 53), find packet numbers.
 
-7. **Ports**: Query → dest 53; Response → src 53 (ephemeral client port).
+- Packet number of the first DNS query/response (UDP port 53) is `18`. 
 
-8. **Query sent to**: Local DNS server IP.
+7. **Ports**:
+
+- Filter for **DNS queries** on UDP destination port 53:
+
+      udp.dstport == 53
+
+<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/cdaae3af-f5d7-4ac4-a8e9-d18a27d1e9bc" />
+
+- Filter for **DNS responses** on UDP source port 53, the ephemeral client port
+
+      udp.srcport == 53
+
+<img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/c951dff4-12d9-4cab-a138-0d74374d9a11" />
+
+11. **Query sent to**: Local DNS server IP.
 
 9–10. **Query message**: 1 question, 0 answers  
    **Response**: 1 question, ≥1 answers (A records).
