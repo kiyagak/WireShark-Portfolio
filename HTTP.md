@@ -133,7 +133,7 @@ By inspecting the raw data in the packet content window, do you see any headers 
  - Value?
  	- If-Modified-Since: Sat, 30 Jan 2021 06:59:02 GMT
 - Status code?
-	- Status Code: 200
+	- Status Code: 304
 - File sent?
  	- Yes
 
