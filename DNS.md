@@ -234,6 +234,57 @@ How many “answers”?
 
 <img width="1268" height="968" alt="image" src="https://github.com/user-attachments/assets/50b4e9d9-0e79-4da8-8eef-48d9abf0ce97" />
 
+
+
+Last, let’s use nslookup to issue a command that will return a type NS DNS record,
+Enter the following command:
+
+    nslookup -type=NS umass.edu
+
+```
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+Non-authoritative answer:
+umass.edu       nameserver = ns3.umass.edu.
+umass.edu       nameserver = ns1.umass.edu.
+umass.edu       nameserver = ns2.umass.edu.
+
+Authoritative answers can be found from:
+
+```
+
+Answer the following questions:
+
+16. To what IP address is the DNS query message sent? 
+
+Is this the IP address of your default local DNS server?
+
+
+
+17. Examine the DNS query message. 
+
+How many questions does the query have? 
+
+Does the query message contain any “answers”?
+
+
+
+18. Examine the DNS response message (in particular the DNS response message that has type “NS”). 
+
+How many answers does the response have? 
+
+What information is contained in the answers? 
+
+How many additional resource records are returned?
+
+
+
+What additional information is included in these additional resource records (if additional information is returned)?
+
+
+
+
 #### **B. Query `umass.edu` with `-type=NS`**
 16. Sent to local DNS server  
 17. Query: 1 question, 0 answers  
