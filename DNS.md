@@ -170,13 +170,69 @@ This question will be answered using `dns-wireshark-trace1-1.pcapng` found in th
 
 ---
 
-### **5. nslookup + Wireshark**
+### **5. Capture nslookup Queries with Wireshark**
 
-#### **A. Query `www.cs.umass.edu`**
-12. Ports: Query dest 53, response src 53  
-13. Sent to **default local DNS server**? → Yes  
-14. Query: `Type=A`, 1 question, 0 answers  
-15. Response: 1 question, 1+ answers
+Now let’s play with nslookup.
+- Start packet capture.
+- Do an nslookup on www.cs.umass.edu
+- Stop packet capture.
+
+12. What is the destination port for the DNS query message? 
+- 53
+
+        User Datagram Protocol, Src Port: 52103, Dst Port: 53
+
+What is the source port of the DNS response message?
+- 53
+
+      User Datagram Protocol, Src Port: 53, Dst Port: 52103
+
+13. To what IP address is the DNS query message sent? 
+
+        Internet Protocol Version 4, Src: 10.98.0.19, Dst: 10.98.0.1
+
+Is this the IP address of your default local DNS server?
+- Yes
+
+```
+nmcli device show | grep IP4.DNS
+IP4.DNS[1]:                             **10.98.0.1
+```
+
+14. Examine the DNS query message. 
+
+What “Type” of DNS query is it? 
+- A
+
+```
+www.cs.umass.edu: type A, class IN
+    Name: www.cs.umass.edu
+    [Name Length: 16]
+    [Label Count: 4]
+    Type: A (1) (Host Address)
+    Class: IN (0x0001)
+```
+
+Does the query message contain any “answers”?
+- No
+
+      Answer RRs: 0
+
+15. Examine the DNS response message to the query message. 
+
+How many “questions” does this DNS response message contain? 
+- 1
+
+      Questions: 1
+
+How many “answers”?
+- 1
+
+      Answer RRs: 1
+
+<img width="1268" height="968" alt="image" src="https://github.com/user-attachments/assets/b2f398e5-2eeb-4db4-8663-3ebbb6db195c" />
+
+<img width="1268" height="968" alt="image" src="https://github.com/user-attachments/assets/50b4e9d9-0e79-4da8-8eef-48d9abf0ce97" />
 
 #### **B. Query `umass.edu` with `-type=NS`**
 16. Sent to local DNS server  
