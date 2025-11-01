@@ -350,8 +350,15 @@ Additional records
 ---
 
 ## What I Learned
-- DNS client is simple: **query local server → get response**.
-- **nslookup** reveals record types, authority, and reverse mappings.
-- **Caching** (host + local server) reduces DNS traffic.
-- **Wireshark** exposes UDP-based DNS (port 53), query/response structure, and caching effects (no redundant queries).
-- **Authoritative vs non-authoritative**: Critical for understanding source trust.
+I learned how to
+- see that DNS works on UDP port 53
+- use the nslookup command to query DNS servers for records
+- use the nslookup command to find the responding DNS server IP
+- to distinguish authoritative or non-authoritative DNS servers
+- find the NS (nameserver) IP addresses for a domain
+- clear DNS cache on a host
+- use Wireshark to trace DNS information, such as source and destination IP and port, and protocol
+- the role of DNS query and response questions and answers
+- how DNS caching blocks a follow-up HTTP request to a web server
+- how to find the IP address of my default local DNS server
+- use Wireshark to gather more info about DNS queries for NS records
