@@ -131,7 +131,7 @@ Authoritative answers can be found from:
 <img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/5c7491fa-671f-4d97-8620-4352474c5fe0" />
 
 7. What is the destination port for the DNS query message?
-  - 53
+    - 53
 
 - What is the source port of the DNS response message?
   - 53
