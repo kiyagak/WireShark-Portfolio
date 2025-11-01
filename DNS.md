@@ -111,6 +111,7 @@ Authoritative answers can be found from:
 5. Locate the first DNS query message resolving the name gaia.cs.umass.edu.
   - What is the packet number in the trace for the DNS query message?
     - 27
+  
   - Is this query message sent over UDP or TCP?
     - UDP
    
@@ -121,6 +122,7 @@ Authoritative answers can be found from:
 6. Now locate the corresponding DNS response to the initial DNS query.
 - What is the packet number in the trace for the DNS response message?
   - 30
+
 - Is this response message received via UDP or TCP?
   - UDP
 
@@ -129,7 +131,8 @@ Authoritative answers can be found from:
 <img width="1359" height="643" alt="image" src="https://github.com/user-attachments/assets/5c7491fa-671f-4d97-8620-4352474c5fe0" />
 
 7. What is the destination port for the DNS query message?
-  - 53 
+  - 53
+
 - What is the source port of the DNS response message?
   - 53
 
@@ -140,6 +143,7 @@ Authoritative answers can be found from:
 9. Examine the DNS query message. 
 - How many “questions” does this DNS message contain?
   - 1
+
 - How many “answers” answers does it contain?
   - 0
 
@@ -148,6 +152,7 @@ Authoritative answers can be found from:
 10. Examine the DNS response message to the initial query message. 
 - How many “questions” does this DNS message contain?
   - 1
+
 - How many “answers” answers does it contain?
   - 0
 
@@ -159,12 +164,16 @@ This question will be answered using `dns-wireshark-trace1-1.pcapng` found in th
 
 - What is the packet number in the trace for the initial HTTP GET request for the base file http://gaia.cs.umass.edu/kurose_ross/?
   - 22
+
 - What is the packet number in the trace of the DNS query made to resolve gaia.cs.umass.edu so that this initial HTTP request can be sent to the gaia.cs.umass.edu IP address?
   - 15
+
 - What is the packet number in the trace of the received DNS response?
   - 17
+
 - What is the packet number in the trace for the HTTP GET request for the image object http://gaia.cs.umass.edu/kurose_ross/header_graphic_book_8E2.jpg?
   - 205
+
 - What is the packet number in the DNS query made to resolve gaia.cs.umass.edu so that this second HTTP request can be sent to the gaia.cs.umass.edu IP address?
   - **No second HTTP request was sent** because **DNS caching blocks it**.  
 
@@ -233,10 +242,6 @@ How many “answers”?
 <img width="1268" height="968" alt="image" src="https://github.com/user-attachments/assets/b2f398e5-2eeb-4db4-8663-3ebbb6db195c" />
 
 <img width="1268" height="968" alt="image" src="https://github.com/user-attachments/assets/50b4e9d9-0e79-4da8-8eef-48d9abf0ce97" />
-
-
-
-
 
 Last, let’s use nslookup to issue a command that will return a type NS DNS record,
 
