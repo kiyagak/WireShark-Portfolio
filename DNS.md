@@ -351,7 +351,9 @@ Additional records
 
 ## What I Learned
 I learned how to
-- see that DNS works on UDP port 53
+- see that DNS works on UDP port 53, by default
+- know that UDP is the default for quick DNS queries and responses
+- know that TCP is used for larger DNS transfers or when reliability is critical
 - use the nslookup command to query DNS servers for records
 - use the nslookup command to find the responding DNS server IP
 - to distinguish authoritative or non-authoritative DNS servers
