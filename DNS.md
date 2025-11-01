@@ -196,7 +196,7 @@ Is this the IP address of your default local DNS server?
 
 ```
 nmcli device show | grep IP4.DNS
-IP4.DNS[1]:                             **10.98.0.1
+IP4.DNS[1]:                             10.98.0.1
 ```
 
 14. Examine the DNS query message. 
