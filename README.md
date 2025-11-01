@@ -2,7 +2,7 @@
 
 This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark labs](https://gaia.cs.umass.edu/kurose_ross/wireshark.php).  I will use Wireshark to capture traffic from protocols such as
 - [HTTP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/HTTP.md)
-- DNS
+- [DNS](https://github.com/kiyagak/WireShark-Portfolio/blob/main/DNS.md)
 - TCP
 - UDP
 - IP
