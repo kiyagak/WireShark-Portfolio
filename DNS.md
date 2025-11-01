@@ -236,10 +236,16 @@ How many “answers”?
 
 
 
+
+
 Last, let’s use nslookup to issue a command that will return a type NS DNS record,
-Enter the following command:
+
+- Start a Wireshark capture.  
+- Enter the following command:
 
     nslookup -type=NS umass.edu
+
+- Stop the Wireshark capture.  
 
 ```
 Server:         127.0.0.53
@@ -257,40 +263,84 @@ Authoritative answers can be found from:
 Answer the following questions:
 
 16. To what IP address is the DNS query message sent? 
+- 10.98.0.1
+
+        Internet Protocol Version 4, Src: 10.98.0.7, Dst: 10.98.0.1
 
 Is this the IP address of your default local DNS server?
+- Yes
 
-
+```
+nmcli device show | grep IP4.DNS
+IP4.DNS[1]:                             10.98.0.1
+```
 
 17. Examine the DNS query message. 
 
 How many questions does the query have? 
+- 1
+
+      Questions: 1
 
 Does the query message contain any “answers”?
+- No
 
+      Answer RRs: 0
 
-
-18. Examine the DNS response message (in particular the DNS response message that has type “NS”). 
+18. Examine the DNS response message (in particular the DNS response message that has type “**NS**”). 
 
 How many answers does the response have? 
+- 3
 
 What information is contained in the answers? 
 
+```
+Answers
+    umass.edu: type NS, class IN, ns ns3.umass.edu
+        Name: umass.edu
+        Type: NS (2) (authoritative Name Server)
+        Class: IN (0x0001)
+        Time to live: 3180 (53 minutes)
+        Data length: 6
+        Name Server: ns3.umass.edu
+    umass.edu: type NS, class IN, ns ns1.umass.edu
+        Name: umass.edu
+        Type: NS (2) (authoritative Name Server)
+        Class: IN (0x0001)
+        Time to live: 3180 (53 minutes)
+        Data length: 6
+        Name Server: ns1.umass.edu
+    umass.edu: type NS, class IN, ns ns2.umass.edu
+        Name: umass.edu
+        Type: NS (2) (authoritative Name Server)
+        Class: IN (0x0001)
+        Time to live: 3180 (53 minutes)
+        Data length: 6
+        Name Server: ns2.umass.edu
+```
+
 How many additional resource records are returned?
-
-
+- 1
 
 What additional information is included in these additional resource records (if additional information is returned)?
 
+```
+Additional records
+    <Root>: type OPT
+        Name: <Root>
+        Type: OPT (41) 
+        UDP payload size: 1232
+        Higher bits in extended RCODE: 0x00
+        EDNS0 version: 0
+        Z: 0x0000
+            0... .... .... .... = DO bit: Cannot handle DNSSEC security RRs
+            .000 0000 0000 0000 = Reserved: 0x0000
+        Data length: 0
+```
 
+<img width="1268" height="1050" alt="image" src="https://github.com/user-attachments/assets/f96e213f-9248-4e67-a894-a41f79f5fb33" />
 
-
-#### **B. Query `umass.edu` with `-type=NS`**
-16. Sent to local DNS server  
-17. Query: 1 question, 0 answers  
-18. Response:
-   - Multiple **NS records** (authoritative name servers)
-   - Often includes **additional A records** (IPs of NS hosts)
+<img width="2006" height="1210" alt="image" src="https://github.com/user-attachments/assets/e3e5b96e-c9b2-46c8-a60e-82f31691da3e" />
 
 ---
 
