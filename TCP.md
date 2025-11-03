@@ -138,15 +138,54 @@ How many bytes of data are contained in the payload (data) field of this TCP seg
 		File Data: 148723 bytes
 
 Did all of the data in the transferred file alice.txt fit into this single segment?
+- No
 
+		[ [truncated]113 Reassembled TCP Segments (149325 bytes): #16(602), #17(1348), #18(1348), #19(1348), #20(1348), #21(1348), #22(1348), #23(1348), #24(1348), #25(1348), #27(1348), #28(1348), #30(1348), #31(1348), #33(1348), #34(1348), #36(134]
 
 6. Consider the TCP segment containing the HTTP “POST” as the first segment in the data transfer part of the TCP connection.
-• At what time was the first segment (the one containing the HTTP POST) in the data-transfer part of the TCP connection sent?
-• At what time was the ACK for this first data-containing segment received?
-• What is the RTT for this first data-containing segment?
-• What is the RTT value the second data-carrying TCP segment and its ACK?
-• What is the EstimatedRTT value (see Section 3.5.3, in the text) after the ACK for the second data-carrying segment is received? 
-	Assume that in making this calculation after the received of the ACK for the second segment, that the initial value of EstimatedRTT is equal to the measured RTT for the first segment, and then is computed using the EstimatedRTT equation on page 242, and a value of a = 0.125.
+
+- At what time was the first segment (the one containing the HTTP POST) in the data-transfer part of the TCP connection sent?
+	- Nov  3, 2025 00:24:23.209028537 UTC
+
+```
+16	11.521331138	10.98.0.7	128.119.245.12	TCP	654	36244 → 80 [PSH, ACK] Seq=1 Ack=1 Win=502 Len=602 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+...
+Arrival Time: Nov  3, 2025 00:24:23.209028537 UTC
+```
+
+<img width="1500" height="992" alt="image" src="https://github.com/user-attachments/assets/ac1f9963-71c9-4216-a548-58e999820b28" />
+
+- At what time was the ACK for this first data-containing segment received?
+	- Nov  3, 2025 00:24:23.209142563 UTC
+
+```
+17	11.521445164	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=603 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+...
+Arrival Time: Nov  3, 2025 00:24:23.209142563 UTC
+```
+
+<img width="1500" height="993" alt="image" src="https://github.com/user-attachments/assets/714df6eb-043c-4674-8d1a-a4a97bdfd732" />
+
+
+- What is the RTT for this first data-containing segment?
+	- `0.032` ms
+
+<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/653f4878-7fa8-4bd1-95a6-65651e1105e4" />
+
+- What is the RTT value the second data-carrying TCP segment and its ACK?
+	- `0.032` ms
+ 	- Acknowledgment number (raw): `508176412`
+
+			Acknowledgment number (raw): 508176412
+
+<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/0da2e2e7-a3e3-4f20-b0b4-147e6e189c49" />
+
+- What is the Estimated RTT value (see Section 3.5.3, in the text) after the ACK for the second data-carrying segment is received? 
+	- 
+
+
+
+Assume that in making this calculation after the received of the ACK for the second segment, that the initial value of EstimatedRTT is equal to the measured RTT for the first segment, and then is computed using the EstimatedRTT equation on page 242, and a value of a = 0.125.
 
 7. What is the length (header plus payload) of each of the first four data-carrying TCP segments?
 
