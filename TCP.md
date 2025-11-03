@@ -166,22 +166,19 @@ Arrival Time: Nov  3, 2025 00:24:23.209142563 UTC
 
 <img width="1500" height="993" alt="image" src="https://github.com/user-attachments/assets/714df6eb-043c-4674-8d1a-a4a97bdfd732" />
 
-
 - What is the RTT for this first data-containing segment?
-	- `0.032` ms
+	- RTT: `19.9` ms
 
-<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/653f4878-7fa8-4bd1-95a6-65651e1105e4" />
+<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/78247637-a97a-464a-9049-f183a26a153d" />
 
 - What is the RTT value the second data-carrying TCP segment and its ACK?
-	- `0.032` ms
+	- RTT:`19.85` ms
  	- Acknowledgment number (raw): `508176412`
 
-			Acknowledgment number (raw): 508176412
-
-<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/0da2e2e7-a3e3-4f20-b0b4-147e6e189c49" />
+<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/f7f225ef-9293-464d-9e10-c1198ab0ddd4" />
 
 - What is the Estimated RTT value (see Section 3.5.3, in the text) after the ACK for the second data-carrying segment is received? 
-	- 
+	- `0.05` ms
 
 
 
