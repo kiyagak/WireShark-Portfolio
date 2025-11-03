@@ -358,7 +358,7 @@ Comment on whether this looks as if TCP is in its slow start phase, congestion a
 - Looks like the slow start phase.  
 
 13. These “fleets” of segments appear to have some periodicity. 
-- The following number of packets are simultaneously processed, followed by 0.2 seconds where sequence is paused:
+- The sequence numbers increment simultaneously, followed by 0.2 seconds where sequence incrementation is paused.  The increments happened at these rates:
 	- 9
 	- 22
 	- 29
