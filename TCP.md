@@ -57,43 +57,85 @@ This [TCP Wireshark Lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_T
 **Questions (left exactly as in the original):**
 
 1. What is the IP address and TCP port number used by the client computer (source) that is transferring the alice.txt file to gaia.cs.umass.edu? 
+- Source/client IP address: 10.98.0.7
+- Source/client TCP port number: 36244
 
-To answer this question, it’s probably easiest to select an HTTP message and explore the details of the TCP packet used to carry this HTTP message, using the “details of the selected packet header window” (refer to Figure 2 in the “Getting Started with Wireshark” Lab if you’re uncertain about the Wireshark windows).
+		Internet Protocol Version 4, Src: 10.98.0.7, Dst: 128.119.245.12
+		Transmission Control Protocol, Src Port: 36244, Dst Port: 80, Seq: 148367, Ack: 1, Len: 959
 
-
-
-
-2. What is the IP address of gaia.cs.umass.edu? 
+2. What is the IP address of gaia.cs.umass.edu?
+- 128.119.245.12
 
 On what port number is it sending and receiving TCP segments for this connection?
+- TCP port 80
 
 3. What is the sequence number of the TCP SYN segment that is used to initiate the TCP connection between the client computer and gaia.cs.umass.edu? 
+- `1797965661`
+- This is the **“raw” sequence number** carried in the TCP segment itself
 
-(Note: this is the “raw” sequence number carried in the TCP segment itself; it is NOT the packet # in the “No.” column in the Wireshark window. 
+		Sequence Number (raw): 1797965661
 
-Remember there is no such thing as a “packet number” in TCP or UDP; as you know, there are sequence numbers in TCP and that’s what we’re after here. 
+- It is NOT the packet number in the “No.” column in the Wireshark window as there is no such thing as a “packet number” in TCP or UDP. 
+- It is also not the relative sequence number with respect to the starting sequence number of this TCP session.
 
-Also note that this is not the relative sequence number with respect to the starting sequence number of this TCP session.). 
+<img width="1251" height="916" alt="image" src="https://github.com/user-attachments/assets/b7c82b40-8e63-4b84-b3dc-775900b9f622" />
 
-What is it in this TCP segment that identifies the segment as a SYN segment? 
+What is in this TCP segment that identifies the segment as a SYN segment? 
+- SYN flag
 
-Will the TCP receiver in this session be able to use Selective Acknowledgments (allowing TCP to function a bit more like a “selective repeat” receiver, see section 3.4.5 in the text)?
+```
+4	0.007973035	10.98.0.7	128.119.245.12	TCP	60	36342 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM TSval=1912101104 TSecr=0 WS=128
+...
+Flags: 0x002 (SYN)
+  ```
 
+Will the TCP receiver in this session be able to use **Selective Acknowledgments** (**SACK**) (allowing TCP to function a bit more like a “selective repeat” receiver)?
+- Yes
+
+		Options: (20 bytes), Maximum segment size, SACK permitted, Timestamps, No-Operation (NOP), Window scale
 
 
 4. What is the sequence number of the SYNACK segment sent by gaia.cs.umass.edu to the client computer in reply to the SYN? 
+- `4001501217`
 
-What is it in the segment that identifies the segment as a SYNACK segment? What is the value of the Acknowledgement field in the SYNACK segment? 
+		Sequence Number (raw): 4001501217
 
+
+What is it in the segment that identifies the segment as a SYNACK segment? 
+- SYN/ACK flag
+
+```
+7	0.028505917	128.119.245.12	10.98.0.7	TCP	60	80 → 36342 [SYN, ACK] Seq=0 Ack=1 Win=65160 Len=0 MSS=1360 SACK_PERM TSval=2486358930 TSecr=1912101104 WS=256
+...
+Flags: 0x012 (SYN, ACK)
+```
+
+What is the value of the Acknowledgement field in the SYNACK segment? 
+- `1797965662`
+
+<img width="1259" height="643" alt="image" src="https://github.com/user-attachments/assets/7460ac90-6078-420d-a891-8e788699b6cd" />
 
 How did gaia.cs.umass.edu determine that value?
+- Viewing the **raw acknowledgement number** instead of the relative acknowledgement number.
 
+		Acknowledgment number (raw): 1797965662
 
 5. What is the sequence number of the TCP segment containing the header of the HTTP POST command? 
 
-Note that in order to find the POST message header, you’ll need to dig into the packet content field at the bottom of the Wireshark window, 
+		Sequence Number (raw): 3843511335
 
-looking for a segment with the ASCII text “POST” within its DATA field4,5. How many bytes of data are contained in the payload (data) field of this TCP segment? 
+<img width="1259" height="643" alt="image" src="https://github.com/user-attachments/assets/b4c9e889-052e-4a65-bcee-18d8c2bf499e" />
+
+To find the POST message header, you must
+- dig into the packet content field at the bottom of the Wireshark window
+- looking for a segment with the ASCII text “POST” within its DATA field 4, 5.
+
+<img width="1259" height="977" alt="image" src="https://github.com/user-attachments/assets/cc8a54a9-01d4-408d-bd6d-981aaef2f705" />
+
+How many bytes of data are contained in the payload (data) field of this TCP segment? 
+- 148723 bytes
+
+		File Data: 148723 bytes
 
 Did all of the data in the transferred file alice.txt fit into this single segment?
 
