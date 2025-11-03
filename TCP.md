@@ -42,7 +42,7 @@ This [TCP Wireshark Lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_T
 
 3. **Use Wireshark tools:**
    - Apply `tcp` filter to focus on TCP segments.
-   - Use Statistics → TCP Stream Graph → Round Trip Time Graph for RTT analysis.
+   - Use Statistics → TCP Stream Graph → Round Trip Time Graph  → Switch Direction for RTT analysis.
    - Use Statistics → TCP Stream Graph → Time-Sequence-Graph (Stevens) for congestion control analysis.
 
 <img width="1118" height="864" alt="image" src="https://github.com/user-attachments/assets/93de64bd-e38b-4cf3-b13a-e65ee72e2e87" />
