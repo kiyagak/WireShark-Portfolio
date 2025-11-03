@@ -297,8 +297,8 @@ What did you check for (in the trace) in order to answer this question?
 
 10. How much data does the receiver typically acknowledge in an ACK among the first ten data-carrying segments sent from the client to gaia.cs.umass.edu?
 
+```
 Formula:
-
 Data acknowledged in this ACK = Current Ack − Previous Ack
 
 
@@ -326,6 +326,7 @@ Acknowledgment number (raw): 508176412
 
 Acknowledgment Number: 1    (relative ack number)
 Acknowledgment number (raw): 508176412
+```
 
 
 
@@ -345,6 +346,9 @@ Explain how you calculated this value.
 <img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/f94a794f-3d9f-4e5c-bf30-d0f8814a8369" />
 
 12. Use the Time-Sequence-Graph(Stevens) plotting tool to view the sequence number versus time plot of segments being sent from the client to the gaia.cs.umass.edu server. 
+- In Wireshark at the top-bar Menu I clicked `Statistics` → `TCP Stream Graphs` → ` Time Sequence (Stevens)`.
+
+<img width="1174" height="864" alt="image" src="https://github.com/user-attachments/assets/73cd4bee-de7b-46aa-8ca3-4a7b4a2a0e67" />
 
 <img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/98b7fa3a-e8db-40bc-a68f-fe107bd5c66d" />
 
