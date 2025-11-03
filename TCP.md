@@ -187,52 +187,178 @@ Arrival Time: Nov  3, 2025 00:24:23.209142563 UTC
  	- 39.75 / 2 = `19.875`
 	- Wireshark rounds RTT to one decimal place, making the estimated RTT `19.9` ms
 
-Assume that in making this calculation after the received of the ACK for the second segment, that the initial value of EstimatedRTT is equal to the measured RTT for the first segment, and then is computed using the EstimatedRTT equation on page 242, and a value of a = 0.125.
-
 7. What is the length (header plus payload) of each of the first four data-carrying TCP segments?
 
+```
+16	11.521331138	10.98.0.7	128.119.245.12	TCP	654	36244 → 80 [PSH, ACK] Seq=1 Ack=1 Win=502 Len=602 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+Frame Length: 654 bytes (5232 bits)
 
+17	11.521445164	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=603 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+Frame Length: 1400 bytes (11200 bits)
 
-8. What is the minimum amount of available buffer space advertised to the client by gaia.cs.umass.edu among these first four data-carrying TCP segments7? 
+18	11.521448062	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [PSH, ACK] Seq=1951 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+Frame Length: 1400 bytes (11200 bits)
+
+20	11.521452771	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [PSH, ACK] Seq=4647 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+Frame Length: 1400 bytes (11200 bits)
+```
+
+<img width="1315" height="712" alt="image" src="https://github.com/user-attachments/assets/a59a47ea-3f70-443a-a762-70cd4761ec3a" />
+
+8. What is the minimum amount of available buffer space advertised to the client by gaia.cs.umass.edu among these first four data-carrying TCP segments7?
+- `502`
+
+For each of the four packets:
+
+- Click the packet in the list.
+- In the packet details pane, expand:
+
+```
+Transmission Control Protocol
+  ...
+  Window size value: XXXXX
+  [Calculated window size: XXXXX]
+```
+
+```
+16	11.521331138	10.98.0.7	128.119.245.12	TCP	654	36244 → 80 [PSH, ACK] Seq=1 Ack=1 Win=502 Len=602 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+[Calculated window size: 502]
+
+17	11.521445164	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=603 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+[Calculated window size: 502]
+
+18	11.521448062	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [PSH, ACK] Seq=1951 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+[Calculated window size: 502]
+
+20	11.521452771	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [PSH, ACK] Seq=4647 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+[Calculated window size: 502]
+```
 
 Does the lack of receiver buffer space ever throttle the sender for these first four data-carrying segments?
+- No
 
+```
+16	11.521331138	10.98.0.7	128.119.245.12	TCP	654	36244 → 80 [PSH, ACK] Seq=1 Ack=1 Win=502 Len=602 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
 
+Transmission Control Protocol, Src Port: 36244, Dst Port: 80, Seq: 1, Ack: 1, Len: 602
+    Sequence Number (raw): 3843362969
+    [Next Sequence Number: 603    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Window: 502
+    [Calculated window size: 502]
+    TCP payload (602 bytes)
+```
+
+```
+17	11.521445164	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=603 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+
+Transmission Control Protocol, Src Port: 36244, Dst Port: 80, Seq: 603, Ack: 1, Len: 1348
+    Sequence Number (raw): 3843363571
+    [Next Sequence Number: 1951    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Window: 502
+    [Calculated window size: 502]
+    TCP payload (1348 bytes)
+```
+
+```
+18	11.521448062	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [PSH, ACK] Seq=1951 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+
+Transmission Control Protocol, Src Port: 36244, Dst Port: 80, Seq: 1951, Ack: 1, Len: 1348
+    Sequence Number (raw): 3843364919
+    [Next Sequence Number: 3299    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Window: 502
+    [Calculated window size: 502]
+    TCP payload (1348 bytes)
+```
+
+```
+20	11.521452771	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [PSH, ACK] Seq=4647 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+
+Transmission Control Protocol, Src Port: 36244, Dst Port: 80, Seq: 4647, Ack: 1, Len: 1348
+    Sequence Number (raw): 3843367615
+    [Next Sequence Number: 5995    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Window: 502
+    [Calculated window size: 502]
+    TCP payload (1348 bytes)
+```
 
 9. Are there any retransmitted segments in the trace file? 
+- No
 
 What did you check for (in the trace) in order to answer this question?
+- Used this filter to show all retransmissions:
+
+		tcp.analysis.retransmission
+
+<img width="1304" height="643" alt="image" src="https://github.com/user-attachments/assets/ca63e0d3-17b6-45e1-ac5b-c2790ae58265" />
+
+10. How much data does the receiver typically acknowledge in an ACK among the first ten data-carrying segments sent from the client to gaia.cs.umass.edu?
+
+Formula:
+
+Data acknowledged in this ACK = Current Ack − Previous Ack
 
 
+17	11.521445164	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=603 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
 
-10. How much data does the receiver typically acknowledge in an ACK among the first ten data-carrying segments sent from the client to gaia.cs.umass.edu? 
+Acknowledgment Number: 1    (relative ack number)
+Acknowledgment number (raw): 508176412
+
+19	11.521452006	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=3299 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+
+Acknowledgment Number: 1    (relative ack number)
+Acknowledgment number (raw): 508176412
+
+21	11.521455204	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=5995 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+
+Acknowledgment Number: 1    (relative ack number)
+Acknowledgment number (raw): 508176412
+
+23	11.521458767	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=8691 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+
+Acknowledgment Number: 1    (relative ack number)
+Acknowledgment number (raw): 508176412
+
+25	11.521461628	10.98.0.7	128.119.245.12	TCP	1400	36244 → 80 [ACK] Seq=11387 Ack=1 Win=502 Len=1348 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
+
+Acknowledgment Number: 1    (relative ack number)
+Acknowledgment number (raw): 508176412
+
+
 
 Can you identify cases where the receiver is ACKing every other received segment (see Table 3.2 in the text) among these first ten data-carrying segments?
+- Yes
 
-
+<img width="1304" height="643" alt="image" src="https://github.com/user-attachments/assets/1aa19f1c-5f5e-49b5-802f-f863430417cb" />
 
 11. What is the throughput (bytes transferred per unit time) for the TCP connection? 
+- `1.2`
 
 Explain how you calculated this value.
+- In Wireshark at the top-bar Menu I clicked `Statistics` → `TCP Stream Graphs` → `Throughput`.
 
+<img width="1174" height="864" alt="image" src="https://github.com/user-attachments/assets/7377eb48-70a2-4d9d-b317-1b3047a6c57e" />
 
+<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/f94a794f-3d9f-4e5c-bf30-d0f8814a8369" />
 
 12. Use the Time-Sequence-Graph(Stevens) plotting tool to view the sequence number versus time plot of segments being sent from the client to the gaia.cs.umass.edu server. 
+
+<img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/98b7fa3a-e8db-40bc-a68f-fe107bd5c66d" />
 
 Consider the “fleets” of packets sent around t = 0.025, t = 0.053, t = 0.082 and t = 0.1. 
 
 Comment on whether this looks as if TCP is in its slow start phase, congestion avoidance phase or some other phase. 
-
-Figure 6 shows a slightly different view of this data.
-
-
+- Looks like the slow start phase.  
 
 13. These “fleets” of segments appear to have some periodicity. 
-
-What can you say about the period?
-
-
-
-14. Answer each of two questions above for the trace that you have gathered when you transferred a file from your computer to gaia.cs.umass.edu
+- The following number of packets are simultaneously processed, followed by 0.2 seconds where sequence is paused:
+	- 9
+	- 22
+	- 29
+	- 39
+	- 13
 
 ## What I Learned
