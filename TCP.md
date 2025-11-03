@@ -178,9 +178,14 @@ Arrival Time: Nov  3, 2025 00:24:23.209142563 UTC
 <img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/f7f225ef-9293-464d-9e10-c1198ab0ddd4" />
 
 - What is the Estimated RTT value (see Section 3.5.3, in the text) after the ACK for the second data-carrying segment is received? 
-	- `0.05` ms
+	- `19.9` ms
 
-
+- Estimated RTT formula:
+	- ( `19.9` + `19.85` ) / 2
+ 		- `19.9` ms is the RTT of the packet of 1st TCP segment
+   		- `19.85` ms is the RTT of the packet of 2nd TCP segment
+ 	- 39.75 / 2 = `19.875`
+	- Wireshark rounds RTT to one decimal place, making the estimated RTT `19.9` ms
 
 Assume that in making this calculation after the received of the ACK for the second segment, that the initial value of EstimatedRTT is equal to the measured RTT for the first segment, and then is computed using the EstimatedRTT equation on page 242, and a value of a = 0.125.
 
