@@ -98,7 +98,7 @@ User Datagram Protocol, Src Port: 49684, Dst Port: 53
 
 4. **Length (in bytes)** of each UDP header field.
 - `2` bytes
-- All four UDP headers combine for a total of `8 bytes`.  
+- All four UDP headers combine for a total of `8` bytes.  
 
 5. **Length field meaning** 
 - This field is the sum of the `UDP payload` length in bytes and the `UDP header` size in bytes.
