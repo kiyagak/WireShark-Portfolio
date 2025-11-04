@@ -160,8 +160,6 @@ Destination Port: 49684
 
 <img width="1259" height="709" alt="image" src="https://github.com/user-attachments/assets/16a697fd-da67-4ebc-af12-e3540b60aaaf" />
 
----
-
 ## **What I Learned**
 
 I learned that
