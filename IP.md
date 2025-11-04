@@ -438,3 +438,18 @@ Find the response to the AAAA request from packet 20, containing IPv6 addresses 
 ---
 
 ## What I Learned
+
+I learned 
+- to use the traceroute command with varying packet lengths to observe the path and measure transit delays of packets across an IP network
+- IP header sizes are 20 bytes
+- how to tell if an IP packet has been fragmented
+- that fragmentation occurs if a packet exceeds 1500 bytes, the standard MTU for IP packets
+- why fragmentation fields normally don't appear in Wireshark
+- that an IP datagram's Identification and Header Checksum fields distinguishes packet fragments to help reassemble them
+- Identification fields are 16-bits, reaching a maximum number of 65,536
+- ICMP "Time Exceeded" packets are sent back by routers when the IP TTL reaches zero during a traceroute
+- after after three consecutive Time Exceeded packets the TTL value decreases by 1
+- how to get the source and destination address of a DNS AAAA request
+- DNS AAAA responses can return multiple IPv6 addresses 
+- how to find and view DNS AAAA responses to see the returned IPv6 address(es)
+
