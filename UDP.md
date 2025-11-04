@@ -71,17 +71,17 @@ Data (**variable length**): The actual data payload being sent from source to de
 
       1	0.000000000	10.98.0.7	10.98.0.1	DNS	68	Standard query 0xecda A www.nyu.edu OPT
 
-  1. **Packet number** in Wireshark.
-   - `1`
-  2. **Application-layer protocol**.
-   - DNS
+1. **Packet number** in Wireshark.
+- `1`
+2. **Application-layer protocol**.
+- DNS
 
-         Domain Name System (query)
-   
-  3. **Number of UDP header fields** and their **names** (observe directly in Wireshark).
-   - 4: Source Port, Destination Port, Length, and Checksum.  
-   - The standard UDP header structure in Wireshark displays four fields: Source Port, Destination Port, Length, and Checksum.
-   - The rest of the information is not part of the UDP header itself.
+      Domain Name System (query)
+
+3. **Number of UDP header fields** and their **names** (observe directly in Wireshark).
+- 4: Source Port, Destination Port, Length, and Checksum.  
+- The standard UDP header structure in Wireshark displays four fields: Source Port, Destination Port, Length, and Checksum.
+- The rest of the information is not part of the UDP header itself.
 
 ```
 User Datagram Protocol, Src Port: 49684, Dst Port: 53
@@ -96,30 +96,30 @@ User Datagram Protocol, Src Port: 49684, Dst Port: 53
     UDP payload (40 bytes)
 ```
 
-  4. **Length (in bytes)** of each UDP header field.
-   - `2` bytes
-   - All four UDP headers combine for a total of `8 bytes`.  
+4. **Length (in bytes)** of each UDP header field.
+- `2` bytes
+- All four UDP headers combine for a total of `8 bytes`.  
 
-  5. **Length field meaning** 
-   - This field is the sum of the `UDP payload` length in bytes and the `UDP header` size in bytes.
-      - UDP payload length in bytes: `40`
-      - UDP header lengh in bytes: `8`
+5. **Length field meaning** 
+- This field is the sum of the `UDP payload` length in bytes and the `UDP header` size in bytes.
+   - UDP payload length in bytes: `40`
+   - UDP header lengh in bytes: `8`
 
-            Length: 48
-            UDP payload (40 bytes)
+         Length: 48
+         UDP payload (40 bytes)
 
-  6. **Max UDP payload size**: Derived from total max UDP datagram size minus header.
-   - `65507` bytes.
-   - This is calculated by taking the maximum IP packet size (65,535 bytes) and subtracting the 20-byte IPv4 header and the 8-byte UDP header.
+6. **Max UDP payload size**: Derived from total max UDP datagram size minus header.
+- `65507` bytes.
+- This is calculated by taking the maximum IP packet size (65,535 bytes) and subtracting the 20-byte IPv4 header and the 8-byte UDP header.
 
-  7. **What is the largest possible source port number?**
-   - `65535`
-   - The [total range for UDP ports](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) is 0 to **65,535** based on 16-bit port field (0–65535).
+7. **What is the largest possible source port number?**
+- `65535`
+- The [total range for UDP ports](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) is 0 to **65,535** based on 16-bit port field (0–65535).
 
-  8. **UDP protocol number** in IP header: Look at IP datagram’s Protocol field (decimal).
-   - The number `17` is the protocol number assigned to UDP by the Internet Assigned Numbers Authority (IANA).
+8. **UDP protocol number** in IP header: Look at IP datagram’s Protocol field (decimal).
+- The number `17` is the protocol number assigned to UDP by the Internet Assigned Numbers Authority (IANA).
 
-         Protocol: UDP (17)
+      Protocol: UDP (17)
 
 <img width="1259" height="709" alt="image" src="https://github.com/user-attachments/assets/f1aa8cc9-28cc-46b4-ab53-d782cddb09e8" />
 
