@@ -15,14 +15,19 @@ The goal is to analyze **IPv4** and **IPv6** datagrams uasing Wireshark, focusin
 **Goal:** Examine IPv4 datagrams sent/received during `traceroute`.
 
 #### **Steps:**
-1. Run Wireshark → Start capture.
-2. Execute:
+1. Open the Terminal.
+2. Install the `traceroute` package.
+
+         sudo apt install traceroute
+
+3. Run Wireshark → Start capture.
+4. Execute:
    ```bash
    traceroute gaia.cs.umass.edu 56
    traceroute gaia.cs.umass.edu 3000
    ```
    *(Windows: use `tracert` for small packets only)*
-3. Stop capture.
+5. Stop capture.
 
 #### **Key Questions (1–12):**
 - Source IP, TTL, protocol field, header/payload size
