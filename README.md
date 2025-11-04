@@ -6,7 +6,7 @@ This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark
 - [TCP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/TCP.md)
 - [UDP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/UDP.md)
 - [IP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/IP.md)
-- NAT
+- [NAT](https://github.com/kiyagak/WireShark-Portfolio/blob/main/NAT.md)
 - DHCP
 - ICMP
 - Ethernet and ARP
