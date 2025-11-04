@@ -142,12 +142,14 @@ This happens when:
    `10.98.0.5 → 10.98.0.1 Len=54` (no "Frag" indicator)
 ---
 
-### UDP Segments
+### UDP Fragmented Segments
 
 **Next: Analyze the sequence of UDP segments sent from your computer to `128.119.245.12` using the display filter:**  
 `ip.src==[your local IP address] and ip.dst==128.119.245.12 and udp and !icmp`
 
 `ip.src==10.98.0.5 and ip.dst==128.119.245.12 and udp and !icmp`
+
+<img width="1242" height="823" alt="image" src="https://github.com/user-attachments/assets/d2c10387-cbd6-4b7f-9ac8-240edd472abd" />
 
 ```
 272	21.920297823	10.98.0.5	128.119.245.12	UDP	40	33066 → 33434 Len=2972
@@ -242,21 +244,6 @@ Internet Protocol Version 4, Src: 10.98.0.5, Dst: 128.119.245.12
 
    **Why?**
 
-
-The fields that **stay constant** across this sequence of three IP datagrams are:
-
-1. **Version** → 4  
-2. **Header Length** → 20 bytes (5)  
-3. **Differentiated Services Field** → 0x00  
-4. **Time to Live (TTL)** → 1  
-5. **Protocol** → UDP (17)  
-6. **Source Address** → 10.98.0.5  
-7. **Destination Address** → 128.119.245.12
-
----
-
-### ****
-
 These datagrams are **fragments of the same original UDP datagram**, sent from the same source to the same destination, using the same IP options and policies. Even though they are fragmented, certain IP header fields remain identical across all fragments:
 
 | Field | Why these fields stay constant |
@@ -264,13 +251,16 @@ These datagrams are **fragments of the same original UDP datagram**, sent from t
 | **Version** | All are IPv4 datagrams. |
 | **Header Length** | Fixed 20-byte header. |
 | **Differentiated Services** | Same QoS/treatment applied to all fragments of the same packet. |
-| **TTL** | Starts at 1 in all fragments because it is local/test scenario. |
+| **Flags** | All are the third or **last** fragment of their three respective datagrams. |
+| **Fragment Offset** | All are the third or **last** fragment of their three respective datagrams. |
+| **Time to Live (TTL)** | Starts at 1 in all fragments because it is local/test scenario. |
 | **Protocol** | All carry UDP segments. |
 | **Source Address** | Same sender (`10.98.0.5`) for the entire original datagram. |
 | **Destination Address** | Same final recipient (`128.119.245.12`) for the entire original datagram. |
 | **Total Length** | These three packets (272, 275, 278) are the last 40 byte fragments of a 2960 byte IP datagram.  This is assuming the MTU for IP packets is 1500. The first two packets were 1480 bytes long. |
 
 9. **Describe the pattern you see in the values in the Identification field** of the IP datagrams being sent by your computer.
+- The numbers are 16-bit decimal numbers that are under 65536.  
 - Five-digit decimal number → four-digit decimal number → five-digit decimal number.  
 
 		Identification: 0xa719 (42777)
@@ -279,46 +269,163 @@ These datagrams are **fragments of the same original UDP datagram**, sent from t
 
 ---
 
+### ICMP Time Exceeded
+
+The instructions explain how to view **ICMP "Time Exceeded"** packets sent back by routers when the IP TTL reaches zero during a traceroute. Use the Wireshark display filter to show ICMP packets destined to your machine (192.168.86.61), showing only the TTL-expired error messages from intermediate routers:
+
+```
+ip.dst==[your IP address] and icmp
+ip.dst==10.98.0.5 and icmp
+```
+
+10. **What is the upper layer protocol specified in the IP datagrams returned from the routers?**  
+   *[Note: the answers for Linux/MacOS differ from Windows here].*
+
+		Protocol: ICMP (1)
+
+11. **Are the values in the Identification fields (across the sequence of all of ICMP packets from all of the routers) similar in behavior to your answer to question 9 above?**
+- Yes
+
+```
+46	6.341110382	10.98.0.1	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Identification: 0xd6f1 (55025)
+
+47	6.341157269	10.98.0.1	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Identification: 0xd6f2 (55026)
+
+48	6.341173918	10.98.0.1	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Identification: 0xd6f3 (55027)
+
+50	6.342498147	149.40.62.126	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Identification: 0x3787 (14215)
+
+51	6.342533296	149.40.62.126	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Identification: 0x3788 (14216)
+```
 
 
+12. **Are the values of the TTL fields similar, across all of ICMP packets from all of the routers?**
+- Yes, they either start at `64` or `252` and after after **three** consecutive Time Exceeded packets the TTL value decreases by 1.  
 
+```
+46	6.341110382	10.98.0.1	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 64
 
+47	6.341157269	10.98.0.1	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 64
 
+48	6.341173918	10.98.0.1	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 64
 
+50	6.342498147	149.40.62.126	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 63
 
+51	6.342533296	149.40.62.126	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 63
 
-#### **Key Questions (13–19):**
-- Fragmentation flag (`More Fragments` bit)
-- `Fragment Offset` field
-- `Total Length`, `Identification`, changes between fragments
-- Identify **first**, **middle**, and **last** fragment
+52	6.342548484	149.40.62.126	10.98.0.5	ICMP	84	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 63
+```
 
-> *Note: 3000-byte packet exceeds typical MTU → forces fragmentation.*
+<img width="1242" height="823" alt="image" src="https://github.com/user-attachments/assets/f504381a-d890-4e72-9e42-94b7b92ca771" />
+
+```
+53	6.363686996	154.54.167.145	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 252
+
+54	6.363699234	154.54.86.109	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 252
+
+55	6.363702547	154.54.86.109	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 252
+
+57	6.412792239	154.54.88.222	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 251
+
+58	6.412822139	154.54.88.206	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 251
+
+59	6.412832107	154.54.88.206	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 251
+
+60	6.412840207	154.54.163.249	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 250
+
+77	6.556535673	154.54.163.249	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 250
+
+78	6.556584960	154.54.163.249	10.98.0.5	ICMP	96	Time-to-live exceeded (Time to live exceeded in transit)
+Time to Live: 250
+```
+
+<img width="1242" height="823" alt="image" src="https://github.com/user-attachments/assets/2c3458e5-72da-4f5c-9f52-052e07d6f3e7" />
 
 ---
 
 ### **Part 3: IPv6**
-**Goal:** Explore IPv6 using pre-captured trace (`ip-wireshark-trace2-1.pcapng`).
+
+- Download the Kuross and Ross Wireshark traces zip file from here:
+	- http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip
+- Extract the zip file.  
+- Open the pre-captured trace `ip-wireshark-trace2-1.pcapng` in Wireshark.  
 
 #### **Focus:**
 - DNS AAAA query (packet 20) to resolve `youtube.com` → IPv6
 - IPv6 response with multiple AAAA records
 
 #### **Key Questions (20–26):**
-- Source & destination **IPv6 addresses** (exact format)
-- **Flow Label**, **Payload Length**, **Next Header**
-- Number of IPv6 addresses returned
-- First (smallest) IPv6 address in shorthand notation
+
+20. **What is the IPv6 address of the computer making the DNS AAAA request?**  
+- `2601:193:8302:4620:215c:f5ae:8b40:a27a`
+
+		20	3.814489	2601:193:8302:4620:215c:f5ae:8b40:a27a	2001:558:feed::1	DNS	91	Standard query 0x920d AAAA youtube.com
+		Source Address: 2601:193:8302:4620:215c:f5ae:8b40:a27a
+
+22. **What is the IPv6 destination address for this datagram?**  
+   - `2001:558:feed::1`
+
+	20	3.814489	2601:193:8302:4620:215c:f5ae:8b40:a27a	2001:558:feed::1	DNS	91	Standard query 0x920d AAAA youtube.com
+	Destination Address: 2001:558:feed::1
+
+23. **What is the value of the flow label for this datagram?**
+- `0x63ed0`
+
+		.... 0110 0011 1110 1101 0000 = Flow Label: 0x63ed0
+	
+24. **How much payload data is carried in this datagram?**
+- `37` bytes
+
+		Payload Length: 37
+
+25. **What is the upper layer protocol to which this datagram’s payload will be delivered at the destination?**
+- `UDP`
+
+		Next Header: UDP (17)
+
+<img width="1242" height="823" alt="image" src="https://github.com/user-attachments/assets/50ce3912-6466-43bc-b99e-e9d82ba88cbd" />
 
 ---
 
-## **Resources & Tips**
-- **Review**: Textbook §4.3 (IP), §4.3.4 (IPv6), RFC 791, RFC 8200
-- **Fragmentation**: See 7th ed. §4.3.2 (PDF link provided)
-- **Trace Files** (download if needed):
-  - `ip-wireshark-trace1-1.pcapng` → Parts 1 & 2
-  - `ip-wireshark-trace2-1.pcapng` → Part 3
-- **Filters** are critical for navigation
+**DNS AAAA Response Analysis**  
+*(Find the response to the AAAA request from packet 20, containing IPv6 addresses for youtube.com)*
+
+- Select packet 20.
+- Expand `Domain Name System (query)`.
+- Click the field that says `[Response In: __]`.
+
+		[Response In: 27]
+
+<img width="1242" height="766" alt="image" src="https://github.com/user-attachments/assets/41f99a4e-46bb-4bbb-96f4-b56814542eda" />
+
+25. **How many IPv6 addresses are returned in the response to this AAAA request?**
+- 1
+		
+		Answers
+		    youtube.com: type AAAA, class IN, addr 2607:f8b0:4006:815::200e
+
+26. **What is the first of the IPv6 addresses returned by the DNS for youtube.com?**  
+- `2607:f8b0:4006:815::200e`
+- This is the **numerically smallest** address in the response (in the trace file *ip-wireshark-trace2-1.pcapng*).  
 
 ---
 
