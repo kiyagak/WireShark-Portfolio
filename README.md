@@ -5,7 +5,7 @@ This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark
 - [DNS](https://github.com/kiyagak/WireShark-Portfolio/blob/main/DNS.md)
 - [TCP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/TCP.md)
 - [UDP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/UDP.md)
-- IP
+- [IP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/IP.md)
 - NAT
 - DHCP
 - ICMP
