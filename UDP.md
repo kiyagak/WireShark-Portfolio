@@ -170,4 +170,4 @@ I learned that
    - a header with 4 fields, totalling `8` bytes,
    - a 20-byte IPv4 header, 
    - and a variable data payload with a maximum size of `65507` bytes.
-- the source port of a DNS request is the destination port of its DNS reply (and vice versa)
+- the source port of a DNS request is the destination port of its DNS reply (and vice versa).  
