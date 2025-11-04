@@ -26,7 +26,12 @@ The goal is to analyze [**IPv4** and **IPv6** datagrams](https://www-net.cs.umas
    traceroute gaia.cs.umass.edu 56
    traceroute gaia.cs.umass.edu 3000
    ```
-   *(Windows: use `tracert` for small packets only)*
+
+- `traceroute`: This command displays the path and measure transit delays of packets across an Internet Protocol (IP) network.
+- `gaia.cs.umass.edu`: the hostname that the traceroute command is sent to.  
+- `56`, `3000`: The full packet length (default is the length of an IP header plus 40). Can be ignored or increased to a  minimal allowed value.  
+
+   
 5. Stop capture.
 
 ---
@@ -407,8 +412,8 @@ Time to Live: 250
 ---
 
 **DNS AAAA Response Analysis**  
-*(Find the response to the AAAA request from packet 20, containing IPv6 addresses for youtube.com)*
 
+Find the response to the AAAA request from packet 20, containing IPv6 addresses for youtube.com).
 - Select packet 20.
 - Expand `Domain Name System (query)`.
 - Click the field that says `[Response In: __]`.
