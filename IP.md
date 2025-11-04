@@ -425,7 +425,10 @@ Time to Live: 250
 
 26. **What is the first of the IPv6 addresses returned by the DNS for youtube.com?**  
 - `2607:f8b0:4006:815::200e`
-- This is the **numerically smallest** address in the response (in the trace file *ip-wireshark-trace2-1.pcapng*).  
+
+		youtube.com: type AAAA, class IN, addr 2607:f8b0:4006:815::200e
+
+<img width="1242" height="766" alt="image" src="https://github.com/user-attachments/assets/9f0fb44a-e9e9-41da-9832-dfa90973f8b3" />
 
 ---
 
