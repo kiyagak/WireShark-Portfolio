@@ -2,7 +2,7 @@
 
 ## Objective
 This Wireshark [lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_DHCP_v9.pdf) explores the **Dynamic Host Configuration Protocol (DHCP)** by capturing and analyzing the four key DHCP messages: **Discover**, **Offer**, **Request**, and **ACK**.  
-You will de-configure and re-configure a network interface to trigger DHCP, capture packets with **Wireshark**, and answer analytical questions.
+I will de-configure and re-configure a network interface to trigger DHCP, capture packets with **Wireshark**, and answer analytical questions.
 
 ---
 
