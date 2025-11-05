@@ -38,27 +38,27 @@ sudo ip addr
 2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
 ```
 
-2. Install the dhclient binary.
+3. Install the dhclient binary.
 
 ```
 sudo apt update
 sudo apt install isc-dhcp-client -y
 ```
 
-3. **Release existing IP and lease**  
+4. **Release existing IP and lease**  
    ```bash
    sudo ip addr flush enp0s3
    sudo dhclient -r
    ```
 
-4. **Start Wireshark** on the same interface.
+5. **Start Wireshark** on the same interface.
 
-5. **Request new DHCP lease**  
+6. **Request new DHCP lease**  
    ```bash
    sudo dhclient enp0s3
    ```
 
-6. **Stop capture** after a few seconds.
+7. **Stop capture** after a few seconds.
 
 ---
 
