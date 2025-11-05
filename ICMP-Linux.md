@@ -224,43 +224,172 @@ Internet Control Message Protocol
 ---
 
 ## Part 2: ICMP and Traceroute
-The **Traceroute** program traces the path a packet takes from source to destination, as discussed in **Sections 1.4 and 5.6** of the textbook. In Windows, Traceroute (called `tracert`) uses **ICMP packets**, unlike Unix/Linux, which uses **UDP packets**.
+
+The **Traceroute** program traces the path a packet takes from source to destination. In Unix/Linux, traceroute uses **UDP packets**, unlike Windows where the command is called `tracert` and it uses **ICMP packets**.
 
 ### Steps
-1. Open the **Windows Command Prompt** (found in the Accessories folder).
-2. Start **Wireshark** and begin packet capture.
-3. Run the **Traceroute** command:
-   - Command: `tracert hostname` or `c:\windows\system32\tracert hostname`
-   - Replace `hostname` with a host on another continent (e.g., `www.inria.fr` for INRIA in France if outside Europe).
-   - Press **Enter** to execute.
-4. When the Traceroute program terminates, stop Wireshark packet capture.
+1. Open the **Terminal**.
+2. Install the traceroute utility.  
+
+       sudo apt install traceroute -y
+
+3. Start **Wireshark** and begin packet capture.
+4. Run the **Traceroute** command:
+
+       traceroute hostname
+
+- Replace `hostname` with a host on another continent (e.g., `www.inria.fr` for INRIA in France if outside Europe).
+
+       traceroute www.inria.fr
+
+5. When the Traceroute program terminates, stop Wireshark packet capture.
 
 ### Notes
 - Windows uses `tracert` (not `traceroute`).
-- A shareware alternative, **PingPlotter** ([www.pingplotter.com](http://www.pingplotter.com)), is recommended for the Wireshark IP lab due to additional functionality.
-- Traceroute sends ICMP packets with increasing TTL values (TTL=1, 2, 3, ...). When a packet’s TTL reaches 1 at a router, the router sends an **ICMP TTL-exceeded** error packet back to the source.
+- In Windows, Traceroute sends ICMP packets with increasing TTL values (TTL=1, 2, 3, ...). When a packet’s TTL reaches 1 at a router, the router sends an **ICMP TTL-exceeded** error packet back to the source.
+- In Linux, traceroute behaves differently from Windows by default.  It uses UDP packets instead of ICMP, but the main TTL process is identical to Windows.
 
 ### Expected Output
-- The **Command Prompt** will resemble **Figure 4**, showing:
-  - For each TTL value, three probe packets are sent.
-  - RTTs for each probe and the IP address (possibly name) of the router returning the ICMP TTL-exceeded message.
-- **Wireshark** output (as in **Figure 5**) shows an ICMP error packet with more fields than Ping ICMP messages.
 
-### Deliverables
-- Submit a screenshot of the **Command Prompt** window (similar to **Figure 4**).
-- For each question below, provide a printout of the relevant packet(s) from the Wireshark trace:
-  - Use **File > Print**, select **Selected packet only**, choose **Packet summary line**, and include minimal packet details.
-  - **Annotate** the printout to explain your answer.
+The **Terminal** will show:
+- Three probe packets sent for each TTL value.
+- RTTs for each probe and the IP address (possibly name) of the router returning the ICMP TTL-exceeded message.
+
+**Wireshark** will show:       
+- An ICMP error packet with more fields than Ping ICMP messages.
+
+```
+traceroute www.inria.fr
+
+traceroute to www.inria.fr (128.93.162.83), 30 hops max, 60 byte packets
+ 1  _gateway (10.0.2.2)  0.232 ms  0.338 ms  0.327 ms
+ 2  * * *
+ 3  * * *
+...
+29  * * *
+30  * * *
+```
+
+| Hop # | Hostname | (IP) | RTT1 | RTT2 | RTT3 |
+|-------|----------|------|------|------|------|
+| `1` | `_gateway` or `*` | `(10.0.2.2)` | `0.232 ms` or `*` | `0.338 ms` or `*` | `0.327 ms` or `*` |
 
 ### Questions
-5. What is the IP address of your host? What is the IP address of the target destination host?
-6. If ICMP sent UDP packets (as in Unix/Linux), would the IP protocol number still be `01` for the probe packets? If not, what would it be?
-7. Examine the ICMP echo packet in your screenshot. Is it different from the ICMP ping query packets in Part 1? If yes, how so?
-8. Examine the ICMP error packet in your screenshot. What additional fields does it have compared to the ICMP echo packet?
-9. Examine the last three ICMP packets received by the source host. How are they different from the ICMP error packets? Why are they different?
-10. Within the `tracert` measurements, is there a link with significantly longer delay than others? Refer to **Figure 4**—is there such a link? Based on router names, can you guess the location of the two routers at the ends of this link?
+5. What is the IP address of your host? 
+- `10.0.2.15`
 
-**Note**: If unable to run Wireshark live, download the trace file `ICMP-ethereal-trace-2` from [http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip), load it into Wireshark, and use it to answer the questions.
+What is the IP address of the target destination host?
+- `128.93.162.83`
+
+       5	0.023885415	10.0.2.15	128.93.162.83	UDP	74	50689 → 33434 Len=32
+
+6. If ICMP sent UDP packets (as in Unix/Linux), would the IP protocol number still be `01` for the probe packets? 
+- It sends UDP packets.
+- No, the IP protocol number would not be `01`.  
+
+If not, what would it be?
+- The protocol number would be `17`.  
+
+       Protocol: UDP (17)
+
+```
+5	0.023885415	10.0.2.15	128.93.162.83	UDP	74	50689 → 33434 Len=32
+
+Internet Protocol Version 4, Src: 10.0.2.15, Dst: 128.93.162.83
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+    Total Length: 60
+    Identification: 0x0eb2 (3762)
+    000. .... = Flags: 0x0
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 1
+    Protocol: UDP (17)
+    Header Checksum: 0x7c40 [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 10.0.2.15
+    Destination Address: 128.93.162.83
+    [Stream index: 1]
+User Datagram Protocol, Src Port: 50689, Dst Port: 33434
+    Source Port: 50689
+    Destination Port: 33434
+    Length: 40
+    Checksum: 0x2ef9 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 1]
+    [Stream Packet Number: 1]
+    [Timestamps]
+    UDP payload (32 bytes)
+```
+
+7. Examine the ICMP echo packet in your screenshot. 
+
+```
+21	0.024110781	10.0.2.2	10.0.2.15	ICMP	102	Time-to-live exceeded (Time to live exceeded in transit)
+
+Internet Control Message Protocol
+    Type: 11 (Time-to-live exceeded)
+    Code: 0 (Time to live exceeded in transit)
+    Checksum: 0x23f9 [correct]
+    [Checksum Status: Good]
+    Unused: 00000000
+    Internet Protocol Version 4, Src: 10.0.2.15, Dst: 128.93.162.83
+        0100 .... = Version: 4
+        .... 0101 = Header Length: 20 bytes (5)
+        Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        Total Length: 60
+        Identification: 0x0eb2 (3762)
+        000. .... = Flags: 0x0
+        ...0 0000 0000 0000 = Fragment Offset: 0
+        Time to Live: 1
+        Protocol: UDP (17)
+        Header Checksum: 0x7c40 [validation disabled]
+        [Header checksum status: Unverified]
+        Source Address: 10.0.2.15
+        Destination Address: 128.93.162.83
+        [Stream index: 1]
+    User Datagram Protocol, Src Port: 50689, Dst Port: 33434
+    Data (32 bytes)
+```
+
+Is it different from the ICMP ping query packets in Part 1? 
+
+
+If yes, how so?
+
+8. Examine the ICMP error packet in your screenshot. 
+
+What additional fields does it have compared to the ICMP echo packet?
+
+
+
+9. Examine the last three ICMP packets received by the source host. 
+
+```
+95	25.078739640	10.0.2.15	128.93.162.83	UDP	74	44935 → 33521 Len=32
+
+User Datagram Protocol, Src Port: 44935, Dst Port: 33521
+    Source Port: 44935
+    Destination Port: 33521
+    Length: 40
+    Checksum: 0x2ef9 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 88]
+    [Stream Packet Number: 1]
+    [Timestamps]
+    UDP payload (32 bytes)
+```
+
+How are they different from the ICMP error packets? 
+
+Why are they different?
+
+10. Within the `traceroute` measurements, is there a link with significantly longer delay than others?  
+- No
+
+Is there such a link? 
+
+Based on router names, can you guess the location of the two routers at the ends of this link?
 
 ---
 
@@ -278,6 +407,8 @@ For a previous programming assignment, you created a **UDP client ping program**
 ---
 
 ## General Notes
-- **References**: All figure and section references are to *Computer Networking: A Top-Down Approach, 8th ed.*, J.F. Kurose and K.W. Ross, Addison-Wesley/Pearson, 2020.
 - **Annotation**: Highlight the relevant part of the packet printout and add explanatory text (use a colored pen for paper submissions or digital annotations for electronic submissions).
 - **Trace Files**: If live capture is not possible, use the provided trace files (`ICMP-ethereal-trace-1` for Ping, `ICMP-ethereal-trace-2` for Traceroute) from [http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip).
+
+## What I Learned
+
