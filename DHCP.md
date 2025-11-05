@@ -27,28 +27,38 @@ You will de-configure and re-configure a network interface to trigger DHCP, capt
 ---
 
 ### **On Linux**
-1. Find your computer's network interface by listing all  of its network interfaces:
+1.Open the Terminal.  
+2. Find your computer's network interface by listing all of its network interfaces:
 
-         sudo ip addr
+```
+sudo ip addr
+```
 
 ```
 2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
 ```
 
-2. **Release existing IP and lease**  
+2. Install the dhclient binary.
+
+```
+sudo apt update
+sudo apt install isc-dhcp-client -y
+```
+
+3. **Release existing IP and lease**  
    ```bash
    sudo ip addr flush enp0s3
    sudo dhclient -r
    ```
 
-3. **Start Wireshark** on the same interface.
+4. **Start Wireshark** on the same interface.
 
-4. **Request new DHCP lease**  
+5. **Request new DHCP lease**  
    ```bash
    sudo dhclient enp0s3
    ```
 
-5. **Stop capture** after a few seconds.
+6. **Stop capture** after a few seconds.
 
 ---
 
