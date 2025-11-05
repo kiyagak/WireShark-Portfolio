@@ -1,4 +1,4 @@
-# Wireshark Lab: ICMP v8.0
+# Wireshark Lab: ICMP
 
 ## Overview
 
