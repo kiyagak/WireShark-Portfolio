@@ -27,7 +27,7 @@ You will de-configure and re-configure a network interface to trigger DHCP, capt
 ---
 
 ### **On Linux**
-1.Open the Terminal.  
+1. Open the Terminal.  
 2. Find your computer's network interface by listing all of its network interfaces:
 
 ```
