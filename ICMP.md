@@ -25,17 +25,95 @@ The **Ping** program is a tool used to verify if a host is live by sending a pac
 4. When the Ping program terminates, stop Wireshark packet capture.
 
 ### Expected Output
-- The **Terminal** will show:
-  - 10 query packets sent and 10 responses received.
-  - Round-trip time (RTT) across all responses.
+
+The **Terminal** will show:
+- **10** query packets sent and 10 responses received.
+- Round-trip time (RTT) across all responses.
+  - `rtt min/avg/max/mdev = 239.278/241.887/245.581/2.171 ms`
 - **Wireshark** output will show:
-  - 20 packets: 10 Ping queries and 10 Ping responses.
-  - Source IP address (e.g., private address like `192.168.x.x` behind a NAT).
-  - Destination IP address (e.g., the Hong Kong server).
-  - IP datagram with protocol number `01` (indicating ICMP payload).
+- 20 packets: 10 Ping queries and 10 Ping responses.
+- Source IP address (e.g., private address like `192.168.x.x` behind a NAT).
+       - `10.0.2.15` 
+- Destination IP address (e.g., the Hong Kong server).
+       - `143.89.209.9`
+- IP datagram with protocol number `01` (indicating ICMP payload).
+       - `Protocol: ICMP (1)`
 - The expanded ICMP packet:
-  - Type 8, Code 0 (ICMP “echo request”).
-  - Contains fields: checksum, identifier, and sequence number.
+- Type 8, Code 0 (ICMP “echo request”).
+       - `Type: 8 (Echo (ping) request)`
+- Contains fields: checksum, identifier, and sequence number.
+       - `Checksum: 0xba03 [correct]`
+       - `Identifier (BE): 2 (0x0002)`
+       - `Identifier (LE): 512 (0x0200)`
+       - `Sequence Number (BE): 1 (0x0001)`
+       - `Sequence Number (LE): 256 (0x0100)`
+
+<img width="1534" height="854" alt="image" src="https://github.com/user-attachments/assets/63a738aa-aff0-4bf2-a741-729cffce0791" />
+
+```
+5	0.023363833	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=1/256, ttl=64 (reply in 6)
+
+Internet Control Message Protocol
+    Type: 8 (Echo (ping) request)
+    Code: 0
+    Checksum: 0xba03 [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 2 (0x0002)
+    Identifier (LE): 512 (0x0200)
+    Sequence Number (BE): 1 (0x0001)
+    Sequence Number (LE): 256 (0x0100)
+    [Response frame: 6]
+    Timestamp from icmp data: Nov  5, 2025 20:15:11.199969000 UTC
+    [Timestamp from icmp data (relative): 0.000017072 seconds]
+    Data (40 bytes)
+```
+
+---
+
+```
+ping -c 10 www.ust.hk
+PING www.ust.hk (143.89.209.9) 56(84) bytes of data.
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=1 ttl=255 time=243 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=2 ttl=255 time=239 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=3 ttl=255 time=239 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=4 ttl=255 time=239 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=5 ttl=255 time=243 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=6 ttl=255 time=240 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=7 ttl=255 time=245 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=8 ttl=255 time=243 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=9 ttl=255 time=246 ms
+64 bytes from www.ust.hk (143.89.209.9): icmp_seq=10 ttl=255 time=241 ms
+
+--- www.ust.hk ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9049ms
+rtt min/avg/max/mdev = 239.278/241.887/245.581/2.171 ms
+```
+
+<img width="1468" height="684" alt="image" src="https://github.com/user-attachments/assets/54002f8e-ab61-43fd-a285-2871d84d4668" />
+
+```
+5	0.023363833	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=1/256, ttl=64 (reply in 6)
+6	0.266267725	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=1/256, ttl=255 (request in 5)
+9	1.025772572	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=2/512, ttl=64 (reply in 10)
+10	1.265056854	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=2/512, ttl=255 (request in 9)
+11	2.026637219	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=3/768, ttl=64 (reply in 12)
+12	2.265900661	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=3/768, ttl=255 (request in 11)
+13	3.026860594	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=4/1024, ttl=64 (reply in 14)
+14	3.266177065	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=4/1024, ttl=255 (request in 13)
+15	4.026417089	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=5/1280, ttl=64 (reply in 16)
+16	4.269575516	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=5/1280, ttl=255 (request in 15)
+17	5.028725823	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=6/1536, ttl=64 (reply in 18)
+18	5.269091949	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=6/1536, ttl=255 (request in 17)
+19	6.030481219	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=7/1792, ttl=64 (reply in 20)
+20	6.275092021	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=7/1792, ttl=255 (request in 19)
+21	7.044205728	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=8/2048, ttl=64 (reply in 24)
+24	7.286952922	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=8/2048, ttl=255 (request in 21)
+25	8.048311942	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=9/2304, ttl=64 (reply in 26)
+26	8.293874196	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=9/2304, ttl=255 (request in 25)
+27	9.072687653	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=10/2560, ttl=64 (reply in 28)
+28	9.314066040	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=10/2560, ttl=255 (request in 27)
+```
+---
 
 ### Deliverables
 - Submit a screenshot of the **Terminal** window (similar to **Figure 1**).
@@ -44,18 +122,108 @@ The **Ping** program is a tool used to verify if a host is live by sending a pac
   - **Annotate** the printout (highlight and add explanatory text, preferably in a colored pen for paper submissions or digitally for electronic submissions).
 
 ### Questions
-1. What is the IP address of your host? What is the IP address of the destination host?
-2. Why does an ICMP packet lack source and destination port numbers?
-3. Examine a ping request packet sent by your host:
-   - What are the ICMP type and code numbers?
-   - What other fields are present?
-   - How many bytes are the checksum, sequence number, and identifier fields?
-4. Examine the corresponding ping reply packet:
-   - What are the ICMP type and code numbers?
-   - What other fields are present?
-   - How many bytes are the checksum, sequence number, and identifier fields?
+1. What is the IP address of your host? 
+- `10.0.2.15`
 
-**Note**: If unable to run Wireshark live, download the trace file `ICMP-ethereal-trace-1` from [http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces.zip), load it into Wireshark, and use it to answer the questions.
+What is the IP address of the destination host?
+- `143.89.209.9`
+
+2. Why does an ICMP packet lack source and destination port numbers?
+- ICMP doesn't use source or destination ports because it is a layer 3 protocol.  Ports are a Layer 4 feature used by TCP and UDP to identify applications.
+
+3. Examine a ping request packet sent by your host:
+- What are the ICMP type and code numbers?
+       - `Type: 8 (Echo (ping) request)`
+       - `Code: 0`
+
+- What other fields are present?
+
+```
+Internet Control Message Protocol
+    Checksum: 0xba03 [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 2 (0x0002)
+    Identifier (LE): 512 (0x0200)
+    Sequence Number (BE): 1 (0x0001)
+    Sequence Number (LE): 256 (0x0100)
+    [Response frame: 6]
+    Timestamp from icmp data: Nov  5, 2025 20:15:11.199969000 UTC
+    [Timestamp from icmp data (relative): 0.000017072 seconds]
+    Data (40 bytes)
+```
+
+- What does BE and LE mean?
+       - **BE** means Big-Endian (network byte order, most significant byte first).  This is the default and correct interpretation in Wireshark.
+       - **LE** means Little-Endian, meaning the least significant byte first.  It is shown for completeness but not used by default.
+
+- How many bytes are the checksum, sequence number, and identifier fields?
+       - **Checksum**: 47,619 bytes
+       - **Sequence Number**: 1 byte
+       - **Identifier**: 2 bytes
+
+```
+5	0.023363833	10.0.2.15	143.89.209.9	ICMP	98	Echo (ping) request  id=0x0002, seq=1/256, ttl=64 (reply in 6)
+
+Internet Control Message Protocol
+    Type: 8 (Echo (ping) request)
+    Code: 0
+    Checksum: 0xba03 [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 2 (0x0002)
+    Identifier (LE): 512 (0x0200)
+    Sequence Number (BE): 1 (0x0001)
+    Sequence Number (LE): 256 (0x0100)
+    [Response frame: 6]
+    Timestamp from icmp data: Nov  5, 2025 20:15:11.199969000 UTC
+    [Timestamp from icmp data (relative): 0.000017072 seconds]
+    Data (40 bytes)
+```
+
+<img width="1504" height="854" alt="image" src="https://github.com/user-attachments/assets/e31230d2-7e53-4378-b979-e3d904d002d9" />
+
+4. Examine the corresponding ping reply packet:
+- What are the ICMP type and code numbers?
+       - Type: 0 (Echo (ping) reply)
+       - Code: 0
+- What other fields are present?
+
+```
+Checksum: 0xc203 [correct]
+[Checksum Status: Good]
+Identifier (BE): 2 (0x0002)
+Identifier (LE): 512 (0x0200)
+Sequence Number (BE): 1 (0x0001)
+Sequence Number (LE): 256 (0x0100)
+[Request frame: 5]
+[Response time: 242.904 ms]
+Timestamp from icmp data: Nov  5, 2025 20:15:11.199969000 UTC
+[Timestamp from icmp data (relative): 0.242920964 seconds]
+Data (40 bytes)
+```
+
+- How many bytes are the checksum, sequence number, and identifier fields?
+       - Checksum: 49,667 bytes
+       - Sequence Number: 1 byte
+       - Identifier (BE): 2 bytes
+
+```
+6	0.266267725	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=1/256, ttl=255 (request in 5)
+
+Internet Control Message Protocol
+    Type: 0 (Echo (ping) reply)
+    Code: 0
+    Checksum: 0xc203 [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 2 (0x0002)
+    Identifier (LE): 512 (0x0200)
+    Sequence Number (BE): 1 (0x0001)
+    Sequence Number (LE): 256 (0x0100)
+    [Request frame: 5]
+    [Response time: 242.904 ms]
+    Timestamp from icmp data: Nov  5, 2025 20:15:11.199969000 UTC
+    [Timestamp from icmp data (relative): 0.242920964 seconds]
+    Data (40 bytes)
+```
 
 ---
 
