@@ -406,4 +406,16 @@ Dynamic Host Configuration Protocol (ACK)
 
 ## What I Learned
 
-
+I learned
+- DHCP uses Discover, Offer, Request, and ACK messages in its process of providing clients with IP addresses
+- how to release and renew a DHCP address on a client computer
+- DHCP uses UDP as its transport protocol
+- the DHCP process uses the same Transaction ID when assigning a DHCP address to a device
+- the DHCP discover is done when "no specific address" or "all addresses" send a broadcast to all subnet devices on the local network
+- the DHCP discover request includes the requested IP address that the device will be assigned
+- the DHCP offer message is broadcast to all subnet devices by the local network interface in response to the DHCP discover message to provide DHCP settings such as DHCP Server Identifier, subnet mask, router, DNS, and IP address lease time
+- the DHCP request message uses "no specific address" or "all addresses" from UDP port 68 to send a broadcast to all subnet devices on the local network on UDP port 67
+- UDP port 67 is for the DHCP server to handle client requests and send IP assignments
+- UDP port 68 is for the DHCP client to send requests and receive server responses
+- DHCP requests and DHCP offers use the same Parameter Request List
+- the DHCP ACK message is sent from the local device network interface to broadcast to all subnet IP addresses to get information such as the assigned client IP, lease time, and default gateway
