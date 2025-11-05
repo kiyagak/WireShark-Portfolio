@@ -1,10 +1,7 @@
-# Wireshark Lab: DHCP v9  
-*Supplement to Computer Networking: A Top-Down Approach, 9th ed., J.F. Kurose and K.W. Ross*  
+# Wireshark Lab: DHCP 
 
----
-
-## Overview
-This lab explores the **Dynamic Host Configuration Protocol (DHCP)** by capturing and analyzing the four key DHCP messages: **Discover**, **Offer**, **Request**, and **ACK**.  
+## Objective
+This Wireshark [lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_DHCP_v9.pdf) explores the **Dynamic Host Configuration Protocol (DHCP)** by capturing and analyzing the four key DHCP messages: **Discover**, **Offer**, **Request**, and **ACK**.  
 You will de-configure and re-configure a network interface to trigger DHCP, capture packets with **Wireshark**, and answer analytical questions.
 
 ---
@@ -30,20 +27,24 @@ You will de-configure and re-configure a network interface to trigger DHCP, capt
 ---
 
 ### **On Linux**
-1. **Release existing IP and lease**  
+1. Find your computer's network interface by listing all  of its network interfaces:
+
+         sudo ip addr
+
+2. **Release existing IP and lease**  
    ```bash
    sudo ip addr flush en0
    sudo dhclient -r
    ```
 
-2. **Start Wireshark** on the same interface.
+3. **Start Wireshark** on the same interface.
 
-3. **Request new DHCP lease**  
+4. **Request new DHCP lease**  
    ```bash
    sudo dhclient en0
    ```
 
-4. **Stop capture** after a few seconds.
+5. **Stop capture** after a few seconds.
 
 ---
 
