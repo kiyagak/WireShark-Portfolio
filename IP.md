@@ -231,21 +231,21 @@ Internet Protocol Version 4, Src: 10.98.0.5, Dst: 128.119.245.12
 		Header Checksum: 0x3c40 [validation disabled]
 
 **Why?**
--  The **Identification** field is different for each datagram because it is needed for fragmentation/reassembly.  
+- The **Identification** field is different for each datagram because it is needed for fragmentation/reassembly.  
 - The **Header Checksum** field changes because it is computed over the entire IP header, including the changing Identification field.
 
 8. **Which fields in this sequence of IP datagrams (containing UDP segments) stay constant?**
 
-1. **Version**: `4`  
-2. **Header Length**: `20 bytes (5)`
-3. **Differentiated Services Field**: `0x00`
-4. **Flags**: `0x0`
-5. **Fragment Offset**: `2960` *(all are the third or **last** fragment of their three respective datagrams)*  
-6. **Time to Live (TTL)**: `1` 
-7. **Protocol**: `UDP (17)`
-8. **Source Address**: `10.98.0.5`
-9. **Destination Address**: `128.119.245.12`
-10. **Total Length**: `40`
+- **Version**: `4`  
+- **Header Length**: `20 bytes (5)`
+- **Differentiated Services Field**: `0x00`
+- **Flags**: `0x0`
+- **Fragment Offset**: `2960` *(all are the third or **last** fragment of their three respective datagrams)*  
+- **Time to Live (TTL)**: `1` 
+- **Protocol**: `UDP (17)`
+- **Source Address**: `10.98.0.5`
+- **Destination Address**: `128.119.245.12`
+- **Total Length**: `40`
 
    **Why?**
 
