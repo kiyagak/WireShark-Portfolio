@@ -126,10 +126,6 @@ This happens when:
 - **No other fragments** in the capture with the same **Identification** (`0xb81a`)
 - Wireshark sees **no need to reassemble** → no reassembly metadata → **no tag**
 
-> Think of it like this:  
-> Wireshark only says *"Hey, this was fragmented but I put it back together"* when reassembly actually happens.  
-> If there's **nothing to reassemble**, it stays silent.
-
 ---
 
 #### How to **force** Wireshark to show fragmentation status:
