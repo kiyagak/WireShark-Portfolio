@@ -1,97 +1,150 @@
-**Wireshark Lab: DHCP v9 – Summary**
-
-This lab explores the **Dynamic Host Configuration Protocol (DHCP)** using **Wireshark** to capture and analyze the four key DHCP messages: **Discover, Offer, Request, ACK** (as shown in textbook Figure 4.24, Section 4.4.3).
-
----
-
-### **Objective**
-Capture a full DHCP transaction by forcing a client to release and renew its IP address, then analyze the resulting packets in Wireshark.
+# Wireshark Lab: DHCP v9  
+*Supplement to Computer Networking: A Top-Down Approach, 9th ed., J.F. Kurose and K.W. Ross*  
 
 ---
 
-### **Packet Capture Instructions**
-
-#### **Mac**
-```bash
-sudo ipconfig set en0 none    # Release IP
-# Start Wireshark on en0
-sudo ipconfig set en0 dhcp    # Renew via DHCP
-# Stop capture after a few seconds
-```
-
-#### **Linux**
-```bash
-sudo ip addr flush en0
-sudo dhclient -r              # Release lease
-# Start Wireshark on en0
-sudo dhclient en0             # Request new lease
-# Stop capture
-```
-
-#### **Windows (PC)**
-```cmd
-ipconfig /release             # Release IP
-# Start Wireshark
-ipconfig /renew               # Renew via DHCP
-# Stop capture
-```
-
-> **Tip**: Filter with `dhcp` in Wireshark to see only DHCP packets.  
-> **Alternative**: Use provided trace file: `dhcp-wireshark-trace1-1.pcapng`
+## Overview
+This lab explores the **Dynamic Host Configuration Protocol (DHCP)** by capturing and analyzing the four key DHCP messages: **Discover**, **Offer**, **Request**, and **ACK**.  
+You will de-configure and re-configure a network interface to trigger DHCP, capture packets with **Wireshark**, and answer analytical questions.
 
 ---
 
-### **DHCP Questions Summary**
+## Gathering a Packet Trace
 
-#### **1. DHCP Discover**
-1. **Transport**: UDP  
-2. **Src IP**: `0.0.0.0` *(client has no IP yet)*  
-3. **Dst IP**: `255.255.255.255` *(broadcast)*  
-4. **Transaction ID**: Unique 32-bit identifier (e.g., `0x...`)  
-5. **Options Requested (5 examples)**:  
-   - Subnet Mask  
-   - Router (default gateway)  
-   - Domain Name Server  
-   - Domain Name  
-   - IP Address Lease Time  
+### **On a Mac**
+1. **De-configure interface**  
+   ```bash
+   sudo ipconfig set en0 none
+   ```
+   *(Replace `en0` with your interface name from Wireshark → Capture → Options)*
 
-#### **2. DHCP Offer**
-6. **Matched by**: Same **Transaction ID** as Discover  
-7. **Src IP**: DHCP server’s IP  
-8. **Dst IP**: Client’s **offered IP** (unicast) or `255.255.255.255` *(may vary; see RFC 2131, p.24)*  
-9. **Options Provided (5 examples)**:  
-   - Offered IP Address (`yiaddr`)  
-   - Subnet Mask  
-   - Lease Time  
-   - Router  
-   - DNS Server  
+2. **Start Wireshark** on the de-configured interface.
 
-#### **3. DHCP Request**
-10. **UDP Ports**: Src: `68` (bootpc), Dst: `67` (bootps)  
-11. **Src IP**: `0.0.0.0` *(still no IP)*  
-12. **Dst IP**: `255.255.255.255` *(broadcast)*  
-13. **Transaction ID**: **Same** as Discover & Offer  
-14. **Parameter Request List**: Same as Discover *(no change)*  
+3. **Request new DHCP lease**  
+   ```bash
+   sudo ipconfig set en0 dhcp
+   ```
 
-#### **4. DHCP ACK**
-15. **Src IP**: DHCP server’s IP  
-16. **Dst IP**: Client’s **assigned IP** (unicast)  
-17. **Field with Client IP**: `Your (client) IP address` (`yiaddr`)  
-18. **Lease Time**: In **DHCP Option: IP Address Lease Time** (seconds)  
-19. **Default Gateway**: In **DHCP Option: Router**  
+4. **Stop capture** after a few seconds.
 
 ---
 
-### **Key Takeaways**
-- DHCP uses **UDP ports 67 (server) and 68 (client)**.
-- **Discover & Request** are **broadcast** (`0.0.0.0 → 255.255.255.255`).
-- **Offer & ACK** are typically **unicast** to the offered/assigned IP.
-- **Transaction ID** links all four messages.
-- Clients request parameters; servers provide them in Offer/ACK.
+### **On Linux**
+1. **Release existing IP and lease**  
+   ```bash
+   sudo ip addr flush en0
+   sudo dhclient -r
+   ```
+
+2. **Start Wireshark** on the same interface.
+
+3. **Request new DHCP lease**  
+   ```bash
+   sudo dhclient en0
+   ```
+
+4. **Stop capture** after a few seconds.
 
 ---
 
-**Resources**:
-- Textbook: Section 4.4.3, Figure 4.24
-- RFC 2131: https://www.ietf.org/rfc/rfc2131.txt
-- Trace file: http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip
+### **On Windows (PC)**
+1. **Release IP address**  
+   ```cmd
+   ipconfig /release
+   ```
+
+2. **Start Wireshark**.
+
+3. **Renew IP address**  
+   ```cmd
+   ipconfig /renew
+   ```
+
+4. **Stop capture** after a few seconds.
+
+---
+
+### **Verify Capture**
+- In Wireshark, filter with:  
+  ```
+  dhcp
+  ```
+- You should see: **Discover → Offer → Request → ACK**
+
+> **Alternative**: Use provided trace file:  
+> `dhcp-wireshark-trace1-1.pcapng`  
+> Download from: [http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip)
+
+---
+
+## DHCP Questions
+
+### **DHCP Discover Message**
+1. **Transport protocol?**  
+   → UDP or TCP?
+
+2. **Source IP address?**  
+   → Special characteristic?
+
+3. **Destination IP address?**  
+   → Special characteristic?
+
+4. **Transaction ID value?**
+
+5. **Five requested/suggested options** in the **Options field** (beyond IP address)?
+
+---
+
+### **DHCP Offer Message** *(Response to Discover above)*
+6. **How do you know this Offer matches your Discover?**
+
+7. **Source IP address?**  
+   → Special?
+
+8. **Destination IP address?**  
+   → Special? *(Hint: May differ from textbook Figure 4.24; see RFC 2131, p. 24)*
+
+9. **Five pieces of information** provided in the **Options field**?
+
+---
+
+### **DHCP Request Message**
+10. **UDP source and destination ports?**
+
+11. **Source IP address?**  
+    → Special?
+
+12. **Destination IP address?**  
+    → Special?
+
+13. **Transaction ID?**  
+    → Matches Discover and Offer?
+
+14. **Parameter Request List differences** vs. Discover message?
+
+---
+
+### **DHCP ACK Message**
+15. **Source IP address?**  
+    → Special?
+
+16. **Destination IP address?**  
+    → Special?
+
+17. **Field name** containing the **assigned client IP**?
+
+18. **Lease time duration?**
+
+19. **Default gateway (first-hop router) IP address?**
+
+---
+
+## References
+- **Textbook**: Section 4.4.3, Figure 4.24  
+- **DHCP RFC**: [https://www.ietf.org/rfc/rfc2131.txt](https://www.ietf.org/rfc/rfc2131.txt)  
+- **Trace Files & LMS**: [http://gaia.cs.umass.edu/kurose_ross](http://gaia.cs.umass.edu/kurose_ross)
+
+---
+
+> **Tip**: Print or annotate packets (highlight fields) when submitting answers.  
+> Use colored text or pen marks to show where you found each answer in Wireshark.
