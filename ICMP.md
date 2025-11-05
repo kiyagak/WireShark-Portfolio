@@ -42,11 +42,12 @@ The **Terminal** will show:
 - Type 8, Code 0 (ICMP “echo request”).
        - `Type: 8 (Echo (ping) request)`
 - Contains fields: checksum, identifier, and sequence number.
-       - `Checksum: 0xba03 [correct]`
-       - `Identifier (BE): 2 (0x0002)`
-       - `Identifier (LE): 512 (0x0200)`
-       - `Sequence Number (BE): 1 (0x0001)`
-       - `Sequence Number (LE): 256 (0x0100)`
+
+```
+Checksum: 0xba03 [correct]
+Identifier (BE): 2 (0x0002)
+Sequence Number (BE): 1 (0x0001)
+```
 
 <img width="1534" height="854" alt="image" src="https://github.com/user-attachments/assets/63a738aa-aff0-4bf2-a741-729cffce0791" />
 
@@ -72,6 +73,7 @@ Internet Control Message Protocol
 
 ```
 ping -c 10 www.ust.hk
+
 PING www.ust.hk (143.89.209.9) 56(84) bytes of data.
 64 bytes from www.ust.hk (143.89.209.9): icmp_seq=1 ttl=255 time=243 ms
 64 bytes from www.ust.hk (143.89.209.9): icmp_seq=2 ttl=255 time=239 ms
@@ -114,12 +116,6 @@ rtt min/avg/max/mdev = 239.278/241.887/245.581/2.171 ms
 28	9.314066040	143.89.209.9	10.0.2.15	ICMP	98	Echo (ping) reply    id=0x0002, seq=10/2560, ttl=255 (request in 27)
 ```
 ---
-
-### Deliverables
-- Submit a screenshot of the **Terminal** window (similar to **Figure 1**).
-- For each question below, provide a printout of the relevant packet(s) from the Wireshark trace:
-  - Use **File > Print**, select **Selected packet only**, choose **Packet summary line**, and include minimal packet details.
-  - **Annotate** the printout (highlight and add explanatory text, preferably in a colored pen for paper submissions or digitally for electronic submissions).
 
 ### Questions
 1. What is the IP address of your host? 
