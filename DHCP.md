@@ -11,15 +11,15 @@ You will de-configure and re-configure a network interface to trigger DHCP, capt
 ### **On a Mac**
 1. **De-configure interface**  
    ```bash
-   sudo ipconfig set en0 none
+   sudo ipconfig set enp0s3 none
    ```
-   *(Replace `en0` with your interface name from Wireshark → Capture → Options)*
+   *(Replace `enp0s3` with your interface name from Wireshark → Capture → Options)*
 
 2. **Start Wireshark** on the de-configured interface.
 
 3. **Request new DHCP lease**  
    ```bash
-   sudo ipconfig set en0 dhcp
+   sudo ipconfig set enp0s3 dhcp
    ```
 
 4. **Stop capture** after a few seconds.
@@ -31,9 +31,13 @@ You will de-configure and re-configure a network interface to trigger DHCP, capt
 
          sudo ip addr
 
+```
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+```
+
 2. **Release existing IP and lease**  
    ```bash
-   sudo ip addr flush en0
+   sudo ip addr flush enp0s3
    sudo dhclient -r
    ```
 
@@ -41,7 +45,7 @@ You will de-configure and re-configure a network interface to trigger DHCP, capt
 
 4. **Request new DHCP lease**  
    ```bash
-   sudo dhclient en0
+   sudo dhclient enp0s3
    ```
 
 5. **Stop capture** after a few seconds.
