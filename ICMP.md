@@ -340,3 +340,18 @@ Using router names, guess the location of the two routers at the end of the link
 
 ## What I Learned
 
+I learned
+- how to send a specific number of pings to a specific host
+- to use Wireshark to find the source and destination IPs for the pings
+- that ICMP doesn't need source or destination ports because it is a layer 3 protocol
+- that ports are a Layer 4 feature used by TCP and UDP to identify applications
+- ICMP pings and traceroutes both use `Type: Echo (ping) request (8)` and `Code: 0` in their fields
+- the expected size (in bytes) of the checksum, sequence number, and identifier fields
+- the difference between BE and LE, and to analyze the default BE field when both fields appear
+- how to trace the path and round-trip time each hop takes to reach a host
+- Traceroute can use ICMP to send UDP packets (like Unix/Linux) or ICMP packets to change the protocol number captured by Wireshark
+- that Traceroute's ICMP echo packets different from Ping query packets based on the TTL value that is changed by Traceroute changes the TTL to find each hop along the route
+- that ICMP error packets have more fields than ICMP echo packets
+- Wireshark shows ICMP echo requests and replies for requests that don't exceed the TTL value
+- The `tracert` command's 9th hop had the highest delay, with its 2nd probe's RTT taking `324` ms.  
+- that the last two hop's locations are located in Rocquencourt, France, a city just outside of Paris, France
