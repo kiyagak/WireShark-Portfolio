@@ -8,7 +8,7 @@ This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark
 - [IP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/IP.md)
 - [NAT](https://github.com/kiyagak/WireShark-Portfolio/blob/main/NAT.md)
 - [DHCP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/DHCP.md)
-- ICMP
+- [ICMP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/ICMP.md)
 - Ethernet and ARP
 - 802.11 WiFi
 - 5G
