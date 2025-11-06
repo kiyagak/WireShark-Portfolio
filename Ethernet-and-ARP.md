@@ -1,12 +1,64 @@
 # Wireshark Lab: Ethernet and ARP
 
-## **Objective**  
-Investigate the **Ethernet protocol** and the **Address Resolution Protocol (ARP)** using Wireshark.
+## Objective 
+The goal in this Ethernet and ARP Wireshark lab is to investigate the **Ethernet protocol** and the **Address Resolution Protocol (ARP)** using Wireshark.
 
-**Recommended Review**:  
-- Section 6.4.1 (Link-layer addressing and ARP)  
-- Section 6.4.2 (Ethernet)  
-- RFC 826 (ARP specification): [std37.txt](ftp://ftp.rfc-editor.org/in-notes/std/std37.txt)
+---
+
+### **Pre-Lab Setup**
+
+> **Warning: Do this before every capture to ensure unencrypted HTTP traffic**
+
+- **Disable VPN** (encrypts HTTP/TCP)  
+- **Disable HTTP/3 & QUIC** in browser (default in 2025 browsers)  
+  → Guide: [https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/](https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/)  
+- Use **`http://`** (not `https://`) to avoid encryption  
+- **Turn off** privacy settings  
+- **Clear browser cache & history** before each section
+
+---
+
+## Disable QUIC in Chrome
+
+1. Open Chrome → type `chrome://flags` in the address bar  
+2. Search for **"QUIC"**  
+3. Disable **"Experimental QUIC Protocol"**  
+   *(Alternatively: `chrome://flags/#enable-quic`)*  
+4. Relaunch Chrome
+
+![Disable QUIC in Chrome](https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d)
+
+---
+
+## Disable Caching in Chrome
+
+1. Right-click on the web page → **Inspect**  
+2. Go to the **Network** tab  
+3. Check **Disable cache**
+
+![Disable cache in Chrome DevTools](https://github.com/user-attachments/assets/ca8f60e3-b98a-4057-bcab-9401ad34654f)
+
+---
+
+## Disable QUIC in Firefox
+
+1. Open Firefox → type `about:config`  
+2. Accept the risk and continue  
+3. Search for:  
+   - `network.http.http3.enable`  
+   - `network.http.http3.enable_0rtt`  
+   - `network.http.http3.enable_qlog`  
+4. Double-click each to set value to **`false`**  
+5. Restart Firefox
+
+---
+
+## Disable QUIC in Edge
+
+1. Open Edge → type `edge://flags`  
+2. Search for **"QUIC"**  
+3. Disable **"Experimental QUIC Protocol"**  
+4. Restart Edge
 
 ---
 
@@ -20,9 +72,6 @@ Investigate the **Ethernet protocol** and the **Address Resolution Protocol (ARP
    → Displays the US Bill of Rights.
 4. **Stop Wireshark capture**.
 
-> *Alternative*: If no live Ethernet interface, download trace:  
-> [wireshark-traces-9e.zip](http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip) → Use `ethernet-wireshark-trace1`
-
 ---
 
 ### **Questions (Ethernet Frame Analysis)**
@@ -30,9 +79,36 @@ Investigate the **Ethernet protocol** and the **Address Resolution Protocol (ARP
 | # | Question |
 |---|---------|
 | 1 | What is the **48-bit Ethernet address** of your computer? |
-| 2 | What is the **48-bit destination address** in the Ethernet frame? Is this the Ethernet address of `gaia.cs.umass.edu`? *(Hint: No)* What device has this address? *(See pp. 483–484)* |
+| 2 | What is the **48-bit destination address** in the Ethernet frame? Is this the Ethernet address of `gaia.cs.umass.edu`? *(Hint: No)* What device has this address?
 | 3 | What is the **hexadecimal value** of the **two-byte Frame type field** in the Ethernet frame carrying the HTTP GET request? What upper-layer protocol does it correspond to? |
 | 4 | How many bytes from the **start of the Ethernet frame** does the ASCII **“G” in “GET”** appear? *(Do not count preamble)* |
+
+48-bit Ethernet address** of your computer?
+- 
+
+48-bit destination address in the Ethernet frame? 
+- 
+
+Is this the Ethernet address of `gaia.cs.umass.edu`?
+- 
+
+What device has this address?
+- 
+
+What is the **hexadecimal value** of the **two-byte Frame type field** in the Ethernet frame carrying the HTTP GET request? 
+- 
+
+What upper-layer protocol does it correspond to? 
+- 
+
+How many bytes from the **start of the Ethernet frame** does the ASCII **“G” in “GET”** appear? 
+- 
+
+```
+83	1.644124351	10.0.2.15	128.119.245.12	TCP	74	60588 → 443 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM TSval=1477112366 TSecr=0 WS=128
+
+
+```
 
 ---
 
