@@ -200,7 +200,7 @@ Are Traceroute's ICMP echo packets different from Ping query packets?
 ```
 
 How?
-- The TTL value.  Traceroute changestes the TTL, starting at 1 and increasing by 1 for each new set of probes so that it finds each hop along the route.
+- The TTL value.  Traceroute changes the TTL, starting at 1 and increasing by 1 for each new set of probes so that it finds each hop along the route.
 
 Examine an ICMP error packet.
 - It has more fields than echo packets.
