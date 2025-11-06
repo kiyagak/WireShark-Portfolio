@@ -1,15 +1,6 @@
-Here is the **Wireshark Lab: Ethernet and ARP v9** instruction set, formatted clearly and organized by section for easy reference:
+# Wireshark Lab: Ethernet and ARP
 
----
-
-## **Wireshark Lab: Ethernet and ARP v9**  
-*Supplement to **Computer Networking: A Top-Down Approach**, 9th ed., J.F. Kurose and K.W. Ross*  
-> “Tell me and I forget. Show me and I remember. Involve me and I understand.” — Chinese proverb  
-> © 2005–2025, J.F. Kurose and K.W. Ross, All Rights Reserved
-
----
-
-### **Objective**  
+## **Objective**  
 Investigate the **Ethernet protocol** and the **Address Resolution Protocol (ARP)** using Wireshark.
 
 **Recommended Review**:  
@@ -154,15 +145,3 @@ Determine via:
 - Monitoring `arp -a` over time  
 - OS documentation  
 → State **how/where** you found the value |
-
----
-
-**Resources**  
-- Textbook: [http://gaia.cs.umass.edu/kurose_ross](http://gaia.cs.umass.edu/kurose_ross)  
-- LMS Auto-Grading: [kurose_ross/lms.htm](http://gaia.cs.umass.edu/kurose_ross/lms.htm)  
-- Wikipedia ARP: [en.wikipedia.org/wiki/Address_Resolution_Protocol](https://en.wikipedia.org/wiki/Address_Resolution_Protocol)  
-- RFC 826: [datatracker.ietf.org/doc/html/rfc826](https://datatracker.ietf.org/doc/html/rfc826)
-
----
-
-**Tip**: Use **color highlighting or annotations** on packet printouts to show answers (especially for submissions).
