@@ -222,10 +222,66 @@ Internet Protocol Version 4, Src: 192.168.1.109, Dst: 128.119.245.12
 ```
 
 10. **Find the 802.11 frame at `t = 24.8277`** containing the **TCP SYN-ACK**:  
-    - List the **three MAC addresses**.  
-    - Identify: **host**, **AP**, **router**.  
-    - Does the **sender MAC** in the 802.11 frame match the **IP source** of the TCP segment inside?  
-      *(Review Figure 6.19 in textbook)*
+- List the **three MAC addresses**.
+   - Cisco-Li_f4:eb:a8 (`00:16:b6:f4:eb:a8`)
+   - 91:2a:b0:49:b6:4f (`91:2a:b0:49:b6:4f`)
+   - Cisco-Li_f7:1d:51 (`00:16:b6:f7:1d:51`)
+
+```
+Source address: Cisco-Li_f4:eb:a8 (00:16:b6:f4:eb:a8)
+BSS Id: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+STA address: 91:2a:b0:49:b6:4f (91:2a:b0:49:b6:4f)
+```
+
+- Identify: **host**, **AP**, **router**.
+   - Host: 91:2a:b0:49:b6:4f (`91:2a:b0:49:b6:4f`)
+   - AP: Cisco-Li_f7:1d:51 (`00:16:b6:f7:1d:51`)
+
+         BSS Id: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+
+   - Router: Cisco-Li_f4:eb:a8 (`00:16:b6:f4:eb:a8`)
+   - Source address in the 802.11 header
+   - The router is the original source of the frame on the wired side, forwarding the packet from 128.119.245.12 to the wireless client via the AP.
+
+```
+Source address: Cisco-Li_f4:eb:a8 (00:16:b6:f4:eb:a8)
+Source Address: 128.119.245.12
+```
+
+- Does the **sender MAC** (source address) in the 802.11 frame match the **IP source** of the TCP segment inside?  
+   - No
+
+- Who sent the TCP [SYN,ACK]?
+   - `128.119.245.12`
+
+- Who transmitted the 802.11 frame?
+   - **Access Point** (`TA = 00:16:b6:f7:1d:51`)
+
+- What is `00:16:b6:f4:eb:a8`?
+   - **Wired-side MAC** that sent the packet into the AP. 
+
+```
+476	24.827751	128.119.245.12	192.168.1.109	TCP	110	80 → 2538 [SYN, ACK] Seq=0 Ack=1 Win=5840 Len=0 SACK_PERM
+
+IEEE 802.11 QoS Data, Flags: ..mP..F.C
+    Type/Subtype: QoS Data (0x0028)
+    Frame Control Field: 0x8832
+    Duration/ID: 11560 (reserved)
+    Receiver address: 91:2a:b0:49:b6:4f (91:2a:b0:49:b6:4f)
+    Transmitter address: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+    Destination address: 91:2a:b0:49:b6:4f (91:2a:b0:49:b6:4f)
+    Source address: Cisco-Li_f4:eb:a8 (00:16:b6:f4:eb:a8)
+    BSS Id: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+    STA address: 91:2a:b0:49:b6:4f (91:2a:b0:49:b6:4f)
+    .... .... .... 0000 = Fragment number: 0
+    1100 0011 0100 .... = Sequence number: 3124
+    Frame check sequence: 0xecdc407d [unverified]
+    [FCS Status: Unverified]
+    Qos Control: 0x0100
+Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.109
+    Source Address: 128.119.245.12
+    Destination Address: 192.168.1.109
+```
 
 ---
 
