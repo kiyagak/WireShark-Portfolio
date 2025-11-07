@@ -1,7 +1,7 @@
 # Wireshark Lab: Ethernet and ARP
 
 ## Objective 
-The goal in this Ethernet and ARP Wireshark lab is to investigate the **Ethernet protocol** and the **Address Resolution Protocol (ARP)** using Wireshark.
+The goal in this [Ethernet and ARP Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_Ethernet_ARP_v9.pdf) is to investigate the **Ethernet protocol** and the **Address Resolution Protocol (ARP)** using Wireshark.
 
 ---
 
@@ -267,7 +267,7 @@ What upper-layer protocol?
 | 18 | What is the **target IP address** being resolved in the ARP request? |
 
 How many bytes from **start of Ethernet frame** does the **ARP opcode field** begin?
-- `20`
+- 20 to 21
 
 - The byte count starts at 1 for the first byte of the Ethernet frame
 - The Ethernet header is 14 bytes (0-13)
@@ -318,6 +318,34 @@ Address Resolution Protocol (request)
 | 19 | What is the **opcode value** in the ARP reply? |
 | 20 | What is the **Ethernet address** corresponding to the IP in the ARP request (Q18)? |
 
+What is the **opcode value** in the ARP reply?
+- `reply (2)`
+
+What is the **Ethernet address** corresponding to the IP in the ARP request (Q18)?
+- `52:55:0a:00:02:03`
+
+```
+61	12.800954056	52:55:0a:00:02:03	RealtekU_12:34:56	ARP	64	10.0.2.3 is at 52:55:0a:00:02:03
+
+Ethernet II, Src: 52:55:0a:00:02:03 (52:55:0a:00:02:03), Dst: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Destination: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Source: 52:55:0a:00:02:03 (52:55:0a:00:02:03)
+    Type: ARP (0x0806)
+    Padding: 000000000000000000000000000000000000
+    Frame check sequence: 0x00000000 [unverified]
+    [FCS Status: Unverified]
+Address Resolution Protocol (reply)
+    Hardware type: Ethernet (1)
+    Protocol type: IPv4 (0x0800)
+    Hardware size: 6
+    Protocol size: 4
+    Opcode: reply (2)
+    Sender MAC address: 52:55:0a:00:02:03 (52:55:0a:00:02:03)
+    Sender IP address: 10.0.2.3
+    Target MAC address: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Target IP address: 10.0.2.15
+```
+
 ---
 
 ### **Additional Observation**
@@ -326,20 +354,73 @@ Address Resolution Protocol (request)
 |---|---------|
 | 21 | Why are there **ARP requests from other devices** in the trace, but **no corresponding ARP replies**? |
 
+Why are there **ARP requests from other devices** in the trace, but **no corresponding ARP replies**?
+- ARP requests are broadcast to all subnet devices, even if it's not the target.  Replies are unicasts, a one-to-one communication, that was not sent to you.  
+
 ---
 
-## **Extra Credit**
+## ARP Poisoning
 
-| # | Task |
-|---|------|
-| **EX-1** | Using:  
+Using:  
 ```bash
 arp -s <IP> <Wrong-MAC>
-```  
+```
+
 What happens if you add a **correct IP** but **wrong Ethernet address**?  
 → This enables **ARP poisoning** ([varonis.com/blog/arp-poisoning](https://www.varonis.com/blog/arp-poisoning/)) |
-| **EX-2** | What is the **default ARP cache entry timeout**?  
-Determine via:  
-- Monitoring `arp -a` over time  
-- OS documentation  
-→ State **how/where** you found the value |
+
+## ARP Cache Entry Timeout
+
+### Linux
+
+What is the **default ARP cache entry timeout**?  
+
+- Linux: `60` seconds
+
+```
+cat /proc/sys/net/ipv4/neigh/default/gc_stale_time
+60
+```
+
+### macOS
+
+Check current ARP cache and observe timeouts using:
+
+```bash
+arp -a -n
+```
+
+For more detail (including expiration):
+
+```bash
+arp -an       # For IPv4
+sudo ndp -an  # For IPv6 (NDP is the IPv6 equivalent of ARP)
+```
+
+### Windows
+
+To view the current **[Reachable Time](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/address-resolution-protocol-arp-caching-behavior)** value on a Windows system:
+
+1. Open Command Prompt (search `cmd` in Start).
+2. Run:  
+   ```
+   netsh interface ipv4 show interfaces
+   ```
+   - Note the **Idx** of your network interface (e.g., `9` for "Local Area Connection").
+
+3. Then run:  
+   ```
+   netsh interface ipv4 show interface <Idx>
+   ```
+   (Replace `<Idx>` with the number, e.g., `9`.)
+
+**Example output includes:**  
+```
+Reachable Time : 19000 ms
+Base Reachable Time : 30000 ms
+```
+
+This shows the default ARP cach entry timeout (default base: 30 sec, often randomized to ~19 sec).
+
+## What I Learned
+
