@@ -159,18 +159,67 @@ IEEE 802.11 Wireless Management
 - `t = 32.8259`: HTTP GET → `www.cs.umass.edu` (128.119.240.19)
 
 8. **Find the 802.11 frame at `t = 24.8110`** containing the **TCP SYN** for `alice.txt`:  
-   - List the **three MAC addresses** in the 802.11 frame.  
-   - Which is the **wireless host**? (**hex**)  
-   - Which is the **access point**? (**hex**)  
-   - Which is the **first-hop router**? (**hex**)  
-   - What is the **source IP** of the TCP SYN?  
-   - What is the **destination IP**?
+- List the **three MAC addresses** in the 802.11 frame.
+   - Cisco-Li_f7:1d:51 (`00:16:b6:f7:1d:51`)
+   - IntelCor_d1:b6:4f (`00:13:02:d1:b6:4f`)
+   - Cisco-Li_f4:eb:a8 (`00:16:b6:f4:eb:a8`)
+
+- Which is the **wireless host**? (**hex**)  
+   - IntelCor_d1:b6:4f (`00:13:02:d1:b6:4f`)
+   - The STA address is the station address of the wireless host or client.  
+
+         STA address: IntelCor_d1:b6:4f (00:13:02:d1:b6:4f)
+
+- Which is the **access point**? (**hex**)
+   - Cisco-Li_f7:1d:51 (`00:16:b6:f7:1d:51`)
+
+         BSS Id: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+
+- Which is the **first-hop router**? (**hex**)
+   - Cisco-Li_f7:1d:51 (`00:16:b6:f7:1d:51`)
+   - It gets the STA's frame and forwards the encapsulated IP packet to the destination address.  
+
+```
+Destination address: Cisco-Li_f4:eb:a8 (00:16:b6:f4:eb:a8)
+BSS Id: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+STA address: IntelCor_d1:b6:4f (00:13:02:d1:b6:4f)
+```
+
+- What is the **source IP** of the TCP SYN?
+   - `192.168.1.109`
+
+- What is the **destination IP**?
+   - `128.119.245.12`
 
 9. Does the **destination IP** of this TCP SYN belong to:  
    - Wireless host  
    - Access point  
    - First-hop router  
    - Web server (`gaia.cs.umass.edu`)?
+
+```
+474	24.811093	192.168.1.109	128.119.245.12	TCP	110	2538 → 80 [SYN] Seq=0 Win=16384 Len=0 MSS=1460 SACK_PERM
+
+802.11 radio information
+IEEE 802.11 QoS Data, Flags: .......TC
+    Type/Subtype: QoS Data (0x0028)
+    Frame Control Field: 0x8801
+    .000 0000 0010 1100 = Duration: 44 microseconds
+    Receiver address: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+    Transmitter address: IntelCor_d1:b6:4f (00:13:02:d1:b6:4f)
+    Destination address: Cisco-Li_f4:eb:a8 (00:16:b6:f4:eb:a8)
+    Source address: IntelCor_d1:b6:4f (00:13:02:d1:b6:4f)
+    BSS Id: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+    STA address: IntelCor_d1:b6:4f (00:13:02:d1:b6:4f)
+    .... .... .... 0000 = Fragment number: 0
+    0000 0011 0001 .... = Sequence number: 49
+    Frame check sequence: 0xad57fce0 [unverified]
+    [FCS Status: Unverified]
+    Qos Control: 0x0000
+Internet Protocol Version 4, Src: 192.168.1.109, Dst: 128.119.245.12
+    Source Address: 192.168.1.109
+    Destination Address: 128.119.245.12
+```
 
 10. **Find the 802.11 frame at `t = 24.8277`** containing the **TCP SYN-ACK**:  
     - List the **three MAC addresses**.  
