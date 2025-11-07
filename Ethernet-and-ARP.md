@@ -103,12 +103,12 @@ What upper-layer protocol does it correspond to?
 
 How many bytes from the **start of the Ethernet frame** does the ASCII **“G” in “GET”** appear? 
 - `55`
-- An Ethernet frame starts with
+- An Ethernet frame starts with a `54` byte header made up of
   - a 14 byte Ethernet header
   - a 20 byte IP header
   - a 20 byte TCP header
-- the TCP payload begins at byte `55` because byte counting starts at 1 for the first byte of the Ethernet frame
-- "G" is the first character of the HTTP request in the TCP payload
+- the "G" character is found at byte `55` because that is where the TCP payload for the HTTP request begins
+- This is because byte counting starts at 1 for the first byte of the Ethernet frame
 
 ```
 84	1.578968715	10.0.2.15	128.119.245.12	HTTP	516	GET /wireshark-labs/HTTP-wireshark-file3.html HTTP/1.1 
@@ -138,13 +138,45 @@ Hypertext Transfer Protocol
 | 8 | How many bytes from the **start of the frame** does the ASCII **“O” in “OK”** (HTTP 200) appear? *(No preamble)* |
 | 9 | How many **Ethernet frames** (each with IP → TCP → HTTP data) carry the complete **“OK 200 ...”** reply message? |
 
+What is the **Ethernet source address**? 
+- `52:55:0a:00:02:02`
+
+Is it your computer or `gaia.cs.umass.edu`?
+- 
+
+What device has this address?
+- 
+
+What is the **destination address** in the Ethernet frame? 
+- 
+
+Is this your computer’s Ethernet address?
+- 
+
+What is the **hex value** of the **Frame type field**? 
+- 
+
+What upper-layer protocol?
+- 
+
+How many bytes from the **start of the frame** does the ASCII **“O” in “OK”** (HTTP 200) appear? (No preamble)
+- 
+
+How many **Ethernet frames** (each with IP → TCP → HTTP data) carry the complete **“OK 200 ...”** reply message?
+- 
+
+```
+7117	2.744980106	34.104.35.123	10.0.2.15	HTTP	2452	HTTP/1.1 200 OK
+
+Ethernet II, Src: 52:55:0a:00:02:02 (52:55:0a:00:02:02), Dst: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Destination: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Source: 52:55:0a:00:02:02 (52:55:0a:00:02:02)
+    Type: IPv4 (0x0800)
+```
+
 ---
 
 ## **Part 2: The Address Resolution Protocol (ARP)**
-
-> **Review**: Section 6.4.1 in textbook
-
----
 
 ### **ARP Caching**
 
