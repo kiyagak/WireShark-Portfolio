@@ -50,9 +50,9 @@ The goal in this [basic 802.11 Wi-Fi Wireshark lab](https://www-net.cs.umass.edu
 5. **Use display filters** to isolate frame types (refer to cheat sheet):  
    `https://gaia.cs.umass.edu/wireshark-labs/802.11-9.2.4.1_spec+wireshark_filters.pdf`
 
-<img width="687" height="458" alt="Screenshot-20251107T212000" src="https://github.com/user-attachments/assets/7609e128-a0da-416c-a110-af1cf6a1a306" />
+<img width="687" height="436" alt="image" src="https://github.com/user-attachments/assets/865c1ce5-5fb0-4558-90df-a92e75366660" />
 
-<img width="506" height="679" alt="Screenshot-20251107T212056" src="https://github.com/user-attachments/assets/418a9469-3f0d-4443-a779-0951f8fa1f93" />
+<img width="506" height="657" alt="image" src="https://github.com/user-attachments/assets/c78377fb-a978-4331-ba3c-f72fd3897843" />
 
 ---
 
