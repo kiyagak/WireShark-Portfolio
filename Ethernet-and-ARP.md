@@ -424,3 +424,28 @@ This shows the default ARP cach entry timeout (default base: 30 sec, often rando
 
 ## What I Learned
 
+I learned
+- how to find the source and destination Ethernet address of an ARP request and reply
+- how to identify the device associated with an Ethernet addres
+- how the layer 2 Type field specifies the upper-layer protocol that is used
+- the first byte of a TCP payload of an HTTP GET request and response is the 55th byte
+- that the first 54 bytes of an Ethernet frame for a HTTP GET are the 
+  - a 14 byte Ethernet header
+  - a 20 byte IP header
+  - a 20 byte TCP header
+- ARP is a layer 2 protocol that maps layer 3 IP addresses to layer 2 MAC/Ethernet addresses
+- to use the `arp -a command to show my device's ARP cache entries
+- ARP cache entry info includes
+	- the hostname and IP address
+	- MAC address
+	- the ARP-entry type
+	- the interface
+- how to clear ARP cache entries
+- APR requests and replies show the layer 2 Type field's upper-layer protocol as ARP
+- the ARP Opcode field begins between 20 to 21 bytes from the start of the Ethernet frame
+- the ARP Opcode value shows that ARP is doing, such as a request or reply
+- ARP requests include the IP addresses of the sender and the target that is being resolved
+- ARP rpplies return the MAC/Ethernet address that matches the ARP request's IP address
+- ARP requests from other devices may appear,  but no replies will be seen because replies are one-to-one unicast communications that are not sent to my device
+- how ARP poisoning works
+- the default ARP cache entry timeout durations for macOS, Linux, and Windows
