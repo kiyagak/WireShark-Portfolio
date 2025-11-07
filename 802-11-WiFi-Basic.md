@@ -480,3 +480,32 @@ IEEE 802.11 Wireless Management
 
 ## What I Learned
 
+## What I Learned
+
+I learned
+- how Wi-Fi beacon frames work
+- how to filter for them in Wireshark
+- how to filter for a specific SSID
+- that the beacon frames' 802.11 channel is the same for both access points
+- how to find the beacon frame's data rate
+- that the beacon frame's data rate is 1.0 Mbp/s
+- how to find the source, destination, and router MAC/Ethernet addresses
+- how to find the supported and extended data rates of a beacon frame
+- how data transfers happen
+- how to distinguish the wireless host, access point, and first-hop router within a 802.11 frame that is doing a TCP SYN action
+- the STA address identifies the wireless host or client
+- how to map MAC/Ethernet addresses to their source or destination IP address
+- TCP SYN/ACK action
+- Hard-wired devices can send packets to access points
+- the disassociation, authentication, and association processes
+- the disassocation is done with these steps:
+	- the first step is a QoS Null data (no data) to disconnect from the access point at the 802.11-layer
+	- the second step is [SYN, PSH, ECE, AE] action makes the client to close its TCP session cleanly, done at the IP layer
+- the authentication process 
+	- used the Open System (0) authentication algorithm
+	- uses sequence numbers for each step involved with authentication
+	- the status code field shows if the authentication worked or not
+- association is the process of connecting to an access point
+	- an assocation is requested
+	- the access point responds with permission or denial, confirmed by Wireshark's status code field	
+- fastest rate offered by the host requesting association was 18Mbps, unlike the fastest rate the AP supports, which is 54Mbps
