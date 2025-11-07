@@ -309,6 +309,8 @@ Address Resolution Protocol (request)
     Target IP address: 10.0.2.3
 ```
 
+<img width="822" height="575" alt="image" src="https://github.com/user-attachments/assets/ab23501c-d8d7-4f52-adfd-ae76a69ae34a" />
+
 #### **ARP Reply (Received by Your Computer)**
 
 | # | Question |
