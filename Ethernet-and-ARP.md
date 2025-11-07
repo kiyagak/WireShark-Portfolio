@@ -84,31 +84,47 @@ The goal in this Ethernet and ARP Wireshark lab is to investigate the **Ethernet
 | 4 | How many bytes from the **start of the Ethernet frame** does the ASCII **“G” in “GET”** appear? *(Do not count preamble)* |
 
 48-bit Ethernet address** of your computer?
-- 
+- `52:54:00:12:34:56`
 
 48-bit destination address in the Ethernet frame? 
-- 
+- `52:55:0a:00:02:02`
 
 Is this the Ethernet address of `gaia.cs.umass.edu`?
-- 
+- Yes
 
 What device has this address?
-- 
+- `52:55:0a:00:02:02`
 
-What is the **hexadecimal value** of the **two-byte Frame type field** in the Ethernet frame carrying the HTTP GET request? 
-- 
+What is the **hexadecimal value** of the two-byte Frame **Type** field in the Ethernet frame carrying the HTTP GET request? 
+- `0x0800`
 
 What upper-layer protocol does it correspond to? 
-- 
+- `IPv4`
 
 How many bytes from the **start of the Ethernet frame** does the ASCII **“G” in “GET”** appear? 
-- 
+- `55`
+- An Ethernet frame starts with
+  - a 14 byte Ethernet header
+  - a 20 byte IP header
+  - a 20 byte TCP header
+- the TCP payload begins at byte `55` because byte counting starts at 1 for the first byte of the Ethernet frame
+- "G" is the first character of the HTTP request in the TCP payload
 
 ```
-83	1.644124351	10.0.2.15	128.119.245.12	TCP	74	60588 → 443 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM TSval=1477112366 TSecr=0 WS=128
+84	1.578968715	10.0.2.15	128.119.245.12	HTTP	516	GET /wireshark-labs/HTTP-wireshark-file3.html HTTP/1.1 
 
-
+Ethernet II, Src: RealtekU_12:34:56 (52:54:00:12:34:56), Dst: 52:55:0a:00:02:02 (52:55:0a:00:02:02) (14 bytes)
+    Destination: 52:55:0a:00:02:02 (52:55:0a:00:02:02)
+    Source: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 10.0.2.15, Dst: 128.119.245.12
+    .... 0101 = Header Length: 20 bytes (5)
+Transmission Control Protocol, Src Port: 53970, Dst Port: 80, Seq: 1, Ack: 1, Len: 462
+    0101 .... = Header Length: 20 bytes (5)
+Hypertext Transfer Protocol
 ```
+
+<img width="978" height="551" alt="image" src="https://github.com/user-attachments/assets/82961b86-81f3-4363-a54a-fdf0d674b981" />
 
 ---
 
