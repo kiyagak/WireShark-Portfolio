@@ -292,20 +292,12 @@ Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.109
 - `t = 63.0592`: Host re-associates
 
 11. **Just after `t = 49`**, what **two actions** does the host take to end association?  
-- One is **IP-layer**
-   - [SYN, PSH, ECE, AE] action makes the client to close its TCP session cleanly
-   - It is sent from the server (128.119.101.5) to the client (192.168.1.109) on an ephemeral port (2543).
-   - An ephemeral port is a temporary transport-layer port number automatically assigned automatically by the OS to a client app.
 
-```
-1714	49.020356	128.119.101.5	192.168.1.109	TCP	108	80 → 2543 [SYN, PSH, ECE, AE] Seq=2758133200 Win=7504[Malformed Packet]
-```
-
-- One is **802.11-layer**
-   - A QoS Null data (no data) with PM=1 shows the client wants to disassociate or disconnect from the access point. 
-   - with Power Management (PM) bit set to `1` (`Flags=.......TC`)
-   - To DS (Distribution System) = 1 (frame going to the AP)
-   - CF-Poll (Contention-Free Poll) = 1 (this is a QoS CF-Poll frame)
+One is **802.11-layer**:
+- A QoS Null data (no data) with PM=1 shows the client wants to disassociate or disconnect from the access point. 
+- with Power Management (PM) bit set to `1` (`Flags=.......TC`)
+- To DS (Distribution System) = 1 (frame going to the AP)
+- CF-Poll (Contention-Free Poll) = 1 (this is a QoS CF-Poll frame)
 
 ```
 1712	49.020125	IntelCor_d1:b6:4f	Cisco-Li_f7:1d:51	802.11	54	QoS Null function (No data), SN=1599, FN=0, Flags=.......TC
@@ -314,10 +306,18 @@ IEEE 802.11 QoS Null function (No data), Flags: .......TC
     Type/Subtype: QoS Null function (No data) (0x002c)
 ```
 
+<img width="1193" height="570" alt="Screenshot-20251107T205701" src="https://github.com/user-attachments/assets/55f22296-b5c5-4728-8529-40ed88459aee" />
+
+One is **IP-layer**:
+- [SYN, PSH, ECE, AE] action makes the client to close its TCP session cleanly
+- It is sent from the server (128.119.101.5) to the client (192.168.1.109) on an ephemeral port (2543).
+- An ephemeral port is a temporary transport-layer port number automatically assigned automatically by the OS to a client app.
+
 ```
-1712	49.020125	IntelCor_d1:b6:4f	Cisco-Li_f7:1d:51	802.11	54	QoS Null function (No data), SN=1599, FN=0, Flags=.......TC
 1714	49.020356	128.119.101.5	192.168.1.109	TCP	108	80 → 2543 [SYN, PSH, ECE, AE] Seq=2758133200 Win=7504[Malformed Packet]
 ```
+
+<img width="1193" height="570" alt="Screenshot-20251107T205933" src="https://github.com/user-attachments/assets/4d4ca700-043e-415f-9d5c-58ad18b1d470" />
 
 ---
 
@@ -348,6 +348,8 @@ IEEE 802.11 Wireless Management
         Status code: Successful (0x0000)
 ```
 
+<img width="1193" height="570" alt="Screenshot-20251107T205132" src="https://github.com/user-attachments/assets/4920b69f-16dd-4619-9e46-9495e628f75f" />
+
 14. At `t = 63.1690`, AP sends **Authentication Response**  
 
 Was the requested authentication **accepted**?
@@ -373,6 +375,8 @@ IEEE 802.11 Wireless Management
         Authentication SEQ: 0x0002
         Status code: Successful (0x0000)
 ```
+
+<img width="1193" height="570" alt="Screenshot-20251107T205233" src="https://github.com/user-attachments/assets/9a05f987-8c38-451d-b9bc-423d8ce9b5ab" />
 
 ---
 
