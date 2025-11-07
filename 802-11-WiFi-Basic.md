@@ -6,6 +6,30 @@ The goal in this [basic 802.11 Wi-Fi Wireshark lab](https://www-net.cs.umass.edu
 
 ---
 
+## Disable QUIC in Chrome
+
+1.  Open Chrome and type `chrome://flags` in the address bar.
+2.  Search for "QUIC."
+3.  Disable the "Experimental QUIC Protocol" option. (Alternatively, go to `chrome://flags/#enable-quic`)
+4.  Relaunch Chrome.
+
+<img width="857" height="512" alt="image" src="https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d" />
+
+## Disable QUIC in Firefox
+
+1.  Open Firefox and type `about:config` in the address bar.
+2.  Accept the risk and continue.
+3.  Search for `network.http.http3.enable`.
+4.  Double-click `network.http.http3.enable`, `network.http.http3.enable_0rtt`, and `network.http.http3.enable_qlog` to set their values to `false`.
+5.  Restart Firefox.
+
+## Disable QUIC in Edge
+
+1.  Open Edge and type `edge://flags` in the address bar.
+2.  Search for "QUIC."
+3.  Disable the "Experimental QUIC Protocol" option.
+4.  Restart Edge.
+
 ## **Lab Setup Instructions**
 
 1. **Ensure you are connected to a WiFi network (your home network)** when trace collection starts.
