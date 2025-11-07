@@ -67,8 +67,8 @@ The goal in this Ethernet and ARP Wireshark lab is to investigate the **Ethernet
 ### **Setup Instructions**
 1. **Ensure browser cache is empty**.
 2. Start **Wireshark**.
-3. Open browser and visit:  
-   [http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html](http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html)  
+3. Open browser and visit:
+    [https://www-net.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html](https://www-net.cs.umass.edu/wireshark-labs/HTTP-wireshark-file3.html)
    → Displays the US Bill of Rights.
 4. **Stop Wireshark capture**.
 
@@ -111,7 +111,7 @@ How many bytes from the **start of the Ethernet frame** does the ASCII **“G”
 - This is because byte counting starts at 1 for the first byte of the Ethernet frame
 
 ```
-84	1.578968715	10.0.2.15	128.119.245.12	HTTP	516	GET /wireshark-labs/HTTP-wireshark-file3.html HTTP/1.1 
+11	1.869282468	10.0.2.15	128.119.245.12	HTTP	516	GET /wireshark-labs/HTTP-wireshark-file3.html HTTP/1.1 
 
 Ethernet II, Src: RealtekU_12:34:56 (52:54:00:12:34:56), Dst: 52:55:0a:00:02:02 (52:55:0a:00:02:02) (14 bytes)
     Destination: 52:55:0a:00:02:02 (52:55:0a:00:02:02)
@@ -142,22 +142,22 @@ What is the **Ethernet source address**?
 - `52:55:0a:00:02:02`
 
 Is it your computer or `gaia.cs.umass.edu`?
-- 
+- `gaia.cs.umass.edu`
 
 What device has this address?
-- 
+- `52:55:0a:00:02:02`
 
 What is the **destination address** in the Ethernet frame? 
-- 
+- `52:54:00:12:34:56`
 
 Is this your computer’s Ethernet address?
-- 
+- Yes
 
-What is the **hex value** of the **Frame type field**? 
-- 
+What is the **hex value** of the ** type field**? 
+- `0x0800`
 
 What upper-layer protocol?
-- 
+- `IPv4`
 
 How many bytes from the **start of the frame** does the ASCII **“O” in “OK”** (HTTP 200) appear? (No preamble)
 - 
@@ -166,12 +166,9 @@ How many **Ethernet frames** (each with IP → TCP → HTTP data) carry the comp
 - 
 
 ```
-7117	2.744980106	34.104.35.123	10.0.2.15	HTTP	2452	HTTP/1.1 200 OK
+13	2.026190639	128.119.245.12	10.0.2.15	HTTP	699	HTTP/1.1 301 Moved Permanently  (text/html)
 
-Ethernet II, Src: 52:55:0a:00:02:02 (52:55:0a:00:02:02), Dst: RealtekU_12:34:56 (52:54:00:12:34:56)
-    Destination: RealtekU_12:34:56 (52:54:00:12:34:56)
-    Source: 52:55:0a:00:02:02 (52:55:0a:00:02:02)
-    Type: IPv4 (0x0800)
+
 ```
 
 ---
