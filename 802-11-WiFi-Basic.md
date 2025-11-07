@@ -381,11 +381,83 @@ IEEE 802.11 Wireless Management
 16. **Association Request** sent at `t = 63.1699`  
     → List **Supported Rates** (exclude Extended Supported Rates).
 
-17. **Association Response** received at `t = 66.1921`  
-    → Is the status: **Successful** or **Unsuccessful**?
+```
+2162	63.169910	IntelCor_d1:b6:4f	Cisco-Li_f7:1d:51	802.11	89	Association Request, SN=1648, FN=0, Flags=........C, SSID="30 Munroe St"
+
+IEEE 802.11 Wireless Management
+    Tagged parameters (33 bytes)
+        Tag: Supported Rates 1(B), 2(B), 5.5(B), 11(B), 6(B), 9, 12(B), 18, [Mbit/sec]
+            Tag Number: Supported Rates (1)
+            Tag length: 8
+            Supported Rates: 1(B) (0x82)
+            Supported Rates: 2(B) (0x84)
+            Supported Rates: 5.5(B) (0x8b)
+            Supported Rates: 11(B) (0x96)
+            Supported Rates: 6(B) (0x8c)
+            Supported Rates: 9 (0x12)
+            Supported Rates: 12(B) (0x98)
+            Supported Rates: 18 (0x24)
+```
+
+<img width="1193" height="570" alt="Screenshot-20251107T204304" src="https://github.com/user-attachments/assets/9df61e9b-e6c1-4767-afde-6f230416d2ea" />
+
+17. **Association Response** received at `t = 63.1921`  
+- Is the status: **Successful** or **Unsuccessful**?
+   - Successful
+
+```
+2166	63.192101	Cisco-Li_f7:1d:51	IntelCor_d1:b6:4f	802.11	94	Association Response, SN=3728, FN=0, Flags=........C
+
+IEEE 802.11 Wireless Management
+    Fixed parameters (6 bytes)
+        Status code: Successful (0x0000)
+```
+
+<img width="1193" height="570" alt="Screenshot-20251107T204514" src="https://github.com/user-attachments/assets/822cc4d0-4ae2-424e-9e08-c7f1b85a8d71" />
 
 18. Compare **Extended Supported Rates**:  
-    → Does the **fastest rate offered by the host** match the **fastest rate the AP supports**?
+
+Does the **fastest rate offered by the host** match the **fastest rate the AP supports**?
+- No
+
+```
+2162	63.169910	IntelCor_d1:b6:4f	Cisco-Li_f7:1d:51	802.11	89	Association Request, SN=1648, FN=0, Flags=........C, SSID="30 Munroe St"
+
+IEEE 802.11 Wireless Management
+    Tagged parameters (33 bytes)
+        Tag: Supported Rates 1(B), 2(B), 5.5(B), 11(B), 6(B), 9, 12(B), 18, [Mbit/sec]
+            Tag Number: Supported Rates (1)
+            Tag length: 8
+            Supported Rates: 1(B) (0x82)
+            Supported Rates: 2(B) (0x84)
+            Supported Rates: 5.5(B) (0x8b)
+            Supported Rates: 11(B) (0x96)
+            Supported Rates: 6(B) (0x8c)
+            Supported Rates: 9 (0x12)
+            Supported Rates: 12(B) (0x98)
+            Supported Rates: 18 (0x24)
+
+2166	63.192101	Cisco-Li_f7:1d:51	IntelCor_d1:b6:4f	802.11	94	Association Response, SN=3728, FN=0, Flags=........C
+
+IEEE 802.11 Wireless Management
+    Tagged parameters (36 bytes)
+        Tag: Extended Supported Rates 6(B), 9, 12(B), 18, 24(B), 36, 48, 54, [Mbit/sec]
+            Tag Number: Extended Supported Rates (50)
+            Tag length: 8
+            Extended Supported Rates: 6(B) (0x8c)
+            Extended Supported Rates: 9 (0x12)
+            Extended Supported Rates: 12(B) (0x98)
+            Extended Supported Rates: 18 (0x24)
+            Extended Supported Rates: 24(B) (0xb0)
+            Extended Supported Rates: 36 (0x48)
+            Extended Supported Rates: 48 (0x60)
+            Extended Supported Rates: 54 (0x6c)
+```
+
+<img width="1193" height="582" alt="Screenshot-20251107T204049" src="https://github.com/user-attachments/assets/56c3d61d-dc8c-4514-af10-fb08c01ac7ee" />
+
+<img width="1193" height="662" alt="Screenshot-20251107T203720" src="https://github.com/user-attachments/assets/18b4152a-2b44-4911-bbb9-409f41fdb737" />
+
 
 ---
 
