@@ -124,7 +124,7 @@ Transmission Control Protocol, Src Port: 53970, Dst Port: 80, Seq: 1, Ack: 1, Le
 Hypertext Transfer Protocol
 ```
 
-<img width="978" height="551" alt="image" src="https://github.com/user-attachments/assets/82961b86-81f3-4363-a54a-fdf0d674b981" />
+<img width="974" height="531" alt="image" src="https://github.com/user-attachments/assets/a0e34cb7-ed67-4df3-9ab0-75117571e1b0" />
 
 ---
 
@@ -169,6 +169,8 @@ How many **Ethernet frames** (each with IP → TCP → HTTP data) carry the comp
 14	0.443582658	128.119.245.12	10.0.2.15	HTTP	699	HTTP/1.1 301 Moved Permanently  (text/html)
 ```
 
+<img width="974" height="470" alt="image" src="https://github.com/user-attachments/assets/1fc99fea-0a33-4b56-b1a8-e796017d6ecc" />
+
 ---
 
 ## **Part 2: The Address Resolution Protocol (ARP)**
@@ -190,6 +192,29 @@ How many **Ethernet frames** (each with IP → TCP → HTTP data) carry the comp
 |---|---------|
 | 10 | How many entries are in your **ARP cache**? |
 | 11 | What information is displayed in **each ARP cache entry**? |
+
+How many entries are in your **ARP cache**?
+- `2`
+
+What information is displayed in **each ARP cache entry**?
+- the hostname and IP address
+- MAC address
+- the ARP-entry type
+- the interface
+
+| Hostname / IP address | Keyword | MAC address          | Type     | Keyword | Interface |
+|-----------------------|---------|----------------------|----------|---------|-----------|
+| ? (10.0.2.3)          | at      | 52:55:0a:00:02:03    | [ether]  | on      | eth0      |
+| ? (10.0.2.2)          | at      | 52:55:0a:00:02:02    | [ether]  | on      | eth0      |.
+
+
+
+
+```
+arp -a
+? (10.0.2.3) at 52:55:0a:00:02:03 [ether] on eth0
+? (10.0.2.2) at 52:55:0a:00:02:02 [ether] on eth0
+```
 
 ---
 
