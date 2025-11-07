@@ -41,6 +41,7 @@ The goal in this [basic 802.11 Wi-Fi Wireshark lab](https://www-net.cs.umass.edu
    3. **Disconnect** from your home network.
    4. *(Optional)* Try to connect to another 802.11 network (whose beacons are visible) **for which you do not have access** → connection will fail.
    5. **Reconnect successfully** to your home network.
+
 3. **Use provided trace file if unable to capture live**:  
    Download: `Wireshark_801_11.pcapng` from  
    `http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip`
@@ -48,6 +49,10 @@ The goal in this [basic 802.11 Wi-Fi Wireshark lab](https://www-net.cs.umass.edu
    `File → Open → Wireshark_801_11.pcapng`
 5. **Use display filters** to isolate frame types (refer to cheat sheet):  
    `https://gaia.cs.umass.edu/wireshark-labs/802.11-9.2.4.1_spec+wireshark_filters.pdf`
+
+<img width="687" height="458" alt="Screenshot-20251107T212000" src="https://github.com/user-attachments/assets/7609e128-a0da-416c-a110-af1cf6a1a306" />
+
+<img width="506" height="679" alt="Screenshot-20251107T212056" src="https://github.com/user-attachments/assets/418a9469-3f0d-4443-a779-0951f8fa1f93" />
 
 ---
 
@@ -92,6 +97,8 @@ The goal in this [basic 802.11 Wi-Fi Wireshark lab](https://www-net.cs.umass.edu
     Signal/noise ratio (dB): 11 dB
     [Duration: 456µs]
 ```
+
+<img width="1193" height="570" alt="Screenshot-20251107T211302" src="https://github.com/user-attachments/assets/1d34334e-c811-46a6-bd8e-6d70d9fc11a1" />
 
 **Now analyze the beacon frame at `t = 0.085474`:**
 
@@ -148,6 +155,8 @@ IEEE 802.11 Wireless Management
             Extended Supported Rates: 48 (0x60)
             Extended Supported Rates: 54 (0x6c)
 ```
+
+<img width="1193" height="900" alt="Screenshot-20251107T211840" src="https://github.com/user-attachments/assets/7e18960e-b974-4b5e-9893-4044579817b3" />
 
 ---
 
@@ -221,6 +230,8 @@ Internet Protocol Version 4, Src: 192.168.1.109, Dst: 128.119.245.12
     Destination Address: 128.119.245.12
 ```
 
+<img width="1193" height="570" alt="Screenshot-20251107T211028" src="https://github.com/user-attachments/assets/7d3a2b9f-1bdb-42ad-ab0a-a37d4fb79e02" />
+
 10. **Find the 802.11 frame at `t = 24.8277`** containing the **TCP SYN-ACK**:  
 - List the **three MAC addresses**.
    - Cisco-Li_f4:eb:a8 (`00:16:b6:f4:eb:a8`)
@@ -282,6 +293,8 @@ Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.109
     Source Address: 128.119.245.12
     Destination Address: 192.168.1.109
 ```
+
+<img width="1193" height="570" alt="Screenshot-20251107T211146" src="https://github.com/user-attachments/assets/59d7a700-b364-4cb8-8b91-7c2c22b317c0" />
 
 ---
 
@@ -348,7 +361,7 @@ IEEE 802.11 Wireless Management
         Status code: Successful (0x0000)
 ```
 
-<img width="1193" height="570" alt="Screenshot-20251107T205132" src="https://github.com/user-attachments/assets/4920b69f-16dd-4619-9e46-9495e628f75f" />
+<img width="1193" height="570" alt="Screenshot-20251107T210357" src="https://github.com/user-attachments/assets/822e6e92-eb31-4699-9a0b-7574343058d3" />
 
 14. At `t = 63.1690`, AP sends **Authentication Response**  
 
