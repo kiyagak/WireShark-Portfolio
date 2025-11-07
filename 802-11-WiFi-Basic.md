@@ -480,8 +480,6 @@ IEEE 802.11 Wireless Management
 
 ## What I Learned
 
-## What I Learned
-
 I learned
 - how Wi-Fi beacon frames work
 - how to filter for them in Wireshark
