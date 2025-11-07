@@ -292,22 +292,87 @@ Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.109
 - `t = 63.0592`: Host re-associates
 
 11. **Just after `t = 49`**, what **two actions** does the host take to end association?  
-    - One is **IP-layer**  
-    - One is **802.11-layer**
+- One is **IP-layer**
+   - [SYN, PSH, ECE, AE] action makes the client to close its TCP session cleanly
+   - It is sent from the server (128.119.101.5) to the client (192.168.1.109) on an ephemeral port (2543).
+   - An ephemeral port is a temporary transport-layer port number automatically assigned automatically by the OS to a client app.
+
+```
+1714	49.020356	128.119.101.5	192.168.1.109	TCP	108	80 → 2543 [SYN, PSH, ECE, AE] Seq=2758133200 Win=7504[Malformed Packet]
+```
+
+- One is **802.11-layer**
+   - A QoS Null data (no data) with PM=1 shows the client wants to disassociate or disconnect from the access point. 
+   - with Power Management (PM) bit set to `1` (`Flags=.......TC`)
+   - To DS (Distribution System) = 1 (frame going to the AP)
+   - CF-Poll (Contention-Free Poll) = 1 (this is a QoS CF-Poll frame)
+
+```
+1712	49.020125	IntelCor_d1:b6:4f	Cisco-Li_f7:1d:51	802.11	54	QoS Null function (No data), SN=1599, FN=0, Flags=.......TC
+
+IEEE 802.11 QoS Null function (No data), Flags: .......TC
+    Type/Subtype: QoS Null function (No data) (0x002c)
+```
+
+```
+1712	49.020125	IntelCor_d1:b6:4f	Cisco-Li_f7:1d:51	802.11	54	QoS Null function (No data), SN=1599, FN=0, Flags=.......TC
+1714	49.020356	128.119.101.5	192.168.1.109	TCP	108	80 → 2543 [SYN, PSH, ECE, AE] Seq=2758133200 Win=7504[Malformed Packet]
+```
 
 ---
 
 ### **Authentication (Filter: `wlan.fc.subtype == 11`)**
 
 12. At `t = 63.1680`, host sends **Authentication Request** → AP  
-    → What **authentication algorithm** is requested?
+- What **authentication algorithm** is requested?
+   - Open System (0)
+
+```
+Authentication Algorithm: Open System (0)
+```
 
 13. What is the **Authentication Sequence Number (SEQ)** in this frame (host → AP)?
+- 1 (`0x0001` in hexadecimal)
+
+```
+Authentication SEQ: 0x0001
+```
+
+```
+2156	63.168087	IntelCor_d1:b6:4f	Cisco-Li_f7:1d:51	802.11	58	Authentication, SN=1647, FN=0, Flags=........C
+
+IEEE 802.11 Wireless Management
+    Fixed parameters (6 bytes)
+        Authentication Algorithm: Open System (0)
+        Authentication SEQ: 0x0001
+        Status code: Successful (0x0000)
+```
 
 14. At `t = 63.1690`, AP sends **Authentication Response**  
-    → Was the requested authentication **accepted**?
+
+Was the requested authentication **accepted**?
+- Yes
+
+```
+Status code: Successful (0x0000)
+```
 
 15. What is the **Authentication SEQ** in the AP → host response?
+- 2 (`0x0002` in hexadecimal)
+
+```
+Authentication SEQ: 0x0002
+```
+
+```
+2158	63.169071	Cisco-Li_f7:1d:51	IntelCor_d1:b6:4f	802.11	58	Authentication, SN=3726, FN=0, Flags=........C
+
+IEEE 802.11 Wireless Management
+    Fixed parameters (6 bytes)
+        Authentication Algorithm: Open System (0)
+        Authentication SEQ: 0x0002
+        Status code: Successful (0x0000)
+```
 
 ---
 
@@ -324,21 +389,5 @@ Internet Protocol Version 4, Src: 128.119.245.12, Dst: 192.168.1.109
 
 ---
 
-## **Reference Resources**
+## What I Learned
 
-| Purpose | Link |
-|-------|------|
-| 802.11 Tutorial | http://www.sss-mag.com/pdf/802_11tut.pdf |
-| IEEE 802.11-2020 Standard (excerpt) | https://gaia.cs.umass.edu/wireshark-labs/80211-2020.pdf |
-| Spec + Filter Cheat Sheet | https://gaia.cs.umass.edu/wireshark-labs/802.11-9.2.4.1_spec+wireshark_filters.pdf |
-| Wireshark 802.11 Filters Reference | https://gaia.cs.umass.edu/wireshark-labs/wireshark_802.11_filters_-_reference_sheet.pdf |
-| Trace File | http://gaia.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip |
-
----
-
-**Tip**: Use **coloring rules** or **annotations** when submitting answers (highlight GET/response messages, mark fields in frames).  
-**LMS auto-grading available** at: http://gaia.cs.umass.edu/kurose_ross/lms.htm
-
---- 
-
-*End of Lab Instructions*
