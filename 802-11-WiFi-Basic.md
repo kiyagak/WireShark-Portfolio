@@ -53,29 +53,101 @@ The goal in this [basic 802.11 Wi-Fi Wireshark lab](https://www-net.cs.umass.edu
 
 ## **Section 2: Beacon Frames**
 
-**Filter**: `wlan.fc.type_subtype == 8`
+**Filters**: 
+`wlan.fc.type_subtype == 8`
+`wlan.fc.type_subtype == 8 && wlan.ssid != "30 Munroe St"`
 
 1. What are the **SSIDs** of the two access points issuing **most beacon frames** in this trace?  
-   *(Look in the Info column)*
+- `30 Munroe St` and `linksys12`
 
 2. What **802.11 channel** is being used by **both** of these access points?  
-   *(Check radio information in beacon frame)*
+- `6`
+
+```
+1	0.000000	Cisco-Li_f7:1d:51	Broadcast	802.11	183	Beacon frame, SN=2854, FN=0, Flags=........C, BI=100, SSID="30 Munroe St"
+
+802.11 radio information
+    PHY type: 802.11b (HR/DSSS) (4)
+    Short preamble: False
+    Data rate: 1.0 Mb/s
+    Channel: 6
+    Frequency: 2437MHz
+    Signal strength (dB): 71 dB
+    Signal strength (dBm): -29 dBm
+    Noise level (dBm): -100 dBm
+    Signal/noise ratio (dB): 71 dB
+    [Duration: 1464µs]
+
+14	0.499197	LinksysG_67:22:94	Broadcast	802.11	90	Beacon frame, SN=3074, FN=0, Flags=........C, BI=100, SSID="linksys12"
+
+802.11 radio information
+    PHY type: 802.11b (HR/DSSS) (4)
+    Short preamble: False
+    Data rate: 2.0 Mb/s
+    Channel: 6
+    Frequency: 2437MHz
+    Signal strength (dB): 11 dB
+    Signal strength (dBm): -89 dBm
+    Noise level (dBm): -100 dBm
+    Signal/noise ratio (dB): 11 dB
+    [Duration: 456µs]
+```
 
 **Now analyze the beacon frame at `t = 0.085474`:**
 
 3. What is the **interval between beacon frame transmissions** from this AP?  
-   *(Field inside the beacon frame)*
+- `1.0 Mb/s`
 
 4. What is the **source MAC address** (in hex) on the beacon frame from this AP?
+- `00:16:b6:f7:1d:51`
 
 5. What is the **destination MAC address** (in hex) on the beacon frame from **30 Munroe St**?
+- `ff:ff:ff:ff:ff:ff`
 
 6. What is the **BSS ID (MAC)** (in hex) on the beacon frame from **30 Munroe St**?
+- `00:16:b6:f7:1d:51`
+
+```
+3	0.085474	Cisco-Li_f7:1d:51	Broadcast	802.11	183	Beacon frame, SN=2855, FN=0, Flags=........C, BI=100, SSID="30 Munroe St"
+
+802.11 radio information
+    Data rate: 1.0 Mb/s
+    Channel: 6
+IEEE 802.11 Beacon frame, Flags: ........C
+    Destination address: Broadcast (ff:ff:ff:ff:ff:ff)
+    Source address: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+    BSS Id: Cisco-Li_f7:1d:51 (00:16:b6:f7:1d:51)
+```
 
 7. The **30 Munroe St** AP advertises:
    - **4 supported data rates**
    - **8 extended supported rates**  
    → List **all 12 rates** (in Mbps).
+
+```
+3	0.085474	Cisco-Li_f7:1d:51	Broadcast	802.11	183	Beacon frame, SN=2855, FN=0, Flags=........C, BI=100, SSID="30 Munroe St"
+
+IEEE 802.11 Wireless Management
+    Tagged parameters (119 bytes)
+        Tag: Supported Rates 1(B), 2(B), 5.5(B), 11(B), [Mbit/sec]
+            Tag Number: Supported Rates (1)
+            Tag length: 4
+            Supported Rates: 1(B) (0x82)
+            Supported Rates: 2(B) (0x84)
+            Supported Rates: 5.5(B) (0x8b)
+            Supported Rates: 11(B) (0x96)
+        Tag: Extended Supported Rates 6(B), 9, 12(B), 18, 24(B), 36, 48, 54, [Mbit/sec]
+            Tag Number: Extended Supported Rates (50)
+            Tag length: 8
+            Extended Supported Rates: 6(B) (0x8c)
+            Extended Supported Rates: 9 (0x12)
+            Extended Supported Rates: 12(B) (0x98)
+            Extended Supported Rates: 18 (0x24)
+            Extended Supported Rates: 24(B) (0xb0)
+            Extended Supported Rates: 36 (0x48)
+            Extended Supported Rates: 48 (0x60)
+            Extended Supported Rates: 54 (0x6c)
+```
 
 ---
 
