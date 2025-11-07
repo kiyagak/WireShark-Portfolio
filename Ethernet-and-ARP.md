@@ -202,19 +202,16 @@ What information is displayed in **each ARP cache entry**?
 - the ARP-entry type
 - the interface
 
-| Hostname / IP address | Keyword | MAC address          | Type     | Keyword | Interface |
-|-----------------------|---------|----------------------|----------|---------|-----------|
-| ? (10.0.2.3)          | at      | 52:55:0a:00:02:03    | [ether]  | on      | eth0      |
-| ? (10.0.2.2)          | at      | 52:55:0a:00:02:02    | [ether]  | on      | eth0      |.
-
-
-
-
 ```
 arp -a
 ? (10.0.2.3) at 52:55:0a:00:02:03 [ether] on eth0
 ? (10.0.2.2) at 52:55:0a:00:02:02 [ether] on eth0
 ```
+
+| Hostname / IP address | Keyword | MAC address          | Type     | Keyword | Interface |
+|-----------------------|---------|----------------------|----------|---------|-----------|
+| ? (10.0.2.3)          | at      | 52:55:0a:00:02:03    | [ether]  | on      | eth0      |
+| ? (10.0.2.2)          | at      | 52:55:0a:00:02:02    | [ether]  | on      | eth0      |.
 
 ---
 
