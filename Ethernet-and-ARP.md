@@ -245,6 +245,18 @@ arp -d -a
 | 13 | **Hex destination address** in Ethernet frame? What device uses it? *(client, server, router, switch, etc.)* |
 | 14 | **Hex value** of **Ethernet Frame type field**? What upper-layer protocol? |
 
+**Hex source address** in Ethernet frame containing ARP request?
+- `52:54:00:12:34:56`
+
+**Hex destination address** in Ethernet frame? What device uses it?
+- `52:55:0a:00:02:03`
+
+**Hex value** of Ethernet frame **Type** field?
+- `0x0806`
+
+What upper-layer protocol?
+- `ARP`
+
 #### **Inside the ARP Request Message**
 
 | # | Question |
@@ -253,6 +265,49 @@ arp -d -a
 | 16 | What is the **opcode value** in the ARP request? |
 | 17 | Does the ARP request include the **sender’s IP address**? If yes, what is it? |
 | 18 | What is the **target IP address** being resolved in the ARP request? |
+
+How many bytes from **start of Ethernet frame** does the **ARP opcode field** begin?
+- `20`
+
+- The byte count starts at 1 for the first byte of the Ethernet frame
+- The Ethernet header is 14 bytes (0-13)
+- The ARP message starts at byte 14
+  - Hardware type: bytes 14–15 (2 bytes)
+  - Protocol type: bytes 16–17 (2 bytes)
+  - Hardware size: byte 18 (1 byte)
+  - Protocol size: byte 19 (1 byte)
+  - Opcode: bytes 20–21 (2 bytes)
+
+What is the **opcode value** in the ARP request?
+  - `request (1)`
+
+Does the ARP request include the **sender’s IP address**?
+- Yes
+
+If yes, what is it?
+- `10.0.2.15`
+
+What is the **target IP address** being resolved in the ARP request?
+- `10.0.2.3`
+
+```
+60	12.800005420	RealtekU_12:34:56	52:55:0a:00:02:03	ARP	42	Who has 10.0.2.3? Tell 10.0.2.15
+
+Ethernet II, Src: RealtekU_12:34:56 (52:54:00:12:34:56), Dst: 52:55:0a:00:02:03 (52:55:0a:00:02:03)
+    Destination: 52:55:0a:00:02:03 (52:55:0a:00:02:03)
+    Source: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Type: ARP (0x0806)
+Address Resolution Protocol (request)
+    Hardware type: Ethernet (1)
+    Protocol type: IPv4 (0x0800)
+    Hardware size: 6
+    Protocol size: 4
+    Opcode: request (1)
+    Sender MAC address: RealtekU_12:34:56 (52:54:00:12:34:56)
+    Sender IP address: 10.0.2.15
+    Target MAC address: 00:00:00_00:00:00 (00:00:00:00:00:00)
+    Target IP address: 10.0.2.3
+```
 
 #### **ARP Reply (Received by Your Computer)**
 
