@@ -10,8 +10,10 @@ This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark
 - [DHCP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/DHCP.md)
 - [ICMP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/ICMP.md)
 - [Ethernet and ARP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/Ethernet-and-ARP.md)
-- 802.11 WiFi
-- 5G
+- [Basic 802.11 Wi-Fi](https://github.com/kiyagak/WireShark-Portfolio/blob/main/802-11-WiFi-Basic.md)
+- Wi-Fi Radio
+- 5G Radio
+- 5G Finding and Joining
 - and TLS
 
 # Objectives
