@@ -130,12 +130,53 @@ Signal-to-noise (SNR) ratio = `Antenna signal` - `Antenna noise` = (-81 dBm) - (
 Answer the following:
 
 12. **What WiFi channel number is frame 258 being carried on?**
+- `40`
+
+```
+Channel frequency: 5200 [A 40]
+```
 
 13. **Compare signal strength (dBm) of frame 258 vs. frame 3:**  
-   → How many **orders of magnitude** stronger or weaker is the received signal?
+
+```
+3	0.027048	Netgear_4c:14:6b	Broadcast	802.11	468	Beacon frame, SN=3593, FN=0, Flags=........C, BI=104, SSID="carioca"
+
+Radiotap Header v0, Length 56
+    Antenna signal: -81 dBm
+
+258	5.176765	Netgear_4c:14:d7	Broadcast	802.11	468	Beacon frame, SN=525, FN=0, Flags=........C, BI=104, SSID="carioca"
+
+Radiotap Header v0, Length 56
+    Antenna signal: -57 dBm
+```
+
+How many **orders of magnitude** stronger or weaker is the received signal?
+- `24` dBm stronger
+- `-57` dBm - `-81` dBm = `24` dBm
 
 14. **Compare noise strength (dBm) of frame 258 vs. frame 3:**  
-   → How many **orders of magnitude** stronger or weaker is the noise?
+
+```
+258	5.176765	Netgear_4c:14:d7	Broadcast	802.11	468	Beacon frame, SN=525, FN=0, Flags=........C, BI=104, SSID="carioca"
+
+Radiotap Header v0, Length 56
+    Antenna noise: -93 dBm
+
+3	0.027048	Netgear_4c:14:6b	Broadcast	802.11	468	Beacon frame, SN=3593, FN=0, Flags=........C, BI=104, SSID="carioca"
+
+Radiotap Header v0, Length 56
+    Antenna noise: -93 dBm
+```
+
+How many **orders of magnitude** stronger or weaker is the noise?
+- `0`
+
+`-93` dBm - `-93` dBm = `0`
+
+<img width="756" height="575" alt="Screenshot-20251108T230949" src="https://github.com/user-attachments/assets/7780e15f-9ec9-443b-ab86-f687bab41de7" />
+
+
+
 
 ---
 
@@ -147,3 +188,16 @@ Answer the following:
 ---
 ## What I Learned
 
+I learned
+- how to analyze a Wi-Fi radio beacon frame to identify
+	- Wi-Fi channel number
+	- channel frequency
+	- channel bandwdith
+	- channel data rate
+	- modulation technique
+	- number of antennas on the receiver wireless interface
+	- radio signal strength at the receiver’s antenna
+	- the formula to convert the signal strength and noise floor strength from dBm to milliwatts (mW)
+	- noise floor strength at the receiver’s antenna
+	- how to calculate the Signal-to-Noise Ratio (SNR)
+	- how to compare different packets' differences in signal strength or noise floor strength
