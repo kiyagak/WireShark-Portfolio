@@ -86,9 +86,12 @@ Antenna signal: -81 dBm
 **Calculation:**  
 Signal strength = **-81 dBm**
 
-Convert dBm to mW using the formula:
-$ P(\text{mW}) = 10^{(\text{dBm}/10)} $
+Convert dBm to mW using the formula:  
+
+P(mW) = 10($ P(\text{mW}) = 10^{(\text{dBm}/10)} $)
+
 $ P(\text{mW}) = 10^{(-81)/10} = 10^{-8.1} = 0.000000079433 ≈ 7.94 \times 10^{-8} \text{ W} = 0.0000794 \text{ mW} $
+
 
 **Final Answer: 0.0000794 mW**
 
@@ -98,11 +101,24 @@ Antenna noise: -93 dBm
 
 10. **Convert the noise strength from dBm to milliwatts (mW)**
 
+**0.00000501 mW** (or **5.01 × 10⁻⁶ mW**)
 
+**Calculation:**  
+Noise strength = **-93 dBm**
+
+Convert dBm to mW using the formula:  
+\[ P(\text{mW}) = 10^{\frac{\text{dBm}}{10}} \]
+
+\[
+P(\text{mW}) = 10^{\frac{-93}{10}} = 10^{-9.3} = 0.00000000501187 \approx 5.01 \times 10^{-6}~\text{mW}
+\]
+
+**Final Answer: 0.00000501 mW**
 
 11. **What is the Signal-to-Noise Ratio (SNR) at the receiver’s antenna?** (in dB)
+- `12`
 
-
+Signal-to-noise (SNR) ratio = `Antenna signal` - `Antenna noise` = (-81 dBm) - (-93 dBm) = `12`
 
 ---
 
