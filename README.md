@@ -12,7 +12,7 @@ This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark
 - [Ethernet and ARP](https://github.com/kiyagak/WireShark-Portfolio/blob/main/Ethernet-and-ARP.md)
 - [Basic 802.11 Wi-Fi](https://github.com/kiyagak/WireShark-Portfolio/blob/main/802-11-WiFi-Basic.md)
 - [Wi-Fi Radio](https://github.com/kiyagak/WireShark-Portfolio/blob/main/Wi-Fi-Radio.md)
-- 5G Radio
+- [5G Radio](https://github.com/kiyagak/WireShark-Portfolio/blob/main/5G-Radio.md)
 - 5G Finding and Joining
 - and TLS
 
