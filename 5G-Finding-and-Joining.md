@@ -159,6 +159,8 @@ NR Radio Resource Control (RRC) protocol
 	- `5436160`
  	- The decimal value of the `trackingAreaCode` field.  
 
+<img width="1124" height="602" alt="Screenshot-20251109T065918" src="https://github.com/user-attachments/assets/1bc7f080-48a3-4162-bfef-ccd3c0bc9a67" />
+
 ```
 2	0.000799	127.0.0.1	127.0.0.2	NR RRC	167	SIB1
 
@@ -177,6 +179,8 @@ NR Radio Resource Control (RRC) protocol
 
 - What is the MCC value of the second provider network?
 	- `311`
+
+<img width="1124" height="602" alt="Screenshot-20251109T070009" src="https://github.com/user-attachments/assets/c29f79f1-e0a4-4eee-8aa7-d40138b5efa8" />
 
 ```
 2	0.000799	127.0.0.1	127.0.0.2	NR RRC	167	SIB1
@@ -264,6 +268,8 @@ ue-Identity: randomValue (1)
 establishmentCause: mo-Signalling (3)
 ```
 
+<img width="1124" height="602" alt="Screenshot-20251109T070103" src="https://github.com/user-attachments/assets/ddf639e7-c944-49a2-8045-9b6ad23840cf" />
+
 ```
 8	0.203225	127.0.0.1	127.0.0.2	NR RRC	50	RRC Setup Request
 
@@ -290,6 +296,8 @@ Which four physical channels does the UE learn about from the gNB?
 	- UE sends UCI (HARQ-ACK, SR, CSI) on PUCCH
 - PUSCH
 	- UE sends uplink data, UCI (when scheduled), Msg3 (in RA), etc.
+
+<img width="1124" height="602" alt="Screenshot-20251109T070504" src="https://github.com/user-attachments/assets/f22147d4-a089-43fc-8133-bd1fb9eb16fd" />
 
 ```
 9	0.394926	127.0.0.1	127.0.0.2	NR RRC	514	RRC Setup
@@ -323,6 +331,8 @@ NR Radio Resource Control (RRC) protocol
 What is the Mobile Country Code and Mobile Network Code of the UE’s home network?
 - Mobile Country Code (MCC): United States (`310`)
 - Mobile Network Code (MNC): T-Mobile USA (`260`)
+
+<img width="1124" height="638" alt="Screenshot-20251109T070703" src="https://github.com/user-attachments/assets/b98887f2-1d60-410e-a57e-e05491605763" />
 
 What is the UE’s MSIN?
 - It is not listed in this packet.  
@@ -377,6 +387,8 @@ NR Radio Resource Control (RRC) protocol
 
 This message is sent from the gNB to the AMF, initiating the process of joining the UE to the 5G Core Functions.
 
+<img width="1124" height="570" alt="Screenshot-20251109T070752" src="https://github.com/user-attachments/assets/3d4822b3-eb5a-40d2-b902-fd0d0a079451" />
+
 ---
 
 ## UE, 5G Core Interaction: Identification, Authentication, Security
@@ -385,6 +397,8 @@ This message is sent from the gNB to the AMF, initiating the process of joining 
 
 - What is the 5G frequency band number that will be used for this UE session?
 	- `71`
+
+<img width="1124" height="570" alt="Screenshot-20251109T071034" src="https://github.com/user-attachments/assets/242277fe-4086-4b8a-b9fc-dcbb783f5dfe" />
 
 ```
 40	0.860981	127.0.0.1	127.0.0.2	NR RRC	160	System Information [ SIB2 SIB4 SIB5 ]
@@ -416,6 +430,8 @@ NR Radio Resource Control (RRC) protocol
 	- Yes.
  	- The `drx-LongCycleStartOffset` parameter being there means the UE is configured for a long DRX cycle.
 	- The `drx-onDurationTimer` and `drx-InactivityTimer` parameters are used to set up short DRX cycles.
+
+<img width="1124" height="570" alt="Screenshot-20251109T071150" src="https://github.com/user-attachments/assets/51a28927-6109-47dc-a02d-7a027fd22899" />
 
 - Does the UE support inter-frequency handover?
 	- Yes.
@@ -876,6 +892,8 @@ What is the IP address associated with the tunnel for this session from the gNB 
  
  What is the value of periodicBSR-Timer?
 - `sf5 (1)`
+
+<img width="1124" height="570" alt="Screenshot-20251109T071622" src="https://github.com/user-attachments/assets/5e59bc06-f79a-4bf7-9e8a-6e5aae2edc85" />
 
 ```
 178	37.062107	127.0.0.1	127.0.0.2	NR RRC	268	RRC Reconfiguration
