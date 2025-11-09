@@ -73,10 +73,12 @@ subCarrierSpacingCommon: scs30or120 (1)
 
 ```
 cellBarred: notBarred (1)
+intraFreqReselection: allowed (0)
 ```
 
 - What is the value of the SFN?
-	- `78`
+	- `30`
+ 	- `decimal value 30`
 
 ```
 systemFrameNumber: 78 [bit length 6, 2 LSB pad bits, 0111 10.. decimal value 30]
@@ -103,14 +105,75 @@ BCCH-BCH-Message
 ```
 
 2. **Packet 2 (SIB1 Message):**
-   - Expand NR Radio Resource Control (RRC) protocol and all following lines.
-   - Questions:
-     - What country is the origin country for this network?
-     - What company is the owner/operator of this network?
-     - What is the RAN cell identifier?
-     - What is the tracking area code?
-     - What is the MCC value of the second provider network?
-     - Is the second owner/operator name the same as the first?
+
+Expand NR Radio Resource Control (RRC) protocol and all following lines.
+
+- What country is the origin country for this network?
+	- d
+ 	- Mobile Country Code (MCC): 310
+	- 
+
+```
+NR Radio Resource Control (RRC) protocol
+    BCCH-DL-SCH-Message
+        message: c1 (0)
+            c1: systemInformationBlockType1 (1)
+                systemInformationBlockType1
+                    cellSelectionInfo
+                        q-RxLevMin: -118dBm (-59)
+                    cellAccessRelatedInfo
+                        plmn-IdentityInfoList: 2 items
+                            Item 0
+                                PLMN-IdentityInfo
+                                    plmn-IdentityList: 1 item
+                                        Item 0
+                                            PLMN-Identity
+                                                mcc: 3 items
+                                                    Item 0
+                                                        MCC-MNC-Digit: 3
+                                                    Item 1
+                                                        MCC-MNC-Digit: 1
+                                                    Item 2
+                                                        MCC-MNC-Digit: 0
+                                                mnc: 3 items
+                                                    Item 0
+                                                        MCC-MNC-Digit: 2
+                                                    Item 1
+                                                        MCC-MNC-Digit: 6
+                                                    Item 2
+                                                        MCC-MNC-Digit: 0
+```
+
+- What company is the owner/operator of this network?
+	- 
+
+```
+```
+
+- What is the RAN cell identifier?
+	- 
+
+```
+```
+
+- What is the tracking area code?
+	- 
+
+```
+```
+
+- What is the MCC value of the second provider network?
+	- 
+
+```
+```
+
+- Is the second owner/operator name the same as the first?
+	- 
+
+```
+```
+
 
 ---
 
