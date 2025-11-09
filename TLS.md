@@ -26,14 +26,49 @@ Address 1: 34.227.156.202 ec2-34-227-156-202.compute-1.amazonaws.com
 - Set Wireshark’s display to show only packets to and from www.cics.umass.edu (IP address 34.227.156.202).
 - Enter `ip.addr == 34.227.156.202` in Wireshark’s display filter window.
 
-<img width="1316" height="575" alt="image" src="https://github.com/user-attachments/assets/acdeb191-80fd-4812-a1f2-b56524f324ae" />
+<img width="1314" height="532" alt="image" src="https://github.com/user-attachments/assets/0937a155-5cca-4c48-afd2-f218b31d46a8" />
 
 **3. The TLS Handshake: Client Hello message:**
 - Identify the packet number containing the TLS Client Hello message.
+  - `60`
+ 
 - Determine the version of TLS your client is running, as declared in the Client Hello message.
+  - `1.3`
+ 
 - Count the number of cipher suites supported by your client, as declared in the Client Hello message.
+  - `16`
+ 
 - Find the first two hexadecimal digits in the random bytes field of the Client Hello message.
+  - `2c`
+ 
 - Understand the purpose(s) of the “random bytes” field in the Client Hello message.
+  - Uniqueness: Prevents session replay by making every handshake unique. 
+  - Key Derivation: Added to PRF for master secret
+    - Combined with the Server Random (from Server Hello) and pre-master secret to derive:
+      - Master secret
+      - Session keys (encryption, MAC, etc.)
+  - Entropy: Adds randomness to cryptography for forward secrecy and resistance to prediction attacks.
+
+```
+60	0.924121709	10.0.2.15	34.227.156.202	TLSv1.3	1878	Client Hello
+
+Transport Layer Security
+    TLSv1.3 Record Layer: Handshake Protocol: Client Hello
+        Content Type: Handshake (22)
+        Version: TLS 1.0 (0x0301)
+        Length: 1819
+        Handshake Protocol: Client Hello
+            Handshake Type: Client Hello (1)
+            Length: 1815
+            Version: TLS 1.2 (0x0303)
+            Random: 2c4987294e6f3a0ee25089a0230840d23db328b220ecb1fdeb63f2b926ddccc7
+            Session ID Length: 32
+            Session ID: ae31a565e2c48e64ab9961e806c0028f1c6d0a19665e71ce222e359f32261348
+            Cipher Suites Length: 32
+            Cipher Suites (16 suites)
+            Compression Methods Length: 1
+            Compression Methods (1 method)
+```
 
 **4. The TLS Handshake: Server Hello message:**
 - Identify the packet number containing the TLS Server Hello message.
