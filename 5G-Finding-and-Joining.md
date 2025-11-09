@@ -213,8 +213,8 @@ NR Radio Resource Control (RRC) protocol
 
 - Is the second owner/operator name the same as the first?
 	- Yes.
-  	- Mobile Network Code (MNC): `490` = United States of America
- 	- Mobile Country Code (MCC): `311` = T-Mobile
+  	- Mobile Network Code (MNC): `490` = T-Mobile
+ 	- Mobile Country Code (MCC): `311` = United States of America
 
 <img width="853" height="125" alt="image" src="https://github.com/user-attachments/assets/c8b5d69d-3593-434a-8b9a-46fb26bddb56" />
 
