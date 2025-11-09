@@ -61,7 +61,7 @@ This [Wireshark lab about finding and joining a 5G network](https://www-net.cs.u
 Expand NR Radio Resource Control (RRC) protocol and BCCH-BCH-Message line.
 
 - What are the subcarrier spacings (channel widths) used in this 5G network?
-	- 30 or 120
+	- 30 or 120 kHz
  	- `scs30or120 (1)`
 
 ```
@@ -922,3 +922,25 @@ NR Radio Resource Control (RRC) protocol
 
 ## What I Learned
 
+I learned
+- the 5G MIB message structure# MIB and SIB Messages
+- to install and verify installation of plugins in Wireshark
+- to find the subcarrier spacings (channel widths) used in a 5G network
+- to tell if a 5G network is open for use
+- how to find the systemFrameNumber (SFN) value
+- to find the 5G network's country of origin and owning/operating company of this network using the MCC and MNC
+- find the RAN cell identifier and tracking area code
+- how to enable specific protocols within Wireshark
+- how devices join the RAN
+- the value user equipment (UE) enters as its ue-identity
+- to find the reason for a UE making a session
+- the RRC set up action
+	- how the UE learns about four physical channels from the gNB: PDCCH, PDSCH, PUCCH, PUSCH
+- the RRC set up complete action
+- that the initial UE message is sent from the gNB to the AMF to start joining the UE to the 5G Core Functions
+- 5G Core Interactions of identification, authentication, security
+	- how to find te 5G frequency band number used for the UE session
+- about the UE-NR-Capability / RRC Reconfiguration
+	- how to tell if the UE supports longDRX / shortDRX sleep cycles and inter-frequency handover
+- the RRC reconfiguration process
+	- how to find the periodicBSR-Timer value
