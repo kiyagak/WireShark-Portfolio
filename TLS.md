@@ -4,63 +4,6 @@
 
 In this [TLS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_TLS_v9.pdf), we’ll investigate Transport Layer Security (TLS) and aspects of the authentication, data integrity, and confidentiality services provided by TLS. TLS is the successor to the now-deprecated Secure Sockets Layer (SSL). We’ll investigate TLS by analyzing a Wireshark packet trace captured during the retrieval of a web page via HTTPS, which implements TLS on top of HTTP. We’ll look at TLS’s client-server handshaking protocol in detail, since that’s where most of the interesting action happens. You may want to review Section 8.6 in the text; useful online resources for learning more about TLS are here, here, and here; and, of course, in RFC 5246: ^1^.
 
-### **Pre-Lab Setup**
-
-> **Warning: Do this before every capture to ensure unencrypted HTTP traffic**
-
-- **Disable VPN** (encrypts HTTP/TCP)  
-- **Disable HTTP/3 & QUIC** in browser (default in 2025 browsers)  
-  → Guide: [https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/](https://techysnoop.com/disable-quic-protocol-in-chrome-edge-firefox/)  
-- Use **`http://`** (not `https://`) to avoid encryption  
-- **Turn off** privacy settings  
-- **Clear browser cache & history** before each section
-
----
-
-## Disable QUIC in Chrome
-
-1. Open Chrome → type `chrome://flags` in the address bar  
-2. Search for **"QUIC"**  
-3. Disable **"Experimental QUIC Protocol"**  
-   *(Alternatively: `chrome://flags/#enable-quic`)*  
-4. Relaunch Chrome
-
-![Disable QUIC in Chrome](https://github.com/user-attachments/assets/d1949f9d-e4d5-4a10-a1f8-21d5f0abe15d)
-
----
-
-## Disable Caching in Chrome
-
-1. Right-click on the web page → **Inspect**  
-2. Go to the **Network** tab  
-3. Check **Disable cache**
-
-![Disable cache in Chrome DevTools](https://github.com/user-attachments/assets/ca8f60e3-b98a-4057-bcab-9401ad34654f)
-
----
-
-## Disable QUIC in Firefox
-
-1. Open Firefox → type `about:config`  
-2. Accept the risk and continue  
-3. Search for:  
-   - `network.http.http3.enable`  
-   - `network.http.http3.enable_0rtt`  
-   - `network.http.http3.enable_qlog`  
-4. Double-click each to set value to **`false`**  
-5. Restart Firefox
-
----
-
-## Disable QUIC in Edge
-
-1. Open Edge → type `edge://flags`  
-2. Search for **"QUIC"**  
-3. Disable **"Experimental QUIC Protocol"**  
-4. Restart Edge
-
----
-
 ## Capturing packets in a TLS session:
 
 - Start Wireshark and begin packet capture.
@@ -68,8 +11,22 @@ In this [TLS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshar
 - Stop Wireshark packet capture.
 
 **2. A first look at the captured trace:**
-- Set Wireshark’s display to show only packets to and from www.cics.umass.edu (IP address 128.119.240.84).
-- Enter `ip.addr == 128.119.240.84` in Wireshark’s display filter window.
+- Find the homepage's IP address using:
+
+```
+nslookup www.cics.umass.edu
+Server:    10.0.2.3
+Address 1: 10.0.2.3
+
+Name:      www.cics.umass.edu
+Address 1: 34.227.156.202 ec2-34-227-156-202.compute-1.amazonaws.com
+```
+
+- The IP address is `34.227.156.202`.  
+- Set Wireshark’s display to show only packets to and from www.cics.umass.edu (IP address 34.227.156.202).
+- Enter `ip.addr == 34.227.156.202` in Wireshark’s display filter window.
+
+<img width="1316" height="575" alt="image" src="https://github.com/user-attachments/assets/acdeb191-80fd-4812-a1f2-b56524f324ae" />
 
 **3. The TLS Handshake: Client Hello message:**
 - Identify the packet number containing the TLS Client Hello message.
