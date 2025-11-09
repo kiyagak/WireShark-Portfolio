@@ -225,6 +225,11 @@ NR Radio Resource Control (RRC) protocol
 - Go to `Analyze -> Protocols` and check:
   - MAC-LTE and mac_lte_udp
   - MAC-NR and mac_nr_udp
+ 
+<img width="833" height="538" alt="Screenshot-20251109T035046" src="https://github.com/user-attachments/assets/680d1fd4-b83e-4bae-9176-a1180fe0fe25" />
+
+<img width="993" height="620" alt="Screenshot-20251109T035908" src="https://github.com/user-attachments/assets/1583dfe8-dc2c-47cc-a5f3-0d39976ca011" />
+
 - On Windows: `Edit/Preferences` or on macOS: `Wireshark -> Preferences`
   - Expand `Protocols`
   - Check all options for MAC-LTE and MAC-NR
