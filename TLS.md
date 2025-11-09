@@ -108,11 +108,23 @@ Transport Layer Security
 
 **5. Additional Information from the Server:**
 - Identify the packet number for the TLS message part containing the public key certificate for www.cics.umass.edu.
+  - ``
+
 - Determine if more than one certificate is returned and who they are for if not all are for www.cs.umass.edu.
+- ``
+
 - Identify the name of the certification authority that issued the certificate for www.cs.umass.edu.
+- ``
+
 - Determine the digital signature algorithm used by the CA to sign this certificate.
+- ``
+
 - Find the first four hexadecimal digits of the modulus of the public key being used by www.cics.umass.edu.
+- ``
+
 - Look for messages between the client and a CA to verify the CA-signed certificate sent by the server.
+- ``
+
 
 **6. The TLS Handshake: wrapping up the handshake:**
 - Identify the packet number for the TLS message part that contains the Server Hello Done TLS record.
