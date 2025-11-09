@@ -7,30 +7,30 @@ In this [TLS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshar
 ## Capturing packets in a TLS session:
 
 - Start Wireshark and begin packet capture.
-- Retrieve the homepage from https://www.cics.umass.edu using your browser of choice.
+- Retrieve the homepage from https://msn.com using your browser of choice.
 - Stop Wireshark packet capture.
 
 **2. A first look at the captured trace:**
 - Find the homepage's IP address using:
 
 ```
-nslookup www.cics.umass.edu
+nslookup msn.com
 Server:    10.0.2.3
 Address 1: 10.0.2.3
 
-Name:      www.cics.umass.edu
-Address 1: 34.227.156.202 ec2-34-227-156-202.compute-1.amazonaws.com
+Name:      msn.com
+Address 1: 204.79.197.219
 ```
 
-- The IP address is `34.227.156.202`.  
-- Set Wireshark’s display to show only packets to and from www.cics.umass.edu (IP address 34.227.156.202).
-- Enter `ip.addr == 34.227.156.202` in Wireshark’s display filter window.
+- The IP address is `204.79.197.219`.  
+- Set Wireshark’s display to show only packets to and from msn.com (IP address 204.79.197.219).
+- Enter `ip.addr == 204.79.197.219` in Wireshark’s display filter window.
 
 <img width="1314" height="532" alt="image" src="https://github.com/user-attachments/assets/0937a155-5cca-4c48-afd2-f218b31d46a8" />
 
 **3. The TLS Handshake: Client Hello message:**
 - Identify the packet number containing the TLS Client Hello message.
-  - `60`
+  - `22`
  
 - Determine the version of TLS your client is running, as declared in the Client Hello message.
   - `1.3`
@@ -39,7 +39,7 @@ Address 1: 34.227.156.202 ec2-34-227-156-202.compute-1.amazonaws.com
   - `16`
  
 - Find the first two hexadecimal digits in the random bytes field of the Client Hello message.
-  - `2c`
+  - `7b`
  
 - Understand the purpose(s) of the “random bytes” field in the Client Hello message.
   - Uniqueness: Prevents session replay by making every handshake unique. 
@@ -50,38 +50,33 @@ Address 1: 34.227.156.202 ec2-34-227-156-202.compute-1.amazonaws.com
   - Entropy: Adds randomness to cryptography for forward secrecy and resistance to prediction attacks.
 
 ```
-60	0.924121709	10.0.2.15	34.227.156.202	TLSv1.3	1878	Client Hello
+22	0.590052822	10.0.2.15	204.79.197.219	TLSv1.3	1773	Client Hello
 
 Transport Layer Security
     TLSv1.3 Record Layer: Handshake Protocol: Client Hello
         Content Type: Handshake (22)
         Version: TLS 1.0 (0x0301)
-        Length: 1819
         Handshake Protocol: Client Hello
             Handshake Type: Client Hello (1)
-            Length: 1815
             Version: TLS 1.2 (0x0303)
-            Random: 2c4987294e6f3a0ee25089a0230840d23db328b220ecb1fdeb63f2b926ddccc7
-            Session ID Length: 32
-            Session ID: ae31a565e2c48e64ab9961e806c0028f1c6d0a19665e71ce222e359f32261348
+            Random: 7b307adbf47a4fdca1f636fd73a10fb254e672c8f1515b6ff64c06625d38c5fe
             Cipher Suites Length: 32
             Cipher Suites (16 suites)
-            Compression Methods Length: 1
-            Compression Methods (1 method)
 ```
 
 **4. The TLS Handshake: Server Hello message:**
+
 - Identify the packet number containing the TLS Server Hello message.
-  - `69`
-  - `69	1.015090626	34.227.156.202	10.0.2.15	TLSv1.3	1402	Server Hello, Change Cipher Spec, Application Data`
+  - `29`
+  - `29	0.681609230	204.79.197.219	10.0.2.15	TLSv1.3	1516	Server Hello`
  
 - Determine which cipher suite has been chosen by the server from those offered in the Client Hello message.
-  - `TLS_AES_256_GCM_SHA384`
+  - `TLS_AES_256_GCM_SHA384 (0x1302)`
   - `Cipher Suite: TLS_AES_256_GCM_SHA384 (0x1302)`
 
 - Check if the Server Hello message contains random bytes and understand their purpose(s).
   - Yes, it does.
-  - `Random: d08dab9538c43970c97ff07eca27e84dd548fce8d0d4ca3e7e7734340fc45848`
+  - `Random: af1e883eab5464394afdfc336b180aed2a1d4930dc55fefe925eeb5ca43451b2`
   - Purposes
     - Uniqueness: Prevents session replay by making every handshake unique. 
     - Key Derivation: Added to PRF for master secret
@@ -93,17 +88,27 @@ Transport Layer Security
 <img width="1314" height="772" alt="image" src="https://github.com/user-attachments/assets/c5d35428-c6d3-4d43-aa11-9efa7c2a21ce" />
 
 ```
-69	1.015090626	34.227.156.202	10.0.2.15	TLSv1.3	1402	Server Hello, Change Cipher Spec, Application Data
+29	0.681609230	204.79.197.219	10.0.2.15	TLSv1.3	1516	Server Hello
 
 Transport Layer Security
     TLSv1.3 Record Layer: Handshake Protocol: Server Hello
         Content Type: Handshake (22)
         Version: TLS 1.2 (0x0303)
-        Length: 122
+        Length: 187
         Handshake Protocol: Server Hello
             Handshake Type: Server Hello (2)
-            Random: d08dab9538c43970c97ff07eca27e84dd548fce8d0d4ca3e7e7734340fc45848
+            Length: 183
+            Version: TLS 1.2 (0x0303)
+            Random: af1e883eab5464394afdfc336b180aed2a1d4930dc55fefe925eeb5ca43451b2
+            Session ID Length: 32
+            Session ID: 5a7c87a51dcc29b211ef704d973515930e3c07282b5e792877fe6e51460c8ec4
             Cipher Suite: TLS_AES_256_GCM_SHA384 (0x1302)
+            Compression Method: null (0)
+            Extensions Length: 111
+            Extension: supported_versions (len=2)
+            Extension: key_share (len=101)
+            [JA3S Fullstring: 771,4866,43-51]
+            [JA3S: 15af977ce25de452b96affa2addb1036]
 ```
 
 **5. Additional Information from the Server:**
