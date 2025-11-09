@@ -14,7 +14,7 @@ This portfolio shows my use of Wireshark to complete [Kuross and Ross' Wireshark
 - [Wi-Fi Radio](https://github.com/kiyagak/WireShark-Portfolio/blob/main/Wi-Fi-Radio.md)
 - [5G Radio](https://github.com/kiyagak/WireShark-Portfolio/blob/main/5G-Radio.md)
 - [5G Finding and Joining](https://github.com/kiyagak/WireShark-Portfolio/blob/main/5G-Finding-and-Joining.md)
-- and TLS
+- and [TLS](https://github.com/kiyagak/WireShark-Portfolio/blob/main/TLS.md)
 
 # Objectives
 The goal is to follow the [Wireshark labs](https://gaia.cs.umass.edu/kurose_ross/wireshark.php) lead by Kuross and Ross to:
