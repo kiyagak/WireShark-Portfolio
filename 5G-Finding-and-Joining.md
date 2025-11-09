@@ -109,11 +109,18 @@ BCCH-BCH-Message
 Expand NR Radio Resource Control (RRC) protocol and all following lines.
 
 - What country is the origin country for this network?
-	- d
+	- [United States of America](https://mcc-mnc.com/)
  	- Mobile Country Code (MCC): 310
-	- 
+
+- What company is the owner/operator of this network?
+	- T-Mobile
+ 	- Mobile Network Code (MNC): 260
+
+<img width="783" height="136" alt="image" src="https://github.com/user-attachments/assets/05cf3ab2-35cc-488c-98b9-cf51100e4a4e" />
 
 ```
+2	0.000799	127.0.0.1	127.0.0.2	NR RRC	167	SIB1
+
 NR Radio Resource Control (RRC) protocol
     BCCH-DL-SCH-Message
         message: c1 (0)
@@ -144,36 +151,72 @@ NR Radio Resource Control (RRC) protocol
                                                         MCC-MNC-Digit: 0
 ```
 
-- What company is the owner/operator of this network?
-	- 
-
-```
-```
-
 - What is the RAN cell identifier?
-	- 
-
-```
-```
+	- `5465887033`
+ 	- The decimal value of the `cellIdentity` field.  
 
 - What is the tracking area code?
-	- 
+	- `5436160`
+ 	- The decimal value of the `trackingAreaCode` field.  
 
 ```
+2	0.000799	127.0.0.1	127.0.0.2	NR RRC	167	SIB1
+
+NR Radio Resource Control (RRC) protocol
+    BCCH-DL-SCH-Message
+        message: c1 (0)
+            c1: systemInformationBlockType1 (1)
+                systemInformationBlockType1
+                    cellAccessRelatedInfo
+                        plmn-IdentityInfoList: 2 items
+                            Item 0
+                                PLMN-IdentityInfo
+									trackingAreaCode: 52f300 [bit length 24, 0101 0010  1111 0011  0000 0000 decimal value 5436160]
+                                    cellIdentity: 145cad1390 [bit length 36, 4 LSB pad bits, 0001 0100  0101 1100  1010 1101  0001 0011  1001 .... decimal value 5465887033]
 ```
 
 - What is the MCC value of the second provider network?
-	- 
+	- `311`
 
 ```
+2	0.000799	127.0.0.1	127.0.0.2	NR RRC	167	SIB1
+
+NR Radio Resource Control (RRC) protocol
+    BCCH-DL-SCH-Message
+        message: c1 (0)
+            c1: systemInformationBlockType1 (1)
+                systemInformationBlockType1
+                    cellSelectionInfo
+                        q-RxLevMin: -118dBm (-59)
+                    cellAccessRelatedInfo
+                        plmn-IdentityInfoList: 2 items
+                            Item 1
+                                PLMN-IdentityInfo
+                                    plmn-IdentityList: 1 item
+                                        Item 0
+                                            PLMN-Identity
+                                                mcc: 3 items
+                                                    Item 0
+                                                        MCC-MNC-Digit: 3
+                                                    Item 1
+                                                        MCC-MNC-Digit: 1
+                                                    Item 2
+                                                        MCC-MNC-Digit: 1
+                                                mnc: 3 items
+                                                    Item 0
+                                                        MCC-MNC-Digit: 4
+                                                    Item 1
+                                                        MCC-MNC-Digit: 9
+                                                    Item 2
+                                                        MCC-MNC-Digit: 0
 ```
 
 - Is the second owner/operator name the same as the first?
-	- 
+	- Yes.
+  	- Mobile Network Code (MNC): `490` = United States of America
+ 	- Mobile Country Code (MCC): `311` = T-Mobile
 
-```
-```
-
+<img width="853" height="125" alt="image" src="https://github.com/user-attachments/assets/c8b5d69d-3593-434a-8b9a-46fb26bddb56" />
 
 ---
 
