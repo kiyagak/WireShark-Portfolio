@@ -3,9 +3,6 @@
 ## Objective
 
 This [Wireshark lab about finding and joining a 5G network](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_5G_Finding_Joining_v9.pdf) explores how a 5G device learns about and attaches to a 5G network.
-- Additional resources:
-  - [5G RAN](https://gaia.cs.umass.edu/wireless_and_mobile_networks/readings/Chapter_5_RAN.pdf)
-  - [Joining a 5G Network](https://gaia.cs.umass.edu/wireless_and_mobile_networks/readings/Chapter_6_Edge_topi)
 
 ---
 
