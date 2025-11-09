@@ -27,21 +27,80 @@ This [Wireshark lab about finding and joining a 5G network](https://www-net.cs.u
 ---
 
 ## Wireshark Setup
-- Place `scat-v2.lua` in the correct directory for Wireshark to find and install it.
-- Official Wireshark docs: [Plugin Folders](https://www.wireshark.org/docs/wsug_html_chunked/ChPluginFolders.html)
-- Reboot your computer after installing the `.lua` file.
-- Open `trace4-scatv2-5G-NR-feb-19-2025.pcapng` in Wireshark.
+
+1. **Install the `.lua` Plugin**
+- Find the **Personal Lua Plugins Folder**
+  - Open Wireshark → Help → About Wireshark → Folders
+
+| OS | Personal Plugin Folder |
+|-----|------------------------|
+| **Windows** | `%APPDATA%\Wireshark\plugins` |
+| **macOS / Linux** | `~/.local/lib/wireshark/plugins` |
+
+<img width="756" height="575" alt="image" src="https://github.com/user-attachments/assets/d3285a67-f19e-4e22-94b6-5c43e789378b" />
+
+<img width="746" height="675" alt="image" src="https://github.com/user-attachments/assets/1512b4e3-ed3c-45ad-b462-4ec70f1e804d" />
+
+- Place `scat-v2.lua` in the appropriate Wireshark plugin folder:
+- **Reboot your computer** after placing the file.
+- Verify that the scat-v2.lua plugin is enabled in Wireshark:
+  - Open Wireshark → Help → About Wireshark → Plugins
+
+<img width="746" height="675" alt="image" src="https://github.com/user-attachments/assets/6fe87007-a4cd-49c2-a350-a9d860ad2562" />
+
+2. **Open the Trace in Wireshark**  
+- Launch Wireshark  
+- Open: `trace4-scatv2-5G-NR-feb-19-2025.pcapng`  
 
 ---
 
 ## Investigating the 5G RAN
 
 1. **Packet 1 (MIB Message):**
-   - Expand NR Radio Resource Control (RRC) protocol and BCCH-BCH-Message line.
-   - Questions:
-     - What are the subcarrier spacings (channel widths) used in this 5G network?
-     - Is this network open for use?
-     - What is the value of the SFN?
+
+Expand NR Radio Resource Control (RRC) protocol and BCCH-BCH-Message line.
+
+- What are the subcarrier spacings (channel widths) used in this 5G network?
+	- 30 or 120
+ 	- `scs30or120 (1)`
+
+```
+subCarrierSpacingCommon: scs30or120 (1)
+```
+
+- Is this network open for use?
+	- Yes
+
+```
+cellBarred: notBarred (1)
+```
+
+- What is the value of the SFN?
+	- `78`
+
+```
+systemFrameNumber: 78 [bit length 6, 2 LSB pad bits, 0111 10.. decimal value 30]
+```
+
+<img width="833" height="538" alt="Screenshot-20251109T031432" src="https://github.com/user-attachments/assets/0b5bc9ce-64ef-47b9-b789-3f58e5999217" />
+
+```
+1	0.000000	127.0.0.1	127.0.0.2	NR RRC	48	MIB
+
+BCCH-BCH-Message
+    message: mib (0)
+        mib
+            systemFrameNumber: 78 [bit length 6, 2 LSB pad bits, 0111 10.. decimal value 30]
+            subCarrierSpacingCommon: scs30or120 (1)
+            ssb-SubcarrierOffset: 0
+            dmrs-TypeA-Position: pos2 (0)
+            pdcch-ConfigSIB1
+                controlResourceSetZero: 12
+                searchSpaceZero: 4
+            cellBarred: notBarred (1)
+            intraFreqReselection: allowed (0)
+            spare: 00 [bit length 1, 7 LSB pad bits, 0... .... decimal value 0]
+```
 
 2. **Packet 2 (SIB1 Message):**
    - Expand NR Radio Resource Control (RRC) protocol and all following lines.
@@ -52,14 +111,6 @@ This [Wireshark lab about finding and joining a 5G network](https://www-net.cs.u
      - What is the tracking area code?
      - What is the MCC value of the second provider network?
      - Is the second owner/operator name the same as the first?
-
----
-
-## Attaching to the 5G RAN
-
-- Review Section 7.4.3 of the textbook and additional resources:
-  - [Discovery and attaching to the RAN/WLAN](https://gaia.cs.umass.edu/wireless_and_mobile_networks/readings/Chapter_6_Edge_topi)
-  - [User identity, registration, and session establishment](https://gaia.cs.umass.edu/wireless_and_mobile_networks/readings/Chapter_8_5G_Core.p)
 
 ---
 
