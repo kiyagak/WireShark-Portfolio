@@ -72,8 +72,39 @@ Transport Layer Security
 
 **4. The TLS Handshake: Server Hello message:**
 - Identify the packet number containing the TLS Server Hello message.
+  - `69`
+  - `69	1.015090626	34.227.156.202	10.0.2.15	TLSv1.3	1402	Server Hello, Change Cipher Spec, Application Data`
+ 
 - Determine which cipher suite has been chosen by the server from those offered in the Client Hello message.
+  - `TLS_AES_256_GCM_SHA384`
+  - `Cipher Suite: TLS_AES_256_GCM_SHA384 (0x1302)`
+
 - Check if the Server Hello message contains random bytes and understand their purpose(s).
+  - Yes, it does.
+  - `Random: d08dab9538c43970c97ff07eca27e84dd548fce8d0d4ca3e7e7734340fc45848`
+  - Purposes
+    - Uniqueness: Prevents session replay by making every handshake unique. 
+    - Key Derivation: Added to PRF for master secret
+      - Combined with the Server Random (from Server Hello) and pre-master secret to derive:
+        - Master secret
+        - Session keys (encryption, MAC, etc.)
+    - Entropy: Adds randomness to cryptography for forward secrecy and resistance to prediction attacks.
+
+<img width="1314" height="772" alt="image" src="https://github.com/user-attachments/assets/c5d35428-c6d3-4d43-aa11-9efa7c2a21ce" />
+
+```
+69	1.015090626	34.227.156.202	10.0.2.15	TLSv1.3	1402	Server Hello, Change Cipher Spec, Application Data
+
+Transport Layer Security
+    TLSv1.3 Record Layer: Handshake Protocol: Server Hello
+        Content Type: Handshake (22)
+        Version: TLS 1.2 (0x0303)
+        Length: 122
+        Handshake Protocol: Server Hello
+            Handshake Type: Server Hello (2)
+            Random: d08dab9538c43970c97ff07eca27e84dd548fce8d0d4ca3e7e7734340fc45848
+            Cipher Suite: TLS_AES_256_GCM_SHA384 (0x1302)
+```
 
 **5. Additional Information from the Server:**
 - Identify the packet number for the TLS message part containing the public key certificate for www.cics.umass.edu.
