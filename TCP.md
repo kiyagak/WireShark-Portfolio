@@ -2,7 +2,14 @@
 
 ## Objective
 
-This [TCP Wireshark Lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_TCP_v9.pdf) investigates TCP behavior by analyzing a packet trace of a ~150KB file transfer (Alice’s Adventures in Wonderland) from your computer to gaia.cs.umass.edu using HTTP POST. You will examine TCP’s reliable data transfer (sequence/acknowledgment numbers), congestion control (slow start, congestion avoidance), flow control, connection setup, and performance (throughput, RTT). Review text sections 3.5 and 3.7 before starting.
+The goal of this [TCP Wireshark Lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_TCP_v9.pdf) is to
+- investigates TCP behavior by analyzing a packet trace of a ~150KB file transfer (Alice’s Adventures in Wonderland) from my	 computer to gaia.cs.umass.edu using HTTP POST.
+- examine TCP’s
+	- reliable data transfer (sequence/acknowledgment numbers)
+	- congestion control (slow start, congestion avoidance),
+	- flow control
+	- connection setup
+	- and performance (throughput, RTT).
 
 **Steps:**
 
@@ -138,7 +145,7 @@ How many bytes of data are contained in the payload (data) field of this TCP seg
 		File Data: 148723 bytes
 
 Did all of the data in the transferred file alice.txt fit into this single segment?
-- No
+- No.  It was fragmented and then reassembled.  
 
 		[ [truncated]113 Reassembled TCP Segments (149325 bytes): #16(602), #17(1348), #18(1348), #19(1348), #20(1348), #21(1348), #22(1348), #23(1348), #24(1348), #25(1348), #27(1348), #28(1348), #30(1348), #31(1348), #33(1348), #34(1348), #36(134]
 
@@ -177,7 +184,7 @@ Arrival Time: Nov  3, 2025 00:24:23.209142563 UTC
 
 <img width="878" height="830" alt="image" src="https://github.com/user-attachments/assets/f7f225ef-9293-464d-9e10-c1198ab0ddd4" />
 
-- What is the Estimated RTT value (see Section 3.5.3, in the text) after the ACK for the second data-carrying segment is received? 
+- What is the Estimated RTT value after the ACK for the second data-carrying segment is received? 
 	- `19.9` ms
 
 - Estimated RTT formula:
@@ -188,6 +195,10 @@ Arrival Time: Nov  3, 2025 00:24:23.209142563 UTC
 	- Wireshark rounds RTT to one decimal place, making the estimated RTT `19.9` ms
 
 7. What is the length (header plus payload) of each of the first four data-carrying TCP segments?
+- `Frame Length: 654 bytes (5232 bits)`
+- `Frame Length: 1400 bytes (11200 bits)`
+- `Frame Length: 1400 bytes (11200 bits)`
+- `Frame Length: 1400 bytes (11200 bits)`
 
 ```
 16	11.521331138	10.98.0.7	128.119.245.12	TCP	654	36244 → 80 [PSH, ACK] Seq=1 Ack=1 Win=502 Len=602 TSval=1912112618 TSecr=2486330902 [TCP segment of a reassembled PDU]
@@ -296,6 +307,8 @@ What did you check for (in the trace) in order to answer this question?
 <img width="1304" height="643" alt="image" src="https://github.com/user-attachments/assets/ca63e0d3-17b6-45e1-ac5b-c2790ae58265" />
 
 10. How much data does the receiver typically acknowledge in an ACK among the first ten data-carrying segments sent from the client to gaia.cs.umass.edu?
+- `0` bytes
+- `508176412` - `508176412` = 0
 
 ```
 Formula:
@@ -330,7 +343,7 @@ Acknowledgment number (raw): 508176412
 
 
 
-Can you identify cases where the receiver is ACKing every other received segment (see Table 3.2 in the text) among these first ten data-carrying segments?
+Can you identify cases where the receiver is ACKing every other received segment among these first ten data-carrying segments?
 - Yes
 
 <img width="1304" height="643" alt="image" src="https://github.com/user-attachments/assets/1aa19f1c-5f5e-49b5-802f-f863430417cb" />
@@ -366,3 +379,32 @@ Comment on whether this looks as if TCP is in its slow start phase, congestion a
 	- 13
 
 ## What I Learned
+
+I learned
+- about the TCP handshake, which is SYN, SYN/ACK, and ACK
+- to investigate TCP behavior by analyzing a packet trace of a ~150KB file transfer from my computer to gaia.cs.umass.edu using HTTP POST.
+- how to filter for TCP traffic
+- how to analyze round-trip time (RTT) and congestion control using graphs
+- how to find the source IP address and port of my computer as it was doing the file transfer
+- how to find the destination IP address and port of gaia.cs.umass.edu as it was receiving the file transfer
+- that HTTP traffic transmits data on TCP port 80
+- that `Sequence Number (raw)` identifies the sequence number of a TCP segment, not the packet number or `Sequence Number (relative)`
+- that flag values identify each TCP segment, such as SYN, SYN/ACK, and ACK
+- a packet's Options field will show if the TCP receiver in this session be able to use Selective Acknowledgments (SACK)
+- the acknowledgement field is identified by the `Acknowledgment number (raw)` field
+- how to find an HTTP post packet's HTTP header and the length of it's TCP payload (data) using the `File Data` field
+- that file transfer data gets fragmented and then reassembled.  
+- how to see information about HTTP post portion of the TCP segment, such as
+    - what date and time it was sent and received
+    - its RTT
+- how to see the RTT of the second data-carrying TCP segment and its ACK
+- how to calculate the Estimated RTT value
+- how to find the length of TCP segments using the `Frame Length` field
+- how to find the minimum buffer space of a TCP segment using the `Calculated window size` field
+- that the TCP segments were not throttled or re-transmitted
+- to use the `tcp.analysis.retransmission` filter to find retransmitted TCP segments or packets
+- that the the receiver typically acknowledges `0` bytes in an ACK among the first ten data-carrying segments
+- that the receiver acknowledged every other received segment among these first ten data-carrying segments
+- the TCP connection had a throughput of `1.2` bytes transferred per unit time after clicking `Statistics` → `TCP Stream Graphs` → `Throughput` in Wireshark
+- to view the sequence number versus time plot of segments being sent from the client to the gaia.cs.umass.edu server by clicking `Statistics` → `TCP Stream Graphs` → ` Time Sequence (Stevens)`
+- this packet capture showed a TCP slow start phase
