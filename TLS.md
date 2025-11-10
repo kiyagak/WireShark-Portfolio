@@ -2,7 +2,12 @@
 
 ## Objective
 
-In this [TLS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_TLS_v9.pdf), we’ll investigate Transport Layer Security (TLS) and aspects of the authentication, data integrity, and confidentiality services provided by TLS. TLS is the successor to the now-deprecated Secure Sockets Layer (SSL). We’ll investigate TLS by analyzing a Wireshark packet trace captured during the retrieval of a web page via HTTPS, which implements TLS on top of HTTP. We’ll look at TLS’s client-server handshaking protocol in detail, since that’s where most of the interesting action happens. You may want to review Section 8.6 in the text; useful online resources for learning more about TLS are here, here, and here; and, of course, in RFC 5246: ^1^.
+The goal in this [TLS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshark_TLS_v9.pdf) is to
+- investigate Transport Layer Security (TLS) and aspects of the
+	- authentication
+	- data integrity
+	- and confidentiality services provided by TLS. 
+- analyze a Wireshark packet trace capture of a retrieval of a web page via HTTPS, which uses TLS on top of HTTP. 
 
 ## Capturing packets in a TLS session
 
@@ -675,3 +680,22 @@ Transport Layer Security
 
 ## What I Learned
 
+I learned 
+- to use Wireshark to capture packets for a TLS session
+- how to find the TLS handshake's client hello message
+- how to see which TLS version is being used
+- how many cipher suites a client device suports
+- the importance of the random bytes field for security reasons
+- how to identify the TLS server hello message
+- that the server hello message lists the cipher suit chosen by the server
+- that the server hello message also uses the random byte value for security reasons
+- how to filter for TLS handshake "Certificate" packets in Wireshark
+- how to view the details of certificate(s) within the TLS Certificate packets
+- who issues individual certificates
+- which digital signature algorithm is used by each individual certificate
+- how to find the public key hexadecimal value using the `subjectPublicKey` field
+- the series of messages between the client and certificate authority (CA) that confirm the CA-signed certificate sent by the server
+- how to filter for TLS handshake packets
+- how to find and filter for Hello Done packets that are part of the TLS handshake
+- how to find packets that have public key information, Change Cipher Spec, and Encrypted Handshake message being sent from client to server
+- how to follow a TLS stream to find a stream's packets that make its TLS handshake
