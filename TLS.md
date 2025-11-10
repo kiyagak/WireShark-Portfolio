@@ -10,6 +10,8 @@ In this [TLS Wireshark lab](https://www-net.cs.umass.edu/wireshark-labs/Wireshar
 - Retrieve the homepage from https://msn.com using your browser of choice.
 - Stop Wireshark packet capture.
 
+<img width="676" height="439" alt="image" src="https://github.com/user-attachments/assets/cfecb8c2-acf4-45b4-832f-64c0f66d167e" />
+
 ## A first look at the captured trace
 
 - Open the Terminal.  
@@ -28,7 +30,7 @@ Address 1: 204.79.197.219
 - Set Wireshark’s display to show only packets to and from msn.com (IP address 204.79.197.219).
 - Enter `ip.addr == 204.79.197.219` in Wireshark’s display filter window.
 
-<img width="1314" height="532" alt="image" src="https://github.com/user-attachments/assets/0937a155-5cca-4c48-afd2-f218b31d46a8" />
+<img width="916" height="570" alt="Screenshot-20251110T013302" src="https://github.com/user-attachments/assets/c1bae7f1-d357-4df5-a1aa-f66fdc134433" />
 
 ## The TLS Handshake: Client Hello Message
 - Identify the packet number containing the TLS Client Hello message.
@@ -50,8 +52,6 @@ Address 1: 204.79.197.219
       - Master secret
       - Session keys (encryption, MAC, etc.)
   - Entropy: Adds randomness to cryptography for forward secrecy and resistance to prediction attacks.
-
-<img width="1008" height="570" alt="image" src="https://github.com/user-attachments/assets/aed92a97-da35-4c49-bdfd-138955406091" />
 
 ```
 22	0.590052822	10.0.2.15	204.79.197.219	TLSv1.3	1773	Client Hello
@@ -119,6 +119,8 @@ Transport Layer Security
   - More than one certificate is returned.  
   - They are not for msn.com.
   - They are for `ib.msn.com`.  
+
+<img width="1290" height="570" alt="Screenshot-20251110T013712" src="https://github.com/user-attachments/assets/9240bc13-5b4f-405d-a1fa-723885c35a65" />
 
 ```
 1720	4.391131980	68.67.176.83	10.0.2.15	TLSv1.2	202	Certificate, Server Key Exchange, Server Hello Done
