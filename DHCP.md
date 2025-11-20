@@ -86,7 +86,7 @@ sudo apt install isc-dhcp-client -y
   ```
 - You should see: **Discover → Offer → Request → ACK**
 
-<img width="1225" height="609" alt="Screenshot From 2025-11-05 18-45-32" src="https://github.com/user-attachments/assets/09fa6eb5-a41e-4449-b733-7ab311daefd9" />
+<img width="1225" height="609" alt="image" src="https://github.com/user-attachments/assets/9323c588-ea4d-489c-a9c3-b8d5d2d0fcd3" />
 
 ---
 
