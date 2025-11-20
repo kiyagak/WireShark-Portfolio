@@ -11,15 +11,15 @@ I will de-configure and re-configure a network interface to trigger DHCP, captur
 ### **On a Mac**
 1. **De-configure interface**  
    ```bash
-   sudo ipconfig set enp0s3 none
+   sudo ipconfig set en0 none
    ```
-   *(Replace `enp0s3` with your interface name from Wireshark → Capture → Options)*
+   *(Replace `en0` with your interface name from Wireshark → Capture → Options)*
 
 2. **Start Wireshark** on the de-configured interface.
 
 3. **Request new DHCP lease**  
    ```bash
-   sudo ipconfig set enp0s3 dhcp
+   sudo ipconfig set en0 dhcp
    ```
 
 4. **Stop capture** after a few seconds.
@@ -35,7 +35,7 @@ sudo ip addr
 ```
 
 ```
-2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+2: en0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
 ```
 
 3. Install the dhclient binary.
@@ -47,7 +47,7 @@ sudo apt install isc-dhcp-client -y
 
 4. **Release existing IP and lease**  
    ```bash
-   sudo ip addr flush enp0s3
+   sudo ip addr flush en0
    sudo dhclient -r
    ```
 
@@ -55,7 +55,7 @@ sudo apt install isc-dhcp-client -y
 
 6. **Request new DHCP lease**  
    ```bash
-   sudo dhclient enp0s3
+   sudo dhclient en0
    ```
 
 7. **Stop capture** after a few seconds.
@@ -191,7 +191,7 @@ Dynamic Host Configuration Protocol (Discover)
 - `10.0.2.2`
 
 Special?
-- My computer's local IP address at the `enp0s3` interface.  
+- My computer's local IP address at the `en0` interface.  
 
 8. **Destination IP address?**  
 - `255.255.255.255`
